@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:popcorn/widget/movie_item.dart';
 
 String appbarTitle = "POPcorn";
 
@@ -13,17 +14,33 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(context),
-      body: _buildContainer(context),
-      bottomNavigationBar: BottomNavigationBar(
-        // ignore: prefer_const_literals_to_create_immutables
-        items: [
-          const BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          const BottomNavigationBarItem(
-              icon: Icon(Icons.person), label: 'Profile')
-        ],
-      ),
-    );
+        appBar: _buildAppBar(context),
+        body: const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Column(children: [
+            SearchBar(
+              leading: Icon(Icons.search),
+              hintText: 'Search Movies',
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Row(
+              children: [
+                Text('Top Rated Movies', style: TextStyle(fontSize: 24)),
+              ],
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  movieItem(),
+                  movieItem(),
+                ],
+              ),
+            )
+          ]),
+        ));
   }
 }
 
@@ -38,29 +55,14 @@ AppBar _buildAppBar(context) {
           size: 24,
         ),
         Text(appbarTitle),
-        Container(
+        const SizedBox(
           height: 40,
           width: 40,
-          child: const Icon(Icons.person, size: 30),
+          child: Icon(Icons.person, size: 30),
         )
       ],
     ),
     centerTitle: true,
     backgroundColor: Theme.of(context).colorScheme.secondary,
-  );
-}
-
-Container _buildContainer(context) {
-  return Container(
-    child: const Column(children: [
-      Padding(
-        padding: EdgeInsets.all(16.0),
-        child: SearchBar(
-          leading: Icon(Icons.search),
-          hintText: 'Search Movies',
-          onChanged: (String input) {Movie().f},
-        ),
-      ),
-    ]),
   );
 }
