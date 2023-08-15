@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:popcorn/data/top_rated_movies.dart';
 
 class movieItem extends StatelessWidget {
-  const movieItem({super.key});
+  const movieItem({super.key, required this.movies});
+
+  final List<Movie> movies;
 
   @override
   Widget build(BuildContext context) {

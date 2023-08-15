@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:popcorn/widget/movie_item.dart';
+import 'package:popcorn/data/top_rated_movies.dart';
+import 'package:http/http.dart' as http;
+import 'package:popcorn/widget/movie_preview.dart';
 
 String appbarTitle = "POPcorn";
 
@@ -15,17 +17,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: _buildAppBar(context),
-        body: const Padding(
-          padding: EdgeInsets.all(8.0),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Column(children: [
-            SearchBar(
+            const SearchBar(
               leading: Icon(Icons.search),
               hintText: 'Search Movies',
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Row(
+            const Row(
               children: [
                 Text('Top Rated Movies', style: TextStyle(fontSize: 24)),
               ],
@@ -34,8 +36,19 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  movieItem(),
-                  movieItem(),
+                  FutureBuilder<List<Movie>>(
+                    future: fetchMovies(http.Client()),
+                    builder: (context, snapshot){
+                      if(snapshot.hasError){
+                        return const Center(
+                          child: Text('Error 404'));
+                      } else if(snapshot.hasData){
+                        return movieItem(movies: snapshot.data!);
+                      }else{
+                        return const Center(child: CircularProgressIndicator(),);
+                      }
+                    }
+                  )
                 ],
               ),
             )
