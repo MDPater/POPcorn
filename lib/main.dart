@@ -18,8 +18,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'REM',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        primarySwatch: Colors.deepPurple,
         useMaterial3: true,
       ),
+      debugShowCheckedModeBanner: false,
       home: const HomeScreen(),
     );
   }
