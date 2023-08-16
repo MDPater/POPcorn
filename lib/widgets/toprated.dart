@@ -9,7 +9,6 @@ class TopRatedMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -18,7 +17,7 @@ class TopRatedMovies extends StatelessWidget {
             height: 10,
           ),
           Container(
-            height: 250,
+            height: 260,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: TopRated.length,
@@ -27,13 +26,14 @@ class TopRatedMovies extends StatelessWidget {
                     borderRadius: BorderRadius.circular(2),
                     onTap: () {},
                     child: Container(
-                      margin: EdgeInsets.all(8),
+                      padding: EdgeInsets.all(5),
                       width: 140,
                       child: Column(
                         children: [
                           Container(
-                            height: 200,
+                            height: 195,
                             decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
                                 image: DecorationImage(
                                     image: NetworkImage(
                                         'https://image.tmdb.org/t/p/w500' +

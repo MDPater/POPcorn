@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/widgets/toprated.dart';
+import 'package:popcorn/widgets/trending.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 String appbarTitle = "POPcorn";
@@ -12,7 +13,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List TopratedMovies = [];
+  List topratedMovies = [];
+  List trendingMovies = [];
   final String apikey = "8d28c2f1418b07cac8dfcdbfac0d3a44";
   final String readaccesstoken =
       "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZDI4YzJmMTQxOGIwN2NhYzhkZmNkYmZhYzBkM2E0NCIsInN1YiI6IjYzZGFjNjA1YTZjMTA0MDA4NTg3Y2YzNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fVZtxE0HhKVu6Q9mIztpQoOtwosTr2qKp1eKAGrz8u8";
@@ -31,13 +33,15 @@ class _HomeScreenState extends State<HomeScreen> {
         logConfig: const ConfigLogger(showLogs: true, showErrorLogs: true));
 
     Map topratedresult = await tmdbLogs.v3.movies.getTopRated();
+    Map trendingresult = await tmdbLogs.v3.movies.getPopular();
 
     setState(() {
-      TopratedMovies = topratedresult['results'];
+      topratedMovies = topratedresult['results'];
+      trendingMovies = trendingresult['results'];
     });
 
     //show output of API call
-    print(TopratedMovies);
+    print(topratedMovies);
   }
 
   @override
@@ -48,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: _buildAppBar(context),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(children: [
+          child: ListView(children: [
             const SearchBar(
               leading: Icon(Icons.search),
               hintText: 'Search Movies',
@@ -56,7 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 30,
             ),
-            TopRatedMovies(TopRated: TopratedMovies)
+            TrendingMovies(Trending: trendingMovies),
+            TopRatedMovies(TopRated: topratedMovies),
           ]),
         ));
   }
