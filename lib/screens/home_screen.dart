@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:popcorn/data/top_rated_movies.dart';
-import 'package:http/http.dart' as http;
-import 'package:popcorn/widget/movie_preview.dart';
+import 'package:popcorn/widgets/toprated.dart';
+import 'package:popcorn/data/tmdb_api.dart';
 
 String appbarTitle = "POPcorn";
+final tmdb db = tmdb();
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,6 +13,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    // Initialize on App open
+    db.loadmovies();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,31 +34,13 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 30,
             ),
-            const Row(
-              children: [
-                Text('Top Rated Movies', style: TextStyle(fontSize: 24)),
-              ],
-            ),
-            SingleChildScrollView(
+            TopRatedMovies(TopRated: tmdb.TopratedMovies)
+            /*SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: [
-                  FutureBuilder<List<Movie>>(
-                    future: fetchMovies(http.Client()),
-                    builder: (context, snapshot){
-                      if(snapshot.hasError){
-                        return const Center(
-                          child: Text('Error 404'));
-                      } else if(snapshot.hasData){
-                        return movieItem(movies: snapshot.data!);
-                      }else{
-                        return const Center(child: CircularProgressIndicator(),);
-                      }
-                    }
-                  )
-                ],
+                children: [TopRatedMovies(TopRated: TopRated)],
               ),
-            )
+            )*/
           ]),
         ));
   }
@@ -79,3 +68,5 @@ AppBar _buildAppBar(context) {
     backgroundColor: Theme.of(context).colorScheme.secondary,
   );
 }
+
+//Add update function to refresh list of tmdb Movies
