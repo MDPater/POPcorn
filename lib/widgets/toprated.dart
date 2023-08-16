@@ -21,6 +21,7 @@ class TopRatedMovies extends StatelessWidget {
                 itemCount: TopRated.length,
                 itemBuilder: (context, index) {
                   return InkWell(
+                    borderRadius: BorderRadius.circular(2),
                     onTap: () {},
                     child: Container(
                       width: 140,
@@ -37,7 +38,8 @@ class TopRatedMovies extends StatelessWidget {
                           Container(
                             child: Text(
                               TopRated[index]['title'],
-                              style: FontStyle(),
+                              style: const TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.w700),
                             ),
                           )
                         ],

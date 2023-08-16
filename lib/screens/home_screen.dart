@@ -37,12 +37,6 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 30,
             ),
             TopRatedMovies(TopRated: tmdb.TopratedMovies)
-            /*SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [TopRatedMovies(TopRated: TopRated)],
-              ),
-            )*/
           ]),
         ));
   }
