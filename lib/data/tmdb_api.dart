@@ -1,5 +1,6 @@
 import 'package:tmdb_api/tmdb_api.dart';
 
+//class that handles TMDB
 class tmdb {
   static List TopratedMovies = [];
   final String apikey = "8d28c2f1418b07cac8dfcdbfac0d3a44";

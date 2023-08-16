@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
-
 import 'package:flutter/material.dart';
 
 class TopRatedMovies extends StatelessWidget {
@@ -36,7 +35,10 @@ class TopRatedMovies extends StatelessWidget {
                                             TopRated[index]['poster_path']))),
                           ),
                           Container(
-                            child: Text(TopRated[index]['title']),
+                            child: Text(
+                              TopRated[index]['title'],
+                              style: FontStyle(),
+                            ),
                           )
                         ],
                       ),

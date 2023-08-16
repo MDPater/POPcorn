@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-//Topbar
+//Topbar of the App
 AppBar _buildAppBar(context) {
   return AppBar(
     title: Row(
@@ -71,5 +71,3 @@ AppBar _buildAppBar(context) {
     backgroundColor: Theme.of(context).colorScheme.secondary,
   );
 }
-
-//Add update function to refresh list of tmdb Movies
