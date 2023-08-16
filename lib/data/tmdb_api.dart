@@ -8,10 +8,13 @@ class tmdb {
 
   loadmovies() async {
     TMDB tmdbLogs = TMDB(ApiKeys(apikey, readaccesstoken),
-        logConfig: ConfigLogger(showLogs: true, showErrorLogs: true));
+        logConfig: const ConfigLogger(showLogs: true, showErrorLogs: true));
 
     Map topratedresult = await tmdbLogs.v3.movies.getTopRated();
-    print(topratedresult);
+
     TopratedMovies = topratedresult['results'];
+
+    //show output of API call
+    print(TopratedMovies);
   }
 }

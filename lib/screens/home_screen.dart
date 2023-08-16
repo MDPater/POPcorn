@@ -14,14 +14,16 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
+  //initializing on Start
   void initState() {
-    // Initialize on App open
+    // functions to call
     db.loadmovies();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    //Main Scaffold that holds Layout and links to widgets
     return Scaffold(
         appBar: _buildAppBar(context),
         body: Padding(
@@ -46,6 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
+//Topbar
 AppBar _buildAppBar(context) {
   return AppBar(
     title: Row(

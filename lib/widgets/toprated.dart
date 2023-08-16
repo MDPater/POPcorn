@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 import 'package:flutter/material.dart';
 
 class TopRatedMovies extends StatelessWidget {
@@ -16,10 +18,29 @@ class TopRatedMovies extends StatelessWidget {
           Container(
             height: 270,
             child: ListView.builder(
+                scrollDirection: Axis.horizontal,
                 itemCount: TopRated.length,
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {},
+                    child: Container(
+                      width: 140,
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 200,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        'https://image.tmdb.org/t/p/w500' +
+                                            TopRated[index]['poster_path']))),
+                          ),
+                          Container(
+                            child: Text(TopRated[index]['title']),
+                          )
+                        ],
+                      ),
+                    ),
                   );
                 }),
           )
