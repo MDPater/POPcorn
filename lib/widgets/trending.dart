@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
 import 'package:flutter/material.dart';
+import 'package:popcorn/screens/movie_description.dart';
 
 class TrendingMovies extends StatelessWidget {
   const TrendingMovies({super.key, required this.Trending});
@@ -24,7 +25,22 @@ class TrendingMovies extends StatelessWidget {
                 itemCount: Trending.length,
                 itemBuilder: (context, index) {
                   return InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MovieDescription(
+                                  title: Trending[index]['title'],
+                                  description: Trending[index]['overview'],
+                                  bannerurl: 'https://image.tmdb.org/t/p/w500' +
+                                      Trending[index]['backdrop_path'],
+                                  posterurl: 'https://image.tmdb.org/t/p/w500' +
+                                      Trending[index]['poster_path'],
+                                  vote: Trending[index]['vote_average']
+                                      .toString(),
+                                  release_date: Trending[index]
+                                      ['release_date'])));
+                    },
                     child: Container(
                       padding: EdgeInsets.all(5),
                       width: 250,
