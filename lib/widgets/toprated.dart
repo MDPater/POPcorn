@@ -14,8 +14,11 @@ class TopRatedMovies extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text('Top Rated Movies', style: TextStyle(fontSize: 24)),
+          SizedBox(
+            height: 10,
+          ),
           Container(
-            height: 270,
+            height: 250,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: TopRated.length,
@@ -24,6 +27,7 @@ class TopRatedMovies extends StatelessWidget {
                     borderRadius: BorderRadius.circular(2),
                     onTap: () {},
                     child: Container(
+                      margin: EdgeInsets.all(8),
                       width: 140,
                       child: Column(
                         children: [
@@ -37,9 +41,9 @@ class TopRatedMovies extends StatelessWidget {
                           ),
                           Container(
                             child: Text(
-                              TopRated[index]['title'],
+                              TopRated[index]['title'] ?? 'Loading',
                               style: const TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w700),
+                                  fontSize: 12, fontWeight: FontWeight.w700),
                             ),
                           )
                         ],
