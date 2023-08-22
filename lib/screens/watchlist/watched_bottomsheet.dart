@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 var star;
 
-class Watched extends StatelessWidget {
-  const Watched({
+class WatchedBottomSheet extends StatelessWidget {
+  const WatchedBottomSheet({
     super.key,
     required this.movieID,
     required this.title,
@@ -46,13 +47,13 @@ class Watched extends StatelessWidget {
                           width: MediaQuery.of(context).size.width / 2,
                           child: Text(
                             title,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 24,
                             ),
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.only(left: 5, right: 5),
+                          padding: const EdgeInsets.only(left: 5, right: 5),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color:
@@ -75,22 +76,38 @@ class Watched extends StatelessWidget {
               ),
             ),
           ),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            IconButton(
-                onPressed: () {}, icon: const Icon(Icons.star_border_outlined)),
-            IconButton(
-                onPressed: () {}, icon: const Icon(Icons.star_border_outlined)),
-            IconButton(
-                onPressed: () {}, icon: const Icon(Icons.star_border_outlined)),
-            IconButton(
-                onPressed: () {}, icon: const Icon(Icons.star_border_outlined)),
-            IconButton(
-                onPressed: () {}, icon: const Icon(Icons.star_border_outlined)),
-          ]),
-          SizedBox(
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RatingBar(
+                  itemSize: 50,
+                  initialRating: 0,
+                  direction: Axis.horizontal,
+                  allowHalfRating: true,
+                  itemCount: 5,
+                  ratingWidget: RatingWidget(
+                      full: const Icon(
+                        Icons.star,
+                        color: Colors.orange,
+                      ),
+                      half: const Icon(
+                        Icons.star_half,
+                        color: Colors.orange,
+                      ),
+                      empty: const Icon(
+                        Icons.star_outline,
+                        color: Colors.orange,
+                      )),
+                  onRatingUpdate: (value) {
+                    var _ratingvalue = value;
+                  }),
+            ],
+          ),
+          const SizedBox(
             height: 24,
           ),
-          Padding(
+          Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
             padding: const EdgeInsets.only(left: 16, right: 16),
             child: FloatingActionButton.extended(
               onPressed: () {},

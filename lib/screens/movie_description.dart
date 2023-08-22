@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:popcorn/screens/watchlist/watched.dart';
+import 'package:popcorn/screens/watchlist/watched_bottomsheet.dart';
 
 var star;
 
@@ -133,7 +133,7 @@ class MovieDescription extends StatelessWidget {
           onPressed: () {
             showModalBottomSheet(
                 context: context,
-                builder: (context) => Watched(
+                builder: (context) => WatchedBottomSheet(
                     movieID: movieID,
                     title: title,
                     posterurl: posterurl,

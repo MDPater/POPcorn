@@ -6,6 +6,7 @@ import 'package:popcorn/widgets/toprated.dart';
 import 'package:popcorn/widgets/trending.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 import 'package:popcorn/constants/api_constants.dart';
+import 'package:popcorn/widgets/NavBar.dart';
 
 String appbarTitle = "POPcorn";
 
@@ -57,56 +58,64 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     //Main Scaffold that holds Layout and links to widgets
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.secondary,
-        appBar: _buildAppBar(context),
-        body: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).requestFocus(FocusNode());
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListView(children: [
-              SearchBar(
-                controller: searchController,
-                leading: const Icon(Icons.search),
-                hintText: 'Search Movies',
-                onChanged: (value) {},
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              TrendingMovies(Trending: trendingMovies),
-              InTheatre(Theatre: theatreMovies),
-              TopRatedMovies(TopRated: topratedMovies),
-            ]),
-          ),
-        ));
+      backgroundColor: Theme.of(context).colorScheme.secondary,
+      drawer: const NavBar(),
+      appBar: _buildAppBar(context),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView(children: [
+            SearchBar(
+              controller: searchController,
+              leading: const Icon(Icons.search),
+              hintText: 'Search Movies',
+              onChanged: (value) {},
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            TrendingMovies(Trending: trendingMovies),
+            InTheatre(Theatre: theatreMovies),
+            TopRatedMovies(TopRated: topratedMovies),
+          ]),
+        ),
+      ),
+    );
   }
-}
 
-//Topbar of the App
-AppBar _buildAppBar(context) {
-  return AppBar(
-    title: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.menu,
-              color: Colors.black,
-              size: 24,
-            )),
-        Text(appbarTitle),
-        IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.person,
-              size: 30,
-            )),
-      ],
-    ),
-    centerTitle: true,
-    backgroundColor: Theme.of(context).colorScheme.secondary,
-  );
+  //Topbar of the App
+  AppBar _buildAppBar(context) {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Builder(builder: (context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.black,
+                size: 24,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          }),
+          Text(appbarTitle),
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.person,
+                size: 30,
+              )),
+        ],
+      ),
+      centerTitle: true,
+      backgroundColor: Theme.of(context).colorScheme.secondary,
+    );
+  }
 }
