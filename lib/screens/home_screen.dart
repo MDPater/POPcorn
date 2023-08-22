@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController searchController = TextEditingController();
-  String search_query ='iron man';
+
   List topratedMovies = [];
   List trendingMovies = [];
   final String apikey = "8d28c2f1418b07cac8dfcdbfac0d3a44";
@@ -29,14 +29,13 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  //load Top rated Movies from TMDB
+  //load Movie Lists from TMDB
   loadmovies() async {
     TMDB tmdbLogs = TMDB(ApiKeys(apikey, readaccesstoken),
         logConfig: const ConfigLogger(showLogs: true, showErrorLogs: true));
 
     Map topratedresult = await tmdbLogs.v3.movies.getTopRated();
     Map trendingresult = await tmdbLogs.v3.movies.getPopular();
-    Map searchresult = await tmdbLogs.v3.search.queryMovies(search_query);
 
     setState(() {
       topratedMovies = topratedresult['results'];
@@ -44,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
     //show output of API call
-    print(searchresult);
+    print(topratedresult);
   }
 
   @override
@@ -55,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: _buildAppBar(context),
         body: GestureDetector(
           onTap: () {
-            FocusScope.of(context).requestFocus(new FocusNode());
+            FocusScope.of(context).requestFocus(FocusNode());
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -65,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 leading: const Icon(Icons.search),
                 hintText: 'Search Movies',
                 onChanged: (value) {
-                  value = search_query;
+                  
                 },
               ),
               const SizedBox(
