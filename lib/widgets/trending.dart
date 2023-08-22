@@ -2,65 +2,70 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/screens/movie_description.dart';
 
-class TopRatedMovies extends StatelessWidget {
-  const TopRatedMovies({super.key, required this.TopRated});
+class TrendingMovies extends StatelessWidget {
+  const TrendingMovies({super.key, required this.Trending});
 
-  final List TopRated;
+  final List Trending;
 
-  //Widget that builds Top Rated cards on Home Screen
+  //Widget that builds trending Cards on Home Screen
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Top Rated', style: TextStyle(fontSize: 24)),
+          const Text('Trending', style: TextStyle(fontSize: 24)),
           const SizedBox(
             height: 10,
           ),
           SizedBox(
-            height: 260,
+            height: 200,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: TopRated.length,
+                itemCount: Trending.length,
                 itemBuilder: (context, index) {
                   return InkWell(
-                    borderRadius: BorderRadius.circular(2),
                     onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => MovieDescription(
-                                  title: TopRated[index]['title'],
-                                  description: TopRated[index]['overview'],
+                                  title: Trending[index]['title'],
+                                  description: Trending[index]['overview'],
                                   bannerurl:
                                       'https://image.tmdb.org/t/p/original' +
-                                          TopRated[index]['backdrop_path'],
+                                          Trending[index]['backdrop_path'],
                                   posterurl: 'https://image.tmdb.org/t/p/w500' +
-                                      TopRated[index]['poster_path'],
-                                  vote: TopRated[index]['vote_average']
+                                      Trending[index]['poster_path'],
+                                  vote: Trending[index]['vote_average']
                                       .toString(),
-                                  release_date: TopRated[index]
+                                  release_date: Trending[index]
                                       ['release_date'])));
                     },
                     child: Container(
                       padding: const EdgeInsets.all(5),
-                      width: 140,
+                      width: 250,
                       child: Column(
                         children: [
                           Container(
-                            height: 195,
+                            width: 250,
+                            height: 140,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(20),
                                 image: DecorationImage(
                                     image: NetworkImage(
-                                        'https://image.tmdb.org/t/p/w500' +
-                                            TopRated[index]['poster_path']))),
+                                        'https://image.tmdb.org/t/p/original' +
+                                            Trending[index]['backdrop_path']),
+                                    fit: BoxFit.cover)),
+                          ),
+                          const SizedBox(
+                            height: 10,
                           ),
                           Container(
                             child: Text(
-                              TopRated[index]['title'] ?? 'Loading',
+                              Trending[index]['title'] ?? 'Loading',
                               style: const TextStyle(
                                   fontSize: 12, fontWeight: FontWeight.w700),
                             ),

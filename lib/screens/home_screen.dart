@@ -1,9 +1,13 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:popcorn/widgets/inTheatre.dart';
 import 'package:popcorn/widgets/toprated.dart';
-import 'package:popcorn/data/tmdb_api.dart';
+import 'package:popcorn/widgets/trending.dart';
+import 'package:tmdb_api/tmdb_api.dart';
+import 'package:popcorn/constants/api_constants.dart';
 
 String appbarTitle = "POPcorn";
-final tmdb db = tmdb();
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,31 +17,69 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Random random = Random();
+  final TextEditingController searchController = TextEditingController();
+
+  List theatreMovies = [];
+  List topratedMovies = [];
+  List trendingMovies = [];
+
   @override
   //initializing on Start
   void initState() {
     // functions to call
-    db.loadmovies();
+    loadmovies();
     super.initState();
+  }
+
+  //load Movie Lists from TMDB
+  loadmovies() async {
+    int randomtoprated = random.nextInt(10) + 1;
+    TMDB tmdbLogs = TMDB(ApiKeys(API_Key, readaccesstoken),
+        logConfig: const ConfigLogger(showLogs: true, showErrorLogs: true));
+
+    Map topratedresult =
+        await tmdbLogs.v3.movies.getTopRated(page: randomtoprated);
+    Map trendingresult = await tmdbLogs.v3.movies.getPopular();
+    Map intheatre = await tmdbLogs.v3.movies.getNowPlaying();
+
+    setState(() {
+      topratedMovies = topratedresult['results'];
+      trendingMovies = trendingresult['results'];
+      theatreMovies = intheatre['results'];
+    });
+
+    //show output of API call
+    print(topratedresult);
   }
 
   @override
   Widget build(BuildContext context) {
     //Main Scaffold that holds Layout and links to widgets
     return Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         appBar: _buildAppBar(context),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(children: [
-            const SearchBar(
-              leading: Icon(Icons.search),
-              hintText: 'Search Movies',
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            TopRatedMovies(TopRated: tmdb.TopratedMovies)
-          ]),
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView(children: [
+              SearchBar(
+                controller: searchController,
+                leading: const Icon(Icons.search),
+                hintText: 'Search Movies',
+                onChanged: (value) {},
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              TrendingMovies(Trending: trendingMovies),
+              InTheatre(Theatre: theatreMovies),
+              TopRatedMovies(TopRated: topratedMovies),
+            ]),
+          ),
         ));
   }
 }
@@ -48,17 +90,20 @@ AppBar _buildAppBar(context) {
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Icon(
-          Icons.menu,
-          color: Colors.black,
-          size: 24,
-        ),
+        IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.menu,
+              color: Colors.black,
+              size: 24,
+            )),
         Text(appbarTitle),
-        const SizedBox(
-          height: 40,
-          width: 40,
-          child: Icon(Icons.person, size: 30),
-        )
+        IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.person,
+              size: 30,
+            )),
       ],
     ),
     centerTitle: true,
