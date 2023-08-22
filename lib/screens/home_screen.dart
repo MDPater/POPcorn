@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:popcorn/widgets/toprated.dart';
 import 'package:popcorn/widgets/trending.dart';
@@ -13,8 +15,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Random random = Random();
   final TextEditingController searchController = TextEditingController();
 
+  List inTheatre = [];
   List topratedMovies = [];
   List trendingMovies = [];
   final String apikey = "8d28c2f1418b07cac8dfcdbfac0d3a44";
@@ -31,11 +35,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   //load Movie Lists from TMDB
   loadmovies() async {
+    int randomtoprated = random.nextInt(10);
     TMDB tmdbLogs = TMDB(ApiKeys(apikey, readaccesstoken),
         logConfig: const ConfigLogger(showLogs: true, showErrorLogs: true));
 
-    Map topratedresult = await tmdbLogs.v3.movies.getTopRated();
+    Map topratedresult = await tmdbLogs.v3.movies.getTopRated(page: randomtoprated);
     Map trendingresult = await tmdbLogs.v3.movies.getPopular();
+    Map inTheatre = await tmdbLogs.v3.movies.getNowPlaying();
 
     setState(() {
       topratedMovies = topratedresult['results'];
