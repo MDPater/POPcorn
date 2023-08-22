@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:popcorn/widgets/toprated.dart';
 import 'package:popcorn/widgets/trending.dart';
 import 'package:tmdb_api/tmdb_api.dart';
+import 'package:popcorn/constants/api_constants.dart';
 
 String appbarTitle = "POPcorn";
 
@@ -21,9 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
   List inTheatre = [];
   List topratedMovies = [];
   List trendingMovies = [];
-  final String apikey = "8d28c2f1418b07cac8dfcdbfac0d3a44";
-  final String readaccesstoken =
-      "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZDI4YzJmMTQxOGIwN2NhYzhkZmNkYmZhYzBkM2E0NCIsInN1YiI6IjYzZGFjNjA1YTZjMTA0MDA4NTg3Y2YzNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fVZtxE0HhKVu6Q9mIztpQoOtwosTr2qKp1eKAGrz8u8";
 
   @override
   //initializing on Start
@@ -36,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   //load Movie Lists from TMDB
   loadmovies() async {
     int randomtoprated = random.nextInt(10);
-    TMDB tmdbLogs = TMDB(ApiKeys(apikey, readaccesstoken),
+    TMDB tmdbLogs = TMDB(ApiKeys(API_Key, readaccesstoken),
         logConfig: const ConfigLogger(showLogs: true, showErrorLogs: true));
 
     Map topratedresult = await tmdbLogs.v3.movies.getTopRated(page: randomtoprated);
