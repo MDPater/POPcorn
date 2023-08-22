@@ -12,15 +12,15 @@ class TrendingMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 8, right: 8, top: 8),
+      padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text('Trending Movies', style: TextStyle(fontSize: 24)),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Container(
+          SizedBox(
             height: 200,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -44,7 +44,7 @@ class TrendingMovies extends StatelessWidget {
                                       ['release_date'])));
                     },
                     child: Container(
-                      padding: EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(5),
                       width: 250,
                       child: Column(
                         children: [
@@ -59,7 +59,7 @@ class TrendingMovies extends StatelessWidget {
                                             Trending[index]['backdrop_path']),
                                     fit: BoxFit.cover)),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Container(

@@ -20,7 +20,7 @@ class MovieDescription extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.secondary,
       body: ListView(
         children: [
-          Container(
+          SizedBox(
             height: 250,
             child: Stack(
               children: [
@@ -67,16 +67,16 @@ class MovieDescription extends StatelessWidget {
               ],
             ),
             ),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
             Container(
-              padding: EdgeInsets.only(left: 8, top: 8, right: 8),
-              child: Text(title, style: TextStyle(fontSize: 24),),
+              padding: const EdgeInsets.only(left: 8, top: 8, right: 8),
+              child: Text(title, style: const TextStyle(fontSize: 24),),
             ),
             Container(
-              padding: EdgeInsets.only(left:12),
-              child: Text('release date: '+release_date, style: TextStyle(fontSize: 12),),
+              padding: const EdgeInsets.only(left:12),
+              child: Text('release date: $release_date', style: const TextStyle(fontSize: 12),),
             ),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -88,7 +88,7 @@ class MovieDescription extends StatelessWidget {
                       image: DecorationImage(image: NetworkImage(posterurl), fit: BoxFit.cover)
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     height: 210,
                     width: MediaQuery.of(context).size.width / 2,
                     child: SingleChildScrollView(
@@ -108,8 +108,8 @@ class MovieDescription extends StatelessWidget {
                 context, 
                 MaterialPageRoute(builder: (context) => Watched(title: title, posterurl: posterurl, releasedate: release_date,)));
             },
-            label: Text('Watched'),
-            icon: Icon(Icons.visibility),
+            label: const Text('Watched'),
+            icon: const Icon(Icons.visibility),
           ),
         ),
       );

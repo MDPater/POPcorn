@@ -16,10 +16,10 @@ class TopRatedMovies extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text('Top Rated Movies', style: TextStyle(fontSize: 24)),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Container(
+          SizedBox(
             height: 260,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -44,7 +44,7 @@ class TopRatedMovies extends StatelessWidget {
                                       ['release_date'])));
                     },
                     child: Container(
-                      padding: EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(5),
                       width: 140,
                       child: Column(
                         children: [

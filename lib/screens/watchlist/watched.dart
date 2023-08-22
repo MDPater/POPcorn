@@ -16,11 +16,11 @@ class Watched extends StatelessWidget {
       decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary),
       child: ListView(
         children: [
-          Container(
+          SizedBox(
             height: 250,
             width: MediaQuery.of(context).size.width,
             child: Container(
-              padding: EdgeInsets.all(18),
+              padding: const EdgeInsets.all(18),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -52,20 +52,20 @@ class Watched extends StatelessWidget {
           ),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             IconButton(
-                onPressed: () {}, icon: Icon(Icons.star_border_outlined)),
+                onPressed: () {}, icon: const Icon(Icons.star_border_outlined)),
             IconButton(
-                onPressed: () {}, icon: Icon(Icons.star_border_outlined)),
+                onPressed: () {}, icon: const Icon(Icons.star_border_outlined)),
             IconButton(
-                onPressed: () {}, icon: Icon(Icons.star_border_outlined)),
+                onPressed: () {}, icon: const Icon(Icons.star_border_outlined)),
             IconButton(
-                onPressed: () {}, icon: Icon(Icons.star_border_outlined)),
+                onPressed: () {}, icon: const Icon(Icons.star_border_outlined)),
             IconButton(
-                onPressed: () {}, icon: Icon(Icons.star_border_outlined)),
+                onPressed: () {}, icon: const Icon(Icons.star_border_outlined)),
           ]),
           FloatingActionButton.extended(
             onPressed: () {},
-            icon: Icon(Icons.check),
-            label: Text('Add to List'),
+            icon: const Icon(Icons.check),
+            label: const Text('Add to List'),
           )
         ],
       ),
