@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:popcorn/data/movie.dart';
 import 'package:popcorn/widget/movie_item.dart';
+import 'package:http/http.dart' as http;
 
 String appbarTitle = "POPcorn";
 

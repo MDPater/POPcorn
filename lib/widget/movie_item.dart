@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 
 class movieItem extends StatelessWidget {
-  const movieItem({super.key});
+  final String imageUrl;
+  final String name;
+  final String information;
+
+  final GlobalKey backgroundImageKey = GlobalKey();
+
+  movieItem({super.key, this.imageUrl, this.information, this.name});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         height: 200,
         width: 200,
         padding: const EdgeInsets.all(20),
