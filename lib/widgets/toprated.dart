@@ -20,7 +20,7 @@ class TopRatedMovies extends StatelessWidget {
             height: 10,
           ),
           SizedBox(
-            height: 260,
+            height: 280,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: TopRated.length,
@@ -32,11 +32,11 @@ class TopRatedMovies extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => MovieDescription(
+                                  movieID: TopRated[index]['id'],
                                   title: TopRated[index]['title'],
                                   description: TopRated[index]['overview'],
-                                  bannerurl:
-                                      'https://image.tmdb.org/t/p/original' +
-                                          TopRated[index]['backdrop_path'],
+                                  bannerurl: 'https://image.tmdb.org/t/p/w500' +
+                                      TopRated[index]['backdrop_path'],
                                   posterurl: 'https://image.tmdb.org/t/p/w500' +
                                       TopRated[index]['poster_path'],
                                   vote: TopRated[index]['vote_average']

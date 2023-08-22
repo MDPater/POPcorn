@@ -6,6 +6,7 @@ var star;
 class MovieDescription extends StatelessWidget {
   const MovieDescription(
       {super.key,
+      required this.movieID,
       required this.title,
       required this.description,
       required this.bannerurl,
@@ -14,6 +15,7 @@ class MovieDescription extends StatelessWidget {
       required this.release_date});
 
   final String title, description, bannerurl, posterurl, vote, release_date;
+  final int movieID;
 
   //Widget to build Movie Description Screen
   @override
@@ -131,8 +133,11 @@ class MovieDescription extends StatelessWidget {
           onPressed: () {
             showModalBottomSheet(
                 context: context,
-                builder: (context) =>
-                    Watched(title: title, posterurl: posterurl, rating: vote));
+                builder: (context) => Watched(
+                    movieID: movieID,
+                    title: title,
+                    posterurl: posterurl,
+                    rating: vote));
           },
           label: const Text('Watched'),
           icon: const Icon(Icons.visibility),

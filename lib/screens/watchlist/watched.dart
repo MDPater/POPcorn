@@ -5,12 +5,14 @@ var star;
 class Watched extends StatelessWidget {
   const Watched({
     super.key,
+    required this.movieID,
     required this.title,
     required this.posterurl,
     required this.rating,
   });
 
   final String title, posterurl, rating;
+  final int movieID;
 
   @override
   Widget build(BuildContext context) {

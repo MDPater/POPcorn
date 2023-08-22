@@ -32,14 +32,15 @@ class InTheatre extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => MovieDescription(
+                                  movieID: Theatre[index]['id'],
                                   title: Theatre[index]['title'],
                                   description: Theatre[index]['overview'],
-                                  bannerurl: 'https://image.tmdb.org/t/p/original' +
+                                  bannerurl: 'https://image.tmdb.org/t/p/w500' +
                                       Theatre[index]['backdrop_path'],
                                   posterurl: 'https://image.tmdb.org/t/p/w500' +
                                       Theatre[index]['poster_path'],
-                                  vote: Theatre[index]['vote_average']
-                                      .toString(),
+                                  vote:
+                                      Theatre[index]['vote_average'].toString(),
                                   release_date: Theatre[index]
                                       ['release_date'])));
                     },
