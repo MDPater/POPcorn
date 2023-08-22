@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/screens/movie_description.dart';
 
-class TopRatedMovies extends StatelessWidget {
-  const TopRatedMovies({super.key, required this.TopRated});
+class InTheatre extends StatelessWidget {
+  const InTheatre({super.key, required this.Theatre});
 
-  final List TopRated;
+  final List Theatre;
 
   //Widget that builds Top Rated cards on Home Screen
 
@@ -15,7 +15,7 @@ class TopRatedMovies extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Top Rated Movies', style: TextStyle(fontSize: 24)),
+          const Text('In Theatre Now', style: TextStyle(fontSize: 24)),
           SizedBox(
             height: 10,
           ),
@@ -23,7 +23,7 @@ class TopRatedMovies extends StatelessWidget {
             height: 260,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: TopRated.length,
+                itemCount: Theatre.length,
                 itemBuilder: (context, index) {
                   return InkWell(
                     borderRadius: BorderRadius.circular(2),
@@ -32,15 +32,15 @@ class TopRatedMovies extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => MovieDescription(
-                                  title: TopRated[index]['title'],
-                                  description: TopRated[index]['overview'],
+                                  title: Theatre[index]['title'],
+                                  description: Theatre[index]['overview'],
                                   bannerurl: 'https://image.tmdb.org/t/p/original' +
-                                      TopRated[index]['backdrop_path'],
+                                      Theatre[index]['backdrop_path'],
                                   posterurl: 'https://image.tmdb.org/t/p/w500' +
-                                      TopRated[index]['poster_path'],
-                                  vote: TopRated[index]['vote_average']
+                                      Theatre[index]['poster_path'],
+                                  vote: Theatre[index]['vote_average']
                                       .toString(),
-                                  release_date: TopRated[index]
+                                  release_date: Theatre[index]
                                       ['release_date'])));
                     },
                     child: Container(
@@ -55,11 +55,11 @@ class TopRatedMovies extends StatelessWidget {
                                 image: DecorationImage(
                                     image: NetworkImage(
                                         'https://image.tmdb.org/t/p/w500' +
-                                            TopRated[index]['poster_path']))),
+                                            Theatre[index]['poster_path']))),
                           ),
                           Container(
                             child: Text(
-                              TopRated[index]['title'] ?? 'Loading',
+                              Theatre[index]['title'] ?? 'Loading',
                               style: const TextStyle(
                                   fontSize: 12, fontWeight: FontWeight.w700),
                             ),

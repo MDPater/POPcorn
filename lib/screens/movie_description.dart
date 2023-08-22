@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:popcorn/screens/watchlist/watched.dart';
 
 class MovieDescription extends StatelessWidget {
   const MovieDescription(
@@ -38,22 +39,29 @@ class MovieDescription extends StatelessWidget {
                 ),
                 Positioned(
                   bottom: 10,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: Text(
-                      'Rating - ' + vote /* +'⭐' */,
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Theme.of(context).colorScheme.background),
-                    ),
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 12),
+                    padding: const EdgeInsets.only(left: 5, right: 5),
+                    decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground, borderRadius: BorderRadius.circular(8)),
+                    child: Row(children: [
+                      Text(vote, style: TextStyle(color: Theme.of(context).colorScheme.primary),),
+                      Icon(Icons.star, color: Theme.of(context).colorScheme.primary,)
+                    ],)
                   )
                 ),
                 Positioned(
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }, 
-                    icon: Icon(Icons.arrow_back_ios_new, size: 24, color: Theme.of(context).colorScheme.background,)
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    margin: const EdgeInsets.only(left: 12, top: 12),
+                    decoration: BoxDecoration(color: Theme.of(context).colorScheme.onBackground, borderRadius: BorderRadius.circular(8)),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      }, 
+                      icon: Icon(Icons.arrow_back_ios_new, size: 24, color: Theme.of(context).colorScheme.primary,),
+                      alignment: Alignment.centerLeft,
+                    ),
                   ),
                 )
               ],
@@ -69,9 +77,8 @@ class MovieDescription extends StatelessWidget {
               child: Text('release date: '+release_date, style: TextStyle(fontSize: 12),),
             ),
             SizedBox(height: 15,),
-            Padding(
-              padding: const EdgeInsets.only( left: 8, right: 8, bottom: 8),
-              child: Row(
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
                     height: 200,
@@ -81,10 +88,9 @@ class MovieDescription extends StatelessWidget {
                       image: DecorationImage(image: NetworkImage(posterurl), fit: BoxFit.cover)
                     ),
                   ),
-                  SizedBox(width: 24,),
                   Container(
                     height: 210,
-                    width: 240,
+                    width: MediaQuery.of(context).size.width / 2,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Text(description),
@@ -92,14 +98,15 @@ class MovieDescription extends StatelessWidget {
                   )
                 ],
               ),
-            ),
           ],
         ),
         floatingActionButton: Padding(
           padding: const EdgeInsets.all(16),
           child: FloatingActionButton.extended(
             onPressed: (){
-        
+              Navigator.push(
+                context, 
+                MaterialPageRoute(builder: (context) => Watched(title: title, posterurl: posterurl, releasedate: release_date,)));
             },
             label: Text('Watched'),
             icon: Icon(Icons.visibility),
