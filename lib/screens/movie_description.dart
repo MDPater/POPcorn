@@ -13,50 +13,51 @@ class MovieDescription extends StatelessWidget {
   final String title, description, bannerurl, posterurl, vote, release_date;
 
   //Widget to build Movie Description Screen
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondary,
-      body: Container(
-        child: ListView(
-          children: [
-            Container(
-              height: 250,
-              child: Stack(
-                children: [
-                  Positioned(
-                    child: Container(
-                      height: 250,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(24),
-                        image: DecorationImage(
-                          image: NetworkImage(bannerurl),
-                          fit: BoxFit.cover,
-                        )
-                      ),
-                    )
-                  ),
-                  Positioned(
-                    bottom: 10,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8),
-                      child: Text(
-                        'Rating - ' + vote /* +'⭐' */,
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Theme.of(context).colorScheme.background),
-                      ),
-                    )
-                  ),
-                  Positioned(
-                    top: 10,
-                    left: 8,
-                    child: Icon(Icons.backspace, size: 24, color: Theme.of(context).colorScheme.background,),
+      body: ListView(
+        children: [
+          Container(
+            height: 250,
+            child: Stack(
+              children: [
+                Positioned(
+                  child: Container(
+                    height: 250,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24),
+                      image: DecorationImage(
+                        image: NetworkImage(bannerurl),
+                        fit: BoxFit.cover,
+                      )
+                    ),
                   )
-                ],
-              ),
+                ),
+                Positioned(
+                  bottom: 10,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Text(
+                      'Rating - ' + vote /* +'⭐' */,
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Theme.of(context).colorScheme.background),
+                    ),
+                  )
+                ),
+                Positioned(
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }, 
+                    icon: Icon(Icons.arrow_back_ios_new, size: 24, color: Theme.of(context).colorScheme.background,)
+                  ),
+                )
+              ],
+            ),
             ),
             SizedBox(height: 15,),
             Container(
@@ -82,16 +83,28 @@ class MovieDescription extends StatelessWidget {
                   ),
                   SizedBox(width: 24,),
                   Container(
-                    height: 200,
+                    height: 210,
                     width: 240,
-                    child: Text(description),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Text(description),
+                    ) 
                   )
                 ],
               ),
             ),
           ],
         ),
-      ),
-    );
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.all(16),
+          child: FloatingActionButton.extended(
+            onPressed: (){
+        
+            },
+            label: Text('Watched'),
+            icon: Icon(Icons.visibility),
+          ),
+        ),
+      );
   }
 }

@@ -12,7 +12,7 @@ class TrendingMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+      padding: EdgeInsets.only(left: 8, right: 8, top: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
