@@ -208,8 +208,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.1"
-<<<<<<< HEAD
-=======
   tmdb_api:
     dependency: "direct main"
     description:
@@ -218,7 +216,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.5"
->>>>>>> a26461953653678439c55f66e3a217a74bda1c68
   typed_data:
     dependency: transitive
     description:
