@@ -16,7 +16,7 @@ class TrendingMovies extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Trending Movies', style: TextStyle(fontSize: 24)),
+          const Text('Trending', style: TextStyle(fontSize: 24)),
           const SizedBox(
             height: 10,
           ),
@@ -34,8 +34,9 @@ class TrendingMovies extends StatelessWidget {
                               builder: (context) => MovieDescription(
                                   title: Trending[index]['title'],
                                   description: Trending[index]['overview'],
-                                  bannerurl: 'https://image.tmdb.org/t/p/original' +
-                                      Trending[index]['backdrop_path'],
+                                  bannerurl:
+                                      'https://image.tmdb.org/t/p/original' +
+                                          Trending[index]['backdrop_path'],
                                   posterurl: 'https://image.tmdb.org/t/p/w500' +
                                       Trending[index]['poster_path'],
                                   vote: Trending[index]['vote_average']

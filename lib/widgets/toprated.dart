@@ -15,7 +15,7 @@ class TopRatedMovies extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Top Rated Movies', style: TextStyle(fontSize: 24)),
+          const Text('Top Rated', style: TextStyle(fontSize: 24)),
           const SizedBox(
             height: 10,
           ),
@@ -34,8 +34,9 @@ class TopRatedMovies extends StatelessWidget {
                               builder: (context) => MovieDescription(
                                   title: TopRated[index]['title'],
                                   description: TopRated[index]['overview'],
-                                  bannerurl: 'https://image.tmdb.org/t/p/original' +
-                                      TopRated[index]['backdrop_path'],
+                                  bannerurl:
+                                      'https://image.tmdb.org/t/p/original' +
+                                          TopRated[index]['backdrop_path'],
                                   posterurl: 'https://image.tmdb.org/t/p/w500' +
                                       TopRated[index]['poster_path'],
                                   vote: TopRated[index]['vote_average']

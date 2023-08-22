@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   //load Movie Lists from TMDB
   loadmovies() async {
-    int randomtoprated = random.nextInt(10);
+    int randomtoprated = random.nextInt(10) + 1;
     TMDB tmdbLogs = TMDB(ApiKeys(API_Key, readaccesstoken),
         logConfig: const ConfigLogger(showLogs: true, showErrorLogs: true));
 
@@ -76,8 +76,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 30,
               ),
               TrendingMovies(Trending: trendingMovies),
-              TopRatedMovies(TopRated: topratedMovies),
               InTheatre(Theatre: theatreMovies),
+              TopRatedMovies(TopRated: topratedMovies),
             ]),
           ),
         ));
