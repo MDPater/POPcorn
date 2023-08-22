@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:popcorn/screens/watchlist/watched.dart';
 
 class MovieDescription extends StatelessWidget {
   const MovieDescription(
@@ -103,7 +104,9 @@ class MovieDescription extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: FloatingActionButton.extended(
             onPressed: (){
-              
+              Navigator.push(
+                context, 
+                MaterialPageRoute(builder: (context) => Watched(title: title, posterurl: posterurl, releasedate: release_date,)));
             },
             label: Text('Watched'),
             icon: Icon(Icons.visibility),

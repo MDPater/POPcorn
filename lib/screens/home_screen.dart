@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:popcorn/widgets/inTheatre.dart';
 import 'package:popcorn/widgets/toprated.dart';
 import 'package:popcorn/widgets/trending.dart';
 import 'package:tmdb_api/tmdb_api.dart';
@@ -19,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Random random = Random();
   final TextEditingController searchController = TextEditingController();
 
-  List inTheatre = [];
+  List theatreMovies = [];
   List topratedMovies = [];
   List trendingMovies = [];
 
@@ -39,11 +40,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
     Map topratedresult = await tmdbLogs.v3.movies.getTopRated(page: randomtoprated);
     Map trendingresult = await tmdbLogs.v3.movies.getPopular();
-    Map inTheatre = await tmdbLogs.v3.movies.getNowPlaying();
+    Map intheatre = await tmdbLogs.v3.movies.getNowPlaying();
 
     setState(() {
       topratedMovies = topratedresult['results'];
       trendingMovies = trendingresult['results'];
+      theatreMovies = intheatre['results'];
     });
 
     //show output of API call
@@ -76,6 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               TrendingMovies(Trending: trendingMovies),
               TopRatedMovies(TopRated: topratedMovies),
+              InTheatre(Theatre: theatreMovies),
             ]),
           ),
         ));
