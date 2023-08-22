@@ -34,7 +34,7 @@ class TrendingMovies extends StatelessWidget {
                               builder: (context) => MovieDescription(
                                   title: Trending[index]['title'],
                                   description: Trending[index]['overview'],
-                                  bannerurl: 'https://image.tmdb.org/t/p/w500' +
+                                  bannerurl: 'https://image.tmdb.org/t/p/original' +
                                       Trending[index]['backdrop_path'],
                                   posterurl: 'https://image.tmdb.org/t/p/w500' +
                                       Trending[index]['poster_path'],
@@ -55,7 +55,7 @@ class TrendingMovies extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20),
                                 image: DecorationImage(
                                     image: NetworkImage(
-                                        'https://image.tmdb.org/t/p/w500' +
+                                        'https://image.tmdb.org/t/p/original' +
                                             Trending[index]['backdrop_path']),
                                     fit: BoxFit.cover)),
                           ),

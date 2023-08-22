@@ -44,7 +44,7 @@ class MovieDescription extends StatelessWidget {
                       'Rating - ' + vote /* +'⭐' */,
                       style: TextStyle(
                           fontSize: 16,
-                          color: Theme.of(context).colorScheme.background),
+                          color: Theme.of(context).colorScheme.primary),
                     ),
                   )
                 ),
@@ -53,7 +53,7 @@ class MovieDescription extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context);
                     }, 
-                    icon: Icon(Icons.arrow_back_ios_new, size: 24, color: Theme.of(context).colorScheme.background,)
+                    icon: Icon(Icons.arrow_back_ios_new, size: 24, color: Theme.of(context).colorScheme.primary,)
                   ),
                 )
               ],

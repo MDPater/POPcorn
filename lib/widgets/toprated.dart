@@ -34,7 +34,7 @@ class TopRatedMovies extends StatelessWidget {
                               builder: (context) => MovieDescription(
                                   title: TopRated[index]['title'],
                                   description: TopRated[index]['overview'],
-                                  bannerurl: 'https://image.tmdb.org/t/p/w500' +
+                                  bannerurl: 'https://image.tmdb.org/t/p/original' +
                                       TopRated[index]['backdrop_path'],
                                   posterurl: 'https://image.tmdb.org/t/p/w500' +
                                       TopRated[index]['poster_path'],
