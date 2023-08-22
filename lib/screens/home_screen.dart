@@ -13,6 +13,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final TextEditingController searchController = TextEditingController();
+  String search_query ='iron man';
   List topratedMovies = [];
   List trendingMovies = [];
   final String apikey = "8d28c2f1418b07cac8dfcdbfac0d3a44";
@@ -34,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     Map topratedresult = await tmdbLogs.v3.movies.getTopRated();
     Map trendingresult = await tmdbLogs.v3.movies.getPopular();
+    Map searchresult = await tmdbLogs.v3.search.queryMovies(search_query);
 
     setState(() {
       topratedMovies = topratedresult['results'];
@@ -41,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
     //show output of API call
-    print(topratedMovies);
+    print(searchresult);
   }
 
   @override
@@ -50,19 +53,28 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.secondary,
         appBar: _buildAppBar(context),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListView(children: [
-            const SearchBar(
-              leading: Icon(Icons.search),
-              hintText: 'Search Movies',
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            TrendingMovies(Trending: trendingMovies),
-            TopRatedMovies(TopRated: topratedMovies),
-          ]),
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView(children: [
+              SearchBar(
+                controller: searchController,
+                leading: const Icon(Icons.search),
+                hintText: 'Search Movies',
+                onChanged: (value) {
+                  value = search_query;
+                },
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              TrendingMovies(Trending: trendingMovies),
+              TopRatedMovies(TopRated: topratedMovies),
+            ]),
+          ),
         ));
   }
 }
@@ -73,17 +85,23 @@ AppBar _buildAppBar(context) {
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Icon(
-          Icons.menu,
-          color: Colors.black,
-          size: 24,
+        IconButton(
+          onPressed: (){
+            
+          }, 
+          icon: const Icon(
+            Icons.menu,
+            color: Colors.black,
+            size: 24,
+          )
         ),
         Text(appbarTitle),
-        const SizedBox(
-          height: 40,
-          width: 40,
-          child: Icon(Icons.person, size: 30),
-        )
+        IconButton(
+          onPressed: (){
+
+          }, 
+          icon: const Icon(Icons.person, size: 30,)
+        ),
       ],
     ),
     centerTitle: true,
