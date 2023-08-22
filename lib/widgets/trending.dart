@@ -7,6 +7,8 @@ class TrendingMovies extends StatelessWidget {
 
   final List Trending;
 
+  //Widget that builds trending Cards on Home Screen
+
   @override
   Widget build(BuildContext context) {
     return Container(

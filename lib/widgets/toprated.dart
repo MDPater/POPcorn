@@ -7,6 +7,8 @@ class TopRatedMovies extends StatelessWidget {
 
   final List TopRated;
 
+  //Widget that builds Top Rated cards on Home Screen
+
   @override
   Widget build(BuildContext context) {
     return Container(
