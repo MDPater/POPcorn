@@ -69,9 +69,8 @@ class MovieDescription extends StatelessWidget {
               child: Text('release date: '+release_date, style: TextStyle(fontSize: 12),),
             ),
             SizedBox(height: 15,),
-            Padding(
-              padding: const EdgeInsets.only( left: 8, right: 8, bottom: 8),
-              child: Row(
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
                     height: 200,
@@ -81,10 +80,9 @@ class MovieDescription extends StatelessWidget {
                       image: DecorationImage(image: NetworkImage(posterurl), fit: BoxFit.cover)
                     ),
                   ),
-                  SizedBox(width: 24,),
                   Container(
                     height: 210,
-                    width: 240,
+                    width: MediaQuery.of(context).size.width / 2,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Text(description),
@@ -92,14 +90,13 @@ class MovieDescription extends StatelessWidget {
                   )
                 ],
               ),
-            ),
           ],
         ),
         floatingActionButton: Padding(
           padding: const EdgeInsets.all(16),
           child: FloatingActionButton.extended(
             onPressed: (){
-        
+              
             },
             label: Text('Watched'),
             icon: Icon(Icons.visibility),
