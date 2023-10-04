@@ -14,30 +14,30 @@ class NavBar extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Theme.of(context).colorScheme.secondary),
-              child: Text(
+              child: const Text(
                 'POP Menu',
                 style: TextStyle(fontSize: 34),
               )),
           ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Home'),
+            leading: const Icon(Icons.home),
+            title: const Text('Home'),
             onTap: () {},
           ),
           ListTile(
-            leading: Icon(Icons.visibility),
-            title: Text('Watched'),
-            onTap: () {},
-          ),
-          const Divider(),
-          ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Settings'),
+            leading: const Icon(Icons.visibility),
+            title: const Text('Watched'),
             onTap: () {},
           ),
           const Divider(),
           ListTile(
-            leading: Icon(Icons.contact_page),
-            title: Text('About'),
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
+            onTap: () {},
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.contact_page),
+            title: const Text('About'),
             onTap: () {},
           ),
         ],
