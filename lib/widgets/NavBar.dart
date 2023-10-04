@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/screens/home_screen.dart';
 
-class NavBar extends StatelessWidget {
-  const NavBar({super.key});
+class MyNavBar extends StatelessWidget {
+  const MyNavBar({super.key});
 
   @override
   Widget build(BuildContext context) {

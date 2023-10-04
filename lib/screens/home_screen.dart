@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:popcorn/widgets/AppBar.dart';
 import 'package:popcorn/widgets/movie-widgets/inTheatre.dart';
 import 'package:popcorn/widgets/movie-widgets/toprated.dart';
 import 'package:popcorn/widgets/movie-widgets/trending.dart';
@@ -59,8 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
     //Main Scaffold that holds Layout and links to widgets
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondary,
-      drawer: const NavBar(),
-      appBar: _buildAppBar(context),
+      drawer: const MyNavBar(),
+      appBar: const MyAppBar(),
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).requestFocus(FocusNode());
