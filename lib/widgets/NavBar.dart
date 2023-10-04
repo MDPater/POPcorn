@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:popcorn/screens/home_screen.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({super.key});
@@ -21,7 +22,9 @@ class NavBar extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text('Home'),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: ((context) => const HomeScreen())));
+            },
           ),
           ListTile(
             leading: const Icon(Icons.visibility),

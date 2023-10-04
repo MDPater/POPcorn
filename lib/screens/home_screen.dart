@@ -1,9 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:popcorn/widgets/inTheatre.dart';
-import 'package:popcorn/widgets/toprated.dart';
-import 'package:popcorn/widgets/trending.dart';
+import 'package:popcorn/widgets/movie-widgets/inTheatre.dart';
+import 'package:popcorn/widgets/movie-widgets/toprated.dart';
+import 'package:popcorn/widgets/movie-widgets/trending.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 import 'package:popcorn/constants/api_constants.dart';
 import 'package:popcorn/widgets/NavBar.dart';
