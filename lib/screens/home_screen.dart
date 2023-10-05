@@ -1,15 +1,21 @@
+//import flutter basic classes
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+
+//import API Keys
+import 'package:popcorn/constants/api_constants.dart';
+
+//import App modules
 import 'package:popcorn/widgets/AppBar.dart';
+import 'package:popcorn/widgets/NavBar.dart';
+
+//import Movie Widgets
 import 'package:popcorn/widgets/movie-widgets/inTheatre.dart';
 import 'package:popcorn/widgets/movie-widgets/toprated.dart';
 import 'package:popcorn/widgets/movie-widgets/trending.dart';
-import 'package:tmdb_api/tmdb_api.dart';
-import 'package:popcorn/constants/api_constants.dart';
-import 'package:popcorn/widgets/NavBar.dart';
 
-String appbarTitle = "POPcorn";
+//import TMDB api dependency
+import 'package:tmdb_api/tmdb_api.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -84,39 +90,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ]),
         ),
       ),
-    );
-  }
-
-  //Topbar of the App
-  AppBar _buildAppBar(context) {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Builder(builder: (context) {
-            return IconButton(
-              icon: const Icon(
-                Icons.menu,
-                color: Colors.black,
-                size: 24,
-              ),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-            );
-          }),
-          Text(appbarTitle),
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.person,
-                size: 30,
-              )),
-        ],
-      ),
-      centerTitle: true,
-      backgroundColor: Theme.of(context).colorScheme.secondary,
     );
   }
 }
