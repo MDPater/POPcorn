@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:popcorn/screens/about_screen.dart';
 import 'package:popcorn/screens/home_screen.dart';
+import 'package:popcorn/screens/watchlist/watched_screen.dart';
 
 class MyNavBar extends StatelessWidget {
   const MyNavBar({super.key});
@@ -21,13 +23,17 @@ class MyNavBar extends StatelessWidget {
             leading: const Icon(Icons.home),
             title: const Text('Home'),
             onTap: () {
+              Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(builder: ((context) => const HomeScreen())));
             },
           ),
           ListTile(
             leading: const Icon(Icons.visibility),
             title: const Text('Watched'),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: ((context) => const WatchedScreen())));
+            },
           ),
           const Divider(),
           ListTile(
@@ -39,7 +45,10 @@ class MyNavBar extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.contact_page),
             title: const Text('About'),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: ((context) => const AboutScreen())));
+            },
           ),
         ],
       ),

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 //import API Keys
 import 'package:popcorn/constants/api_constants.dart';
 
-//import App modules
+//import App navigation modules
 import 'package:popcorn/widgets/AppBar.dart';
 import 'package:popcorn/widgets/NavBar.dart';
 
