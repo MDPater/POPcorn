@@ -15,22 +15,22 @@ class AboutScreen extends StatelessWidget {
       appBar: const MyAppBar(),
       body: ListView(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 120,
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
+          const Padding(
+            padding: EdgeInsets.all(16.0),
             child: Text("This is a Max de Pater creation", style: TextStyle(fontSize: 24),),
           ),
           Center(
             child: Container(
               height: 200,
-              child: Center(child: Text("Hello World!")),
-              margin: EdgeInsets.all(24),
+              margin: const EdgeInsets.all(24),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 color: Theme.of(context).colorScheme.primary
               ),
+              child: const Center(child: Text("Hello World!")),
             ),
           )
         ],

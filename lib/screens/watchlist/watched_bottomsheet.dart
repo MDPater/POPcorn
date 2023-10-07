@@ -22,7 +22,7 @@ class WatchedBottomSheet extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       body: GestureDetector(
         onTap: () {
-          FocusScope.of(context).requestFocus(new FocusNode());
+          FocusScope.of(context).requestFocus(FocusNode());
         },
         child: Container(
           height: 800,
@@ -114,15 +114,15 @@ class WatchedBottomSheet extends StatelessWidget {
               ),
               Container(
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.black38),
-                margin: EdgeInsets.all(16),
-                padding: EdgeInsets.all(8),
+                margin: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(8),
                 child: TextField(
                   minLines: 1,
                   maxLines: 2,
                   decoration: InputDecoration(
                     hintText: "Comments or Notes on this movie", 
                     hintStyle: TextStyle(color: Theme.of(context).colorScheme.secondary),
-                    contentPadding: EdgeInsets.all(8),
+                    contentPadding: const EdgeInsets.all(8),
                     border: InputBorder.none
                   ),
                 ),
