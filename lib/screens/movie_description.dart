@@ -30,20 +30,22 @@ class MovieDescription extends StatelessWidget {
             child: Stack(
               children: [
                 Positioned(
-                    child: Container(
-                  height: 250,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
-                      image: DecorationImage(
-                        image: NetworkImage(bannerurl),
-                        fit: BoxFit.cover,
-                      )),
-                )),
+                    child: Center(
+                      child: Container(
+                        height: 250,
+                        width: MediaQuery.of(context).size.width - 15,
+                        decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(24),
+                        image: DecorationImage(
+                          image: NetworkImage(bannerurl),
+                          fit: BoxFit.cover,
+                        )),
+                      ),
+                    )),
                 Positioned(
                     bottom: 10,
                     child: Container(
-                        margin: const EdgeInsets.only(left: 12),
+                        margin: const EdgeInsets.only(left: 20),
                         padding: const EdgeInsets.only(left: 5, right: 5),
                         decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.onBackground,
@@ -65,7 +67,7 @@ class MovieDescription extends StatelessWidget {
                   child: Container(
                     height: 40,
                     width: 40,
-                    margin: const EdgeInsets.only(left: 12, top: 12),
+                    margin: const EdgeInsets.only(left: 20, top: 12),
                     decoration: BoxDecoration(
                         color: Theme.of(context).colorScheme.onBackground,
                         borderRadius: BorderRadius.circular(8)),

@@ -131,7 +131,10 @@ class WatchedBottomSheet extends StatelessWidget {
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
                 padding: const EdgeInsets.only(left: 16, right: 16),
                 child: FloatingActionButton.extended(
-                  onPressed: () {},
+                  onPressed: () {
+                    //save Movie to Watchlist
+                    
+                  },
                   icon: const Icon(Icons.check),
                   label: const Text('Add to List'),
                 ),
