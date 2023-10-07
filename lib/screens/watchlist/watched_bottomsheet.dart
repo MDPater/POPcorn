@@ -4,7 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 var star;
 
 class WatchedBottomSheet extends StatelessWidget {
-  const WatchedBottomSheet({
+  WatchedBottomSheet({
     super.key,
     required this.movieID,
     required this.title,
@@ -14,6 +14,8 @@ class WatchedBottomSheet extends StatelessWidget {
 
   final String title, posterurl, rating;
   final int movieID;
+
+  var ratingvalue;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,8 @@ class WatchedBottomSheet extends StatelessWidget {
         },
         child: Container(
           height: 800,
-          decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary),
+          decoration:
+              BoxDecoration(color: Theme.of(context).colorScheme.secondary),
           child: ListView(
             children: [
               SizedBox(
@@ -43,7 +46,8 @@ class WatchedBottomSheet extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             image: DecorationImage(
-                                image: NetworkImage(posterurl), fit: BoxFit.fill)),
+                                image: NetworkImage(posterurl),
+                                fit: BoxFit.fill)),
                       ),
                       Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -62,14 +66,17 @@ class WatchedBottomSheet extends StatelessWidget {
                               padding: const EdgeInsets.only(left: 5, right: 5),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
-                                  color:
-                                      Theme.of(context).colorScheme.onBackground),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground),
                               child: Row(children: [
                                 Text(
                                   star.toString(),
                                   style: TextStyle(
                                       fontSize: 14,
-                                      color: Theme.of(context).colorScheme.primary),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary),
                                 ),
                                 Icon(
                                   Icons.star,
@@ -105,7 +112,7 @@ class WatchedBottomSheet extends StatelessWidget {
                             color: Colors.orange,
                           )),
                       onRatingUpdate: (value) {
-                        var ratingvalue = value;
+                        ratingvalue = value;
                       }),
                 ],
               ),
@@ -113,27 +120,29 @@ class WatchedBottomSheet extends StatelessWidget {
                 height: 12,
               ),
               Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.black38),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.black38),
                 margin: const EdgeInsets.all(16),
                 padding: const EdgeInsets.all(8),
                 child: TextField(
                   minLines: 1,
                   maxLines: 2,
                   decoration: InputDecoration(
-                    hintText: "Comments or Notes on this movie", 
-                    hintStyle: TextStyle(color: Theme.of(context).colorScheme.secondary),
-                    contentPadding: const EdgeInsets.all(8),
-                    border: InputBorder.none
-                  ),
+                      hintText: "Comments or Notes on this movie",
+                      hintStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary),
+                      contentPadding: const EdgeInsets.all(8),
+                      border: InputBorder.none),
                 ),
               ),
               Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(12)),
                 padding: const EdgeInsets.only(left: 16, right: 16),
                 child: FloatingActionButton.extended(
                   onPressed: () {
                     //save Movie to Watchlist
-                    
                   },
                   icon: const Icon(Icons.check),
                   label: const Text('Add to List'),
