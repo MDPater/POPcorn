@@ -14,10 +14,10 @@ class MyNavBar extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            child: Image(image: AssetImage("assets/Logo/POPcorn_logo.png")),
-              decoration: BoxDecoration(
+            decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Theme.of(context).colorScheme.secondary),
+            child: const Image(image: AssetImage("assets/Logo/POPcorn_logo.png")),
           ),
           ListTile(
             leading: const Icon(Icons.home),

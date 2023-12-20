@@ -22,6 +22,8 @@ dependencies:
   http:
   tmdb_api:
   flutter_rating_bar:
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 
 dev_dependencies:
   flutter_test:

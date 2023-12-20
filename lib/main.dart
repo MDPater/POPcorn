@@ -12,12 +12,16 @@ code by Max
 
 */
 
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
 
 String title = "POPcorn";
 
-void main() {
+void main() async{
+  await Hive.initFlutter();
+  await Hive.openBox('WatchList');
   runApp(const MyApp());
 }
 

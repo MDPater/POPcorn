@@ -20,8 +20,8 @@ class _Watched_ScreenState extends State<WatchedScreen> {
       appBar: const MyAppBar(),
       body: Container(
         child: ListView(
-          children: [
-            const Padding(
+          children: const [
+            Padding(
               padding: EdgeInsets.only(top: 24, left: 24),
               child: Text("Your watched Movies", style: TextStyle(fontSize: 24),),
             ),
