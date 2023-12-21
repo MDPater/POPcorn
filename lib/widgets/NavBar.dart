@@ -15,16 +15,18 @@ class MyNavBar extends StatelessWidget {
         children: [
           DrawerHeader(
             decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Theme.of(context).colorScheme.secondary),
-            child: const Image(image: AssetImage("assets/Logo/POPcorn_logo.png")),
+                borderRadius: BorderRadius.circular(20),
+                color: Theme.of(context).colorScheme.secondary),
+            child:
+                const Image(image: AssetImage("assets/Logo/POPcorn_logo.png")),
           ),
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text('Home'),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: ((context) => const HomeScreen())));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: ((context) => HomeScreen())));
             },
           ),
           ListTile(
@@ -32,7 +34,10 @@ class MyNavBar extends StatelessWidget {
             title: const Text('Watched'),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: ((context) => const WatchedScreen())));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => const WatchedScreen())));
             },
           ),
           const Divider(),
@@ -47,7 +52,10 @@ class MyNavBar extends StatelessWidget {
             title: const Text('About'),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: ((context) => const AboutScreen())));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => const AboutScreen())));
             },
           ),
         ],

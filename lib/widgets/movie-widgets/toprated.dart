@@ -2,13 +2,17 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/screens/movie_description.dart';
 
-class TopRatedMovies extends StatelessWidget {
+class TopRatedMovies extends StatefulWidget {
   const TopRatedMovies({super.key, required this.TopRated});
 
   final List TopRated;
 
-  //Widget that builds Top Rated cards on Home Screen
+  @override
+  State<TopRatedMovies> createState() => _TopRatedMoviesState();
+}
 
+class _TopRatedMoviesState extends State<TopRatedMovies> {
+  //Widget that builds Top Rated cards on Home Screen
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,7 +27,7 @@ class TopRatedMovies extends StatelessWidget {
             height: 280,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: TopRated.length,
+                itemCount: widget.TopRated.length,
                 itemBuilder: (context, index) {
                   return InkWell(
                     borderRadius: BorderRadius.circular(2),
@@ -32,16 +36,17 @@ class TopRatedMovies extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => MovieDescription(
-                                  movieID: TopRated[index]['id'],
-                                  title: TopRated[index]['title'],
-                                  description: TopRated[index]['overview'],
+                                  movieID: widget.TopRated[index]['id'],
+                                  title: widget.TopRated[index]['title'],
+                                  description: widget.TopRated[index]
+                                      ['overview'],
                                   bannerurl: 'https://image.tmdb.org/t/p/w500' +
-                                      TopRated[index]['backdrop_path'],
+                                      widget.TopRated[index]['backdrop_path'],
                                   posterurl: 'https://image.tmdb.org/t/p/w500' +
-                                      TopRated[index]['poster_path'],
-                                  vote: TopRated[index]['vote_average']
+                                      widget.TopRated[index]['poster_path'],
+                                  vote: widget.TopRated[index]['vote_average']
                                       .toString(),
-                                  release_date: TopRated[index]
+                                  release_date: widget.TopRated[index]
                                       ['release_date'])));
                     },
                     child: Container(
@@ -56,11 +61,12 @@ class TopRatedMovies extends StatelessWidget {
                                 image: DecorationImage(
                                     image: NetworkImage(
                                         'https://image.tmdb.org/t/p/w500' +
-                                            TopRated[index]['poster_path']))),
+                                            widget.TopRated[index]
+                                                ['poster_path']))),
                           ),
                           Container(
                             child: Text(
-                              TopRated[index]['title'] ?? 'Loading',
+                              widget.TopRated[index]['title'] ?? 'Loading',
                               style: const TextStyle(
                                   fontSize: 12, fontWeight: FontWeight.w700),
                             ),

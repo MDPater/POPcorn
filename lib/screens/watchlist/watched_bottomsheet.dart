@@ -5,8 +5,8 @@ import 'package:popcorn/model/watched_movie.dart';
 
 var star;
 
-class WatchedBottomSheet extends StatelessWidget {
-  WatchedBottomSheet({
+class WatchedBottomSheet extends StatefulWidget {
+  const WatchedBottomSheet({
     super.key,
     required this.movieID,
     required this.title,
@@ -17,6 +17,11 @@ class WatchedBottomSheet extends StatelessWidget {
   final String title, posterurl, rating;
   final int movieID;
 
+  @override
+  State<WatchedBottomSheet> createState() => _WatchedBottomSheetState();
+}
+
+class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
   var ratingvalue;
 
   @override
@@ -48,7 +53,7 @@ class WatchedBottomSheet extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             image: DecorationImage(
-                                image: NetworkImage(posterurl),
+                                image: NetworkImage(widget.posterurl),
                                 fit: BoxFit.fill)),
                       ),
                       Column(
@@ -58,7 +63,7 @@ class WatchedBottomSheet extends StatelessWidget {
                               alignment: Alignment.topCenter,
                               width: MediaQuery.of(context).size.width / 2,
                               child: Text(
-                                title,
+                                widget.title,
                                 style: const TextStyle(
                                   fontSize: 24,
                                 ),
@@ -122,18 +127,20 @@ class WatchedBottomSheet extends StatelessWidget {
                 height: 12,
               ),
               Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.black38),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.black38),
                 margin: const EdgeInsets.all(16),
                 padding: const EdgeInsets.all(8),
                 child: TextField(
                   minLines: 1,
                   maxLines: 2,
                   decoration: InputDecoration(
-                    hintText: "Comments or Notes on this movie", 
-                    hintStyle: TextStyle(color: Theme.of(context).colorScheme.secondary),
-                    contentPadding: const EdgeInsets.all(8),
-                    border: InputBorder.none
-                  ),
+                      hintText: "Comments or Notes on this movie",
+                      hintStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary),
+                      contentPadding: const EdgeInsets.all(8),
+                      border: InputBorder.none),
                 ),
               ),
               Container(
@@ -143,7 +150,11 @@ class WatchedBottomSheet extends StatelessWidget {
                 child: FloatingActionButton.extended(
                   onPressed: () {
                     //save Movie to Watchlist
-                    final movie = watched_movie(movieTitle: title, posterurl: posterurl, starRating: ratingvalue, movieID: movieID);
+                    final movie = watched_movie(
+                        movieTitle: title,
+                        posterurl: posterurl,
+                        starRating: ratingvalue,
+                        movieID: movieID);
                     watchlist().addMovie(movie);
                     watchlist().printMovies();
                   },

@@ -1,9 +1,6 @@
 //import flutter basic classes
-import 'dart:math';
 import 'package:flutter/material.dart';
-
-//import API Keys
-import 'package:popcorn/constants/api_constants.dart';
+import 'package:popcorn/data/tmdb_api_calls.dart';
 
 //import App navigation modules
 import 'package:popcorn/widgets/AppBar.dart';
@@ -19,47 +16,21 @@ import 'package:tmdb_api/tmdb_api.dart';
 
 //test
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Random random = Random();
-  final TextEditingController searchController = TextEditingController();
-
-  List theatreMovies = [];
-  List topratedMovies = [];
-  List trendingMovies = [];
+  TMDBAPI tmdb = TMDBAPI();
 
   @override
   //initializing on Start
   void initState() {
     // functions to call
-    loadmovies();
+    tmdb.loadmovies();
     super.initState();
-  }
-
-  //load Movie Lists from TMDB
-  loadmovies() async {
-    int randomtoprated = random.nextInt(10) + 1;
-    TMDB tmdbLogs = TMDB(ApiKeys(API_Key, readaccesstoken),
-        logConfig: const ConfigLogger(showLogs: true, showErrorLogs: true));
-
-    Map topratedresult =
-        await tmdbLogs.v3.movies.getTopRated(page: randomtoprated);
-    Map trendingresult = await tmdbLogs.v3.movies.getPopular();
-    Map intheatre = await tmdbLogs.v3.movies.getNowPlaying();
-
-    setState(() {
-      topratedMovies = topratedresult['results'];
-      trendingMovies = trendingresult['results'];
-      theatreMovies = intheatre['results'];
-    });
-
-    //show output of API call
-    print(topratedresult);
   }
 
   @override
@@ -77,7 +48,6 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.all(8.0),
           child: ListView(children: [
             SearchBar(
-              controller: searchController,
               leading: const Icon(Icons.search),
               hintText: 'Search Movies',
               onChanged: (value) {},
@@ -85,9 +55,9 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 30,
             ),
-            TrendingMovies(Trending: trendingMovies),
-            InTheatre(Theatre: theatreMovies),
-            TopRatedMovies(TopRated: topratedMovies),
+            TrendingMovies(Trending: tmdb.trendingMovies),
+            InTheatre(Theatre: tmdb.theatreMovies),
+            TopRatedMovies(TopRated: tmdb.topratedMovies),
           ]),
         ),
       ),
