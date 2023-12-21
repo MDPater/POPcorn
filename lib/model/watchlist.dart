@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:hive/hive.dart';
 import 'package:popcorn/model/watched_movie.dart';
 
@@ -11,5 +13,11 @@ class watchlist {
 
     movieList.add(movie.toMap());
     box.put('movies', movieList);
+  }
+
+  void printMovies(){
+    for(final movie in _movies){
+      log(movie.movieID);
+    }
   }
 }

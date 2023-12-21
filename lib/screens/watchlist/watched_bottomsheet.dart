@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:popcorn/model/watchlist.dart';
+import 'package:popcorn/model/watched_movie.dart';
 
 var star;
 
@@ -141,6 +143,9 @@ class WatchedBottomSheet extends StatelessWidget {
                 child: FloatingActionButton.extended(
                   onPressed: () {
                     //save Movie to Watchlist
+                    final movie = watched_movie(movieTitle: title, posterurl: posterurl, starRating: ratingvalue, movieID: movieID);
+                    watchlist().addMovie(movie);
+                    watchlist().printMovies();
                   },
                   icon: const Icon(Icons.check),
                   label: const Text('Add to List'),
