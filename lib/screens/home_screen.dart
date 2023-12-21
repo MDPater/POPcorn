@@ -17,6 +17,7 @@ import 'package:popcorn/widgets/movie-widgets/trending.dart';
 //import TMDB api dependency
 import 'package:tmdb_api/tmdb_api.dart';
 
+//test
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
