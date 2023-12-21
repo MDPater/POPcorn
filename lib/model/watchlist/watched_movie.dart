@@ -1,7 +1,7 @@
 class watched_movie {
   final String movieTitle;
   final String posterurl;
-  final double starRating;
+  var starRating;
   final int movieID;
 
   watched_movie(
@@ -12,10 +12,10 @@ class watched_movie {
 
   Map<String, dynamic> toMap() {
     return {
-      'movieTitle': this.movieTitle,
-      'posterurl': this.posterurl,
-      'starRating': this.starRating,
-      'movieID': this.movieID
+      'movieTitle': movieTitle,
+      'posterurl': posterurl,
+      'starRating': starRating,
+      'movieID': movieID
     };
   }
 

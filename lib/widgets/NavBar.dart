@@ -26,7 +26,7 @@ class MyNavBar extends StatelessWidget {
             onTap: () {
               Navigator.pop(context);
               Navigator.push(context,
-                  MaterialPageRoute(builder: ((context) => HomeScreen())));
+                  MaterialPageRoute(builder: ((context) => const HomeScreen())));
             },
           ),
           ListTile(

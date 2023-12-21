@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:popcorn/model/watchlist.dart';
-import 'package:popcorn/model/watched_movie.dart';
+import 'package:popcorn/model/watchlist/watchlist.dart';
+import 'package:popcorn/model/watchlist/watched_movie.dart';
 
 var star;
 
-class WatchedBottomSheet extends StatefulWidget {
-  const WatchedBottomSheet({
+class WatchedBottomSheet extends StatelessWidget {
+  WatchedBottomSheet({
     super.key,
     required this.movieID,
     required this.title,
@@ -17,12 +17,9 @@ class WatchedBottomSheet extends StatefulWidget {
   final String title, posterurl, rating;
   final int movieID;
 
-  @override
-  State<WatchedBottomSheet> createState() => _WatchedBottomSheetState();
-}
+  watchlist wl = watchlist();
 
-class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
-  var ratingvalue;
+  double ratingvalue = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +50,7 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             image: DecorationImage(
-                                image: NetworkImage(widget.posterurl),
+                                image: NetworkImage(posterurl),
                                 fit: BoxFit.fill)),
                       ),
                       Column(
@@ -63,7 +60,7 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                               alignment: Alignment.topCenter,
                               width: MediaQuery.of(context).size.width / 2,
                               child: Text(
-                                widget.title,
+                                title,
                                 style: const TextStyle(
                                   fontSize: 24,
                                 ),
@@ -155,8 +152,8 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                         posterurl: posterurl,
                         starRating: ratingvalue,
                         movieID: movieID);
-                    watchlist().addMovie(movie);
-                    watchlist().printMovies();
+                    wl.addMovie(movie);
+                    wl.printMovies();
                   },
                   icon: const Icon(Icons.check),
                   label: const Text('Add to List'),

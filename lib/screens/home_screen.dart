@@ -1,6 +1,6 @@
 //import flutter basic classes
 import 'package:flutter/material.dart';
-import 'package:popcorn/data/tmdb_api_calls.dart';
+import 'dart:math';
 
 //import App navigation modules
 import 'package:popcorn/widgets/AppBar.dart';
@@ -11,22 +11,50 @@ import 'package:popcorn/widgets/movie-widgets/inTheatre.dart';
 import 'package:popcorn/widgets/movie-widgets/toprated.dart';
 import 'package:popcorn/widgets/movie-widgets/trending.dart';
 
+//import TMDB
+import 'package:tmdb_api/tmdb_api.dart';
+import '../constants/api_constants.dart';
+
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  TMDBAPI tmdb = TMDBAPI();
+  Random random = Random();
+
+  List theatreMovies = [];
+  List topratedMovies = [];
+  List trendingMovies = [];
 
   @override
   //initializing on Start
   void initState() {
     // functions to call
-    tmdb.loadmovies();
+    loadmovies();
     super.initState();
+  }
+
+  loadmovies() async {
+    int randomtoprated = random.nextInt(10) + 1;
+    TMDB tmdbLogs = TMDB(ApiKeys(API_Key, readaccesstoken),
+        logConfig: const ConfigLogger(showLogs: true, showErrorLogs: true));
+
+    Map topratedresult =
+        await tmdbLogs.v3.movies.getTopRated(page: randomtoprated);
+    Map trendingresult = await tmdbLogs.v3.movies.getPopular();
+    Map intheatre = await tmdbLogs.v3.movies.getNowPlaying();
+
+    setState(() {
+      topratedMovies = topratedresult['results'];
+      trendingMovies = trendingresult['results'];
+      theatreMovies = intheatre['results'];
+    });
+
+    //show output of API call
+    print(topratedresult);
   }
 
   @override
@@ -51,9 +79,9 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 30,
             ),
-            TrendingMovies(Trending: tmdb.trendingMovies),
-            InTheatre(Theatre: tmdb.theatreMovies),
-            TopRatedMovies(TopRated: tmdb.topratedMovies),
+            TrendingMovies(Trending: trendingMovies),
+            InTheatre(Theatre: theatreMovies),
+            TopRatedMovies(TopRated: topratedMovies),
           ]),
         ),
       ),

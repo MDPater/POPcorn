@@ -19,7 +19,7 @@ import 'screens/home_screen.dart';
 
 String title = "POPcorn";
 
-void main() async{
+void main() async {
   //Open Hive Box on startup (App DB)
   await Hive.initFlutter();
   await Hive.openBox('WatchList');
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }
