@@ -120,32 +120,18 @@ class WatchedBottomSheet extends StatelessWidget {
                 height: 12,
               ),
               Container(
-<<<<<<< HEAD
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.black38),
-=======
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.black38),
->>>>>>> eb1b5a14f3db3d17ae5a4bf31e7f29820c9aa39d
                 margin: const EdgeInsets.all(16),
                 padding: const EdgeInsets.all(8),
                 child: TextField(
                   minLines: 1,
                   maxLines: 2,
                   decoration: InputDecoration(
-<<<<<<< HEAD
                     hintText: "Comments or Notes on this movie", 
                     hintStyle: TextStyle(color: Theme.of(context).colorScheme.secondary),
                     contentPadding: const EdgeInsets.all(8),
                     border: InputBorder.none
                   ),
-=======
-                      hintText: "Comments or Notes on this movie",
-                      hintStyle: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary),
-                      contentPadding: const EdgeInsets.all(8),
-                      border: InputBorder.none),
->>>>>>> eb1b5a14f3db3d17ae5a4bf31e7f29820c9aa39d
                 ),
               ),
               Container(
