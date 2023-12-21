@@ -20,6 +20,7 @@ import 'screens/home_screen.dart';
 String title = "POPcorn";
 
 void main() async{
+  //Open Hive Box on startup (App DB)
   await Hive.initFlutter();
   await Hive.openBox('WatchList');
   runApp(const MyApp());
