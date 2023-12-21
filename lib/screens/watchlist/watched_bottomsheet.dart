@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:popcorn/model/watchlist.dart';
+import 'package:popcorn/model/watched_movie.dart';
 
 var star;
 
@@ -24,7 +26,7 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    star = double.parse(widget.rating) / 2;
+    star = (num.parse(rating) / 2).toStringAsFixed(1);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: GestureDetector(
@@ -148,6 +150,13 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                 child: FloatingActionButton.extended(
                   onPressed: () {
                     //save Movie to Watchlist
+                    final movie = watched_movie(
+                        movieTitle: title,
+                        posterurl: posterurl,
+                        starRating: ratingvalue,
+                        movieID: movieID);
+                    watchlist().addMovie(movie);
+                    watchlist().printMovies();
                   },
                   icon: const Icon(Icons.check),
                   label: const Text('Add to List'),

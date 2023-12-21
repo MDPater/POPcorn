@@ -20,7 +20,7 @@ class MovieDescription extends StatelessWidget {
   //Widget to build Movie Description Screen
   @override
   Widget build(BuildContext context) {
-    star = double.parse(vote) / 2;
+    star = (num.parse(vote) / 2).toStringAsFixed(1);
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondary,
       body: ListView(
