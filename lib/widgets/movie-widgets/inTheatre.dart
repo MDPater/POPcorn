@@ -2,13 +2,17 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/screens/movie_description.dart';
 
-class InTheatre extends StatelessWidget {
+class InTheatre extends StatefulWidget {
   const InTheatre({super.key, required this.Theatre});
 
   final List Theatre;
 
-  //Widget that builds Top Rated cards on Home Screen
+  @override
+  State<InTheatre> createState() => _InTheatreState();
+}
 
+class _InTheatreState extends State<InTheatre> {
+  //Widget that builds Top Rated cards on Home Screen
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,7 +27,7 @@ class InTheatre extends StatelessWidget {
             height: 260,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: Theatre.length,
+                itemCount: widget.Theatre.length,
                 itemBuilder: (context, index) {
                   return InkWell(
                     borderRadius: BorderRadius.circular(2),
@@ -32,16 +36,17 @@ class InTheatre extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => MovieDescription(
-                                  movieID: Theatre[index]['id'],
-                                  title: Theatre[index]['title'],
-                                  description: Theatre[index]['overview'],
+                                  movieID: widget.Theatre[index]['id'],
+                                  title: widget.Theatre[index]['title'],
+                                  description: widget.Theatre[index]
+                                      ['overview'],
                                   bannerurl: 'https://image.tmdb.org/t/p/w500' +
-                                      Theatre[index]['backdrop_path'],
+                                      widget.Theatre[index]['backdrop_path'],
                                   posterurl: 'https://image.tmdb.org/t/p/w500' +
-                                      Theatre[index]['poster_path'],
-                                  vote:
-                                      Theatre[index]['vote_average'].toString(),
-                                  release_date: Theatre[index]
+                                      widget.Theatre[index]['poster_path'],
+                                  vote: widget.Theatre[index]['vote_average']
+                                      .toString(),
+                                  release_date: widget.Theatre[index]
                                       ['release_date'])));
                     },
                     child: Container(
@@ -56,11 +61,12 @@ class InTheatre extends StatelessWidget {
                                 image: DecorationImage(
                                     image: NetworkImage(
                                         'https://image.tmdb.org/t/p/w500' +
-                                            Theatre[index]['poster_path']))),
+                                            widget.Theatre[index]
+                                                ['poster_path']))),
                           ),
                           Container(
                             child: Text(
-                              Theatre[index]['title'] ?? 'Loading',
+                              widget.Theatre[index]['title'] ?? 'Loading',
                               style: const TextStyle(
                                   fontSize: 12, fontWeight: FontWeight.w700),
                             ),

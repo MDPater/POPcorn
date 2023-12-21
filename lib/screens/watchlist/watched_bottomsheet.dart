@@ -3,8 +3,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 var star;
 
-class WatchedBottomSheet extends StatelessWidget {
-  WatchedBottomSheet({
+class WatchedBottomSheet extends StatefulWidget {
+  const WatchedBottomSheet({
     super.key,
     required this.movieID,
     required this.title,
@@ -15,11 +15,16 @@ class WatchedBottomSheet extends StatelessWidget {
   final String title, posterurl, rating;
   final int movieID;
 
+  @override
+  State<WatchedBottomSheet> createState() => _WatchedBottomSheetState();
+}
+
+class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
   var ratingvalue;
 
   @override
   Widget build(BuildContext context) {
-    star = double.parse(rating) / 2;
+    star = double.parse(widget.rating) / 2;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: GestureDetector(
@@ -46,7 +51,7 @@ class WatchedBottomSheet extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             image: DecorationImage(
-                                image: NetworkImage(posterurl),
+                                image: NetworkImage(widget.posterurl),
                                 fit: BoxFit.fill)),
                       ),
                       Column(
@@ -56,7 +61,7 @@ class WatchedBottomSheet extends StatelessWidget {
                               alignment: Alignment.topCenter,
                               width: MediaQuery.of(context).size.width / 2,
                               child: Text(
-                                title,
+                                widget.title,
                                 style: const TextStyle(
                                   fontSize: 24,
                                 ),
