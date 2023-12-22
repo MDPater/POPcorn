@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:popcorn/model/boxes.dart';
+import 'package:popcorn/model/watchlist/watchedmovie.dart';
 
 //import App navigation modules
 import 'package:popcorn/widgets/AppBar.dart';
@@ -19,15 +21,18 @@ class _Watched_ScreenState extends State<WatchedScreen> {
       drawer: const MyNavBar(),
       appBar: const MyAppBar(),
       body: Container(
-        child: ListView(
-          children: const [
-            Padding(
-              padding: EdgeInsets.only(top: 24, left: 24),
-              child: Text("Your watched Movies", style: TextStyle(fontSize: 24),),
-            ),
-          ],
-        ),
-      ),
+          child: GridView.builder(
+              itemCount: boxMovies.length,
+              gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+              itemBuilder: (context, index) {
+                watchedmovie movie = boxMovies.getAt(index);
+                return ListTile(
+                  leading: IconButton(
+                      onPressed: () {}, icon: const Icon(Icons.remove)),
+                  title: Text(movie.movieTitle.toLowerCase()),
+                );
+              })),
     );
   }
 }

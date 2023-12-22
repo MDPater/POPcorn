@@ -12,9 +12,10 @@ code by Max
 
 */
 
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:popcorn/model/boxes.dart';
+import 'package:popcorn/model/watchlist/watchedmovie.dart';
 import 'screens/home_screen.dart';
 
 String title = "POPcorn";
@@ -22,7 +23,8 @@ String title = "POPcorn";
 void main() async {
   //Open Hive Box on startup (App DB)
   await Hive.initFlutter();
-  await Hive.openBox('WatchList');
+  Hive.registerAdapter(watchedmovieAdapter());
+  boxMovies = await Hive.openBox<watchedmovie>('movieBox');
   runApp(const MyApp());
 }
 

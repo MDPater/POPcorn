@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:popcorn/model/watchlist/watchlist.dart';
-import 'package:popcorn/model/watchlist/watched_movie.dart';
+import 'package:popcorn/model/boxes.dart';
+import 'package:popcorn/model/watchlist/watchedmovie.dart';
 
 var star;
 
-class WatchedBottomSheet extends StatelessWidget {
-  WatchedBottomSheet({
+class WatchedBottomSheet extends StatefulWidget {
+  const WatchedBottomSheet({
     super.key,
     required this.movieID,
     required this.title,
@@ -17,13 +17,24 @@ class WatchedBottomSheet extends StatelessWidget {
   final String title, posterurl, rating;
   final int movieID;
 
-  watchlist wl = watchlist();
+  @override
+  State<WatchedBottomSheet> createState() => _WatchedBottomSheetState();
+}
+
+class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
+  final TextEditingController commentController = TextEditingController();
 
   double ratingvalue = 1;
 
   @override
+  void dispose() {
+    commentController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    star = (num.parse(rating) / 2).toStringAsFixed(1);
+    star = (num.parse(widget.rating) / 2).toStringAsFixed(1);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: GestureDetector(
@@ -50,7 +61,7 @@ class WatchedBottomSheet extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             image: DecorationImage(
-                                image: NetworkImage(posterurl),
+                                image: NetworkImage(widget.posterurl),
                                 fit: BoxFit.fill)),
                       ),
                       Column(
@@ -60,7 +71,7 @@ class WatchedBottomSheet extends StatelessWidget {
                               alignment: Alignment.topCenter,
                               width: MediaQuery.of(context).size.width / 2,
                               child: Text(
-                                title,
+                                widget.title,
                                 style: const TextStyle(
                                   fontSize: 24,
                                 ),
@@ -132,6 +143,7 @@ class WatchedBottomSheet extends StatelessWidget {
                 child: TextField(
                   minLines: 1,
                   maxLines: 2,
+                  controller: commentController,
                   decoration: InputDecoration(
                       hintText: "Comments or Notes on this movie",
                       hintStyle: TextStyle(
@@ -146,17 +158,25 @@ class WatchedBottomSheet extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 16, right: 16),
                 child: FloatingActionButton.extended(
                   onPressed: () {
+                    print("Movie Saved");
                     //save Movie to Watchlist
-                    final movie = watched_movie(
-                        movieTitle: title,
-                        posterurl: posterurl,
-                        starRating: ratingvalue,
-                        movieID: movieID);
-                    wl.addMovie(movie);
-                    wl.printMovies();
+                    setState(() {
+                      boxMovies.put(
+                          'key_${widget.movieID}',
+                          watchedmovie(
+                              movieTitle: widget.title,
+                              posterurl: widget.posterurl,
+                              starRating: ratingvalue,
+                              movieID: widget.movieID,
+                              comment: commentController.text));
+                      print(boxMovies.values);
+                    });
                   },
                   icon: const Icon(Icons.check),
                   label: const Text('Add to List'),
+                  splashColor: Colors.green,
+                  focusColor: Colors.green,
+                  autofocus: true,
                 ),
               )
             ],
