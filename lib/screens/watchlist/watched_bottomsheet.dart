@@ -170,7 +170,10 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                               movieID: widget.movieID,
                               comment: commentController.text));
                       print(boxMovies.values);
-                      Navigator.pop(context);
+                      Future.delayed(Duration(milliseconds: 500), () {
+                        // Do something
+                        Navigator.pop(context);
+                      });
                     });
                   },
                   icon: const Icon(Icons.check),
