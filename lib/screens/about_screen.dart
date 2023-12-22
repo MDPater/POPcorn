@@ -18,19 +18,14 @@ class AboutScreen extends StatelessWidget {
           const SizedBox(
             height: 120,
           ),
-          const Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text("This is a Max de Pater creation", style: TextStyle(fontSize: 24),),
-          ),
           Center(
             child: Container(
               height: 200,
               margin: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Theme.of(context).colorScheme.primary
-              ),
-              child: const Center(child: Text("Hello World!")),
+                  borderRadius: BorderRadius.circular(8),
+                  color: Theme.of(context).colorScheme.primary),
+              child: const Center(child: Text("Made by Max de Pater")),
             ),
           )
         ],

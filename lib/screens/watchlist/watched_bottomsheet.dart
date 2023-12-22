@@ -170,6 +170,7 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                               movieID: widget.movieID,
                               comment: commentController.text));
                       print(boxMovies.values);
+                      Navigator.pop(context);
                     });
                   },
                   icon: const Icon(Icons.check),
