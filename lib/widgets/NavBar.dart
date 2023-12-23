@@ -14,48 +14,70 @@ class MyNavBar extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Theme.of(context).colorScheme.secondary),
+            decoration:
+                BoxDecoration(color: Theme.of(context).colorScheme.secondary),
             child:
                 const Image(image: AssetImage("assets/Logo/POPcorn_logo.png")),
           ),
           ListTile(
+            splashColor: Theme.of(context).colorScheme.secondary,
             leading: const Icon(Icons.home),
             title: const Text('Home'),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: ((context) => const HomeScreen())));
+              Future.delayed(const Duration(milliseconds: 150), () {
+                // Do something
+                Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => const HomeScreen())));
+              });
             },
           ),
           ListTile(
+            splashColor: Theme.of(context).colorScheme.secondary,
+            leading: const Icon(Icons.library_books_rounded),
+            title: const Text('Need to Watch'),
+            onTap: () {
+              //navigate to watchlist
+            },
+          ),
+          ListTile(
+            splashColor: Theme.of(context).colorScheme.secondary,
             leading: const Icon(Icons.visibility),
             title: const Text('Watched'),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => const WatchedScreen())));
+              Future.delayed(const Duration(milliseconds: 150), () {
+                // Do something
+                Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => const WatchedScreen())));
+              });
             },
           ),
           const Divider(),
           ListTile(
+            splashColor: Theme.of(context).colorScheme.secondary,
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
             onTap: () {},
           ),
           const Divider(),
           ListTile(
+            splashColor: Theme.of(context).colorScheme.secondary,
             leading: const Icon(Icons.contact_page),
             title: const Text('About'),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => const AboutScreen())));
+              Future.delayed(const Duration(milliseconds: 150), () {
+                // Do something
+                Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => const AboutScreen())));
+              });
             },
           ),
         ],
