@@ -58,7 +58,7 @@ class _Watched_ScreenState extends State<WatchedScreen> {
       body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Center(
           child: Container(
-            padding: EdgeInsets.only(top: 5, bottom: 5, left: 15, right: 15),
+            padding: const EdgeInsets.only(top: 5, bottom: 5, left: 15, right: 15),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12), color: Colors.grey),
             child: const Text(
@@ -132,7 +132,7 @@ class _Watched_ScreenState extends State<WatchedScreen> {
                         ),
                         RatingBar(
                             ignoreGestures: true,
-                            itemPadding: EdgeInsets.only(top: 2, bottom: 2),
+                            itemPadding: const EdgeInsets.only(top: 2, bottom: 2),
                             itemSize: 15,
                             itemCount: 5,
                             allowHalfRating: true,

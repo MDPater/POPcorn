@@ -170,7 +170,7 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                               movieID: widget.movieID,
                               comment: commentController.text));
                       print(boxMovies.values);
-                      Future.delayed(Duration(milliseconds: 500), () {
+                      Future.delayed(const Duration(milliseconds: 500), () {
                         // Do something
                         Navigator.pop(context);
                       });

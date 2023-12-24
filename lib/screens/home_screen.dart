@@ -29,6 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
   List topratedMovies = [];
   List trendingMovies = [];
 
+  List searchMovies = [];
+
   @override
   //initializing on Start
   void initState() {
@@ -57,6 +59,29 @@ class _HomeScreenState extends State<HomeScreen> {
     print(topratedresult);
   }
 
+  _getMovies(String searchValue) async {
+    TMDB tmdbLogs = TMDB(ApiKeys(API_Key, readaccesstoken),
+        logConfig: const ConfigLogger(showLogs: true, showErrorLogs: true));
+
+    Map searchResult = await tmdbLogs.v3.search.queryMovies(searchValue);
+
+    setState(() {
+      searchMovies = searchResult['results'];
+    });
+
+    print(searchResult);
+  }
+
+  Widget _buildList() {
+    return ListView.builder(
+        itemCount: searchMovies.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(searchMovies[index]['original_title']),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     //Main Scaffold that holds Layout and links to widgets
@@ -71,11 +96,29 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListView(children: [
-            SearchBar(
-              leading: const Icon(Icons.search),
-              hintText: 'Search Movies',
-              onChanged: (value) {},
-            ),
+            SearchAnchor(
+                isFullScreen: false,
+                builder: (BuildContext context, SearchController controller) {
+                  return SearchBar(
+                    leading: const Icon(Icons.search),
+                    hintText: 'Search Movies',
+                    onTap: () {
+                      controller.openView();
+                    },
+                    onChanged: (value) {
+                      controller.openView();
+                    },
+                  );
+                },
+                suggestionsBuilder:
+                    (BuildContext context, SearchController controller) {
+                  return List<ListTile>.generate(searchMovies.length, (index) {
+                    final String item = 'item $index';
+                    return ListTile(
+                      title: Text(item),
+                    );
+                  });
+                }),
             const SizedBox(
               height: 30,
             ),
