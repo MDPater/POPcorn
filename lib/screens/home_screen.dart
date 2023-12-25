@@ -1,4 +1,3 @@
-//import flutter basic classes
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -23,6 +22,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final SearchController controller = SearchController();
   Random random = Random();
 
   List theatreMovies = [];
@@ -72,16 +72,6 @@ class _HomeScreenState extends State<HomeScreen> {
     print(searchResult);
   }
 
-  Widget _buildList() {
-    return ListView.builder(
-        itemCount: searchMovies.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(searchMovies[index]['original_title']),
-          );
-        });
-  }
-
   @override
   Widget build(BuildContext context) {
     //Main Scaffold that holds Layout and links to widgets
@@ -97,25 +87,65 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.all(8.0),
           child: ListView(children: [
             SearchAnchor(
+                viewHintText: 'Search...',
+                viewLeading: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () {
+                    setState(() {
+                      controller.closeView(controller.text);
+                      searchMovies.clear();
+                      FocusScope.of(context).unfocus();
+                    });
+                  },
+                ),
+                viewTrailing: [
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _getMovies(controller.text);
+                        });
+                      },
+                      icon: const Icon(Icons.search)),
+                  IconButton(
+                      onPressed: () {
+                        controller.clear();
+                        searchMovies.clear();
+                      },
+                      icon: const Icon(Icons.clear))
+                ],
+                searchController: controller,
                 isFullScreen: false,
-                builder: (BuildContext context, SearchController controller) {
+                builder: (context, controller) {
                   return SearchBar(
+                    controller: controller,
                     leading: const Icon(Icons.search),
                     hintText: 'Search Movies',
                     onTap: () {
                       controller.openView();
-                    },
-                    onChanged: (value) {
-                      controller.openView();
+                      controller.addListener(() {
+                        setState(() {
+                          _getMovies(controller.text);
+                        });
+                      });
                     },
                   );
                 },
-                suggestionsBuilder:
-                    (BuildContext context, SearchController controller) {
+                suggestionsBuilder: (context, controller) {
                   return List<ListTile>.generate(searchMovies.length, (index) {
-                    final String item = 'item $index';
+                    final String item = searchMovies[index]['original_title'];
+                    final String year = searchMovies[index]['release_date'];
                     return ListTile(
                       title: Text(item),
+                      subtitle: Text(year),
+                      splashColor: Theme.of(context).colorScheme.primary,
+                      onTap: () {
+                        setState(() {
+                          Future.delayed(const Duration(milliseconds: 300), () {
+                            controller.closeView(item);
+                            FocusScope.of(context).unfocus();
+                          });
+                        });
+                      },
                     );
                   });
                 }),

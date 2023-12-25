@@ -58,7 +58,8 @@ class _Watched_ScreenState extends State<WatchedScreen> {
       body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Center(
           child: Container(
-            padding: const EdgeInsets.only(top: 5, bottom: 5, left: 15, right: 15),
+            padding:
+                const EdgeInsets.only(top: 5, bottom: 5, left: 15, right: 15),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12), color: Colors.grey),
             child: const Text(
@@ -67,102 +68,112 @@ class _Watched_ScreenState extends State<WatchedScreen> {
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(5),
-          child: GridView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              itemCount: boxMovies.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4, childAspectRatio: 10 / 20),
-              itemBuilder: (context, index) {
-                watchedmovie movie = boxMovies.getAt(index);
-                return InkWell(
-                  borderRadius: BorderRadius.circular(12),
-                  splashColor: Theme.of(context).colorScheme.primary,
-                  onTap: () {
-                    //go to details page of movie
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.grey),
-                    margin: const EdgeInsets.all(5),
-                    padding: const EdgeInsets.all(5),
-                    width: 140,
-                    child: Column(
-                      children: [
-                        Stack(
+        Padding(padding: EdgeInsets.only(top: 10)),
+        SizedBox(
+          height: MediaQuery.of(context).size.height - 140,
+          child: ListView(
+            scrollDirection: Axis.vertical,
+            children: [
+              GridView.builder(
+                  clipBehavior: Clip.hardEdge,
+                  physics: const ScrollPhysics(),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  itemCount: boxMovies.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4, childAspectRatio: 10 / 20),
+                  itemBuilder: (context, index) {
+                    watchedmovie movie = boxMovies.getAt(index);
+                    return InkWell(
+                      borderRadius: BorderRadius.circular(12),
+                      splashColor: Theme.of(context).colorScheme.primary,
+                      onTap: () {
+                        //go to details page of movie
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.grey),
+                        margin: const EdgeInsets.all(5),
+                        padding: const EdgeInsets.all(5),
+                        width: 140,
+                        child: Column(
                           children: [
+                            Stack(
+                              children: [
+                                Container(
+                                  height: 125,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                            'https://image.tmdb.org/t/p/w500${movie.posterurl}'),
+                                        fit: BoxFit.fill),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                                Positioned(
+                                    top: -8,
+                                    left: -8,
+                                    height: 65,
+                                    width: 65,
+                                    child: Container(
+                                      child: IconButton(
+                                        splashColor: Colors.purple,
+
+                                        //popup that asks if movie should be deleted from list
+                                        onPressed: isShown == true
+                                            ? () => _deleteMovie(
+                                                context, movie, index)
+                                            : null,
+
+                                        icon: Icon(
+                                          Icons.remove_circle,
+                                          size: 30,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                        ),
+                                        alignment: Alignment.topLeft,
+                                      ),
+                                    )),
+                              ],
+                            ),
+                            RatingBar(
+                                ignoreGestures: true,
+                                itemPadding:
+                                    const EdgeInsets.only(top: 2, bottom: 2),
+                                itemSize: 15,
+                                itemCount: 5,
+                                allowHalfRating: true,
+                                initialRating: movie.starRating,
+                                ratingWidget: RatingWidget(
+                                    full: const Icon(
+                                      Icons.star,
+                                      color: Colors.black,
+                                    ),
+                                    half: const Icon(
+                                      Icons.star_half,
+                                      color: Colors.black,
+                                    ),
+                                    empty: const Icon(
+                                      Icons.star_outline,
+                                      color: Colors.black,
+                                    )),
+                                onRatingUpdate: (value) {}),
                             Container(
-                              height: 125,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                        'https://image.tmdb.org/t/p/w500${movie.posterurl}'),
-                                    fit: BoxFit.fill),
-                                borderRadius: BorderRadius.circular(12),
+                              child: Text(
+                                movie.movieTitle,
+                                style: const TextStyle(
+                                    fontSize: 8, fontWeight: FontWeight.w700),
                               ),
                             ),
-                            Positioned(
-                                top: -8,
-                                left: -8,
-                                height: 65,
-                                width: 65,
-                                child: Container(
-                                  child: IconButton(
-                                    splashColor: Colors.purple,
-
-                                    //popup that asks if movie should be deleted from list
-                                    onPressed: isShown == true
-                                        ? () =>
-                                            _deleteMovie(context, movie, index)
-                                        : null,
-
-                                    icon: Icon(
-                                      Icons.remove_circle,
-                                      size: 30,
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
-                                    ),
-                                    alignment: Alignment.topLeft,
-                                  ),
-                                )),
                           ],
                         ),
-                        RatingBar(
-                            ignoreGestures: true,
-                            itemPadding: const EdgeInsets.only(top: 2, bottom: 2),
-                            itemSize: 15,
-                            itemCount: 5,
-                            allowHalfRating: true,
-                            initialRating: movie.starRating,
-                            ratingWidget: RatingWidget(
-                                full: const Icon(
-                                  Icons.star,
-                                  color: Colors.black,
-                                ),
-                                half: const Icon(
-                                  Icons.star_half,
-                                  color: Colors.black,
-                                ),
-                                empty: const Icon(
-                                  Icons.star_outline,
-                                  color: Colors.black,
-                                )),
-                            onRatingUpdate: (value) {}),
-                        Container(
-                          child: Text(
-                            movie.movieTitle,
-                            style: const TextStyle(
-                                fontSize: 8, fontWeight: FontWeight.w700),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              }),
+                      ),
+                    );
+                  }),
+            ],
+          ),
         ),
       ]),
     );
