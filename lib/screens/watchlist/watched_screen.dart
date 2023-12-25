@@ -160,11 +160,14 @@ class _Watched_ScreenState extends State<WatchedScreen> {
                                       color: Colors.black,
                                     )),
                                 onRatingUpdate: (value) {}),
-                            Container(
-                              child: Text(
-                                movie.movieTitle,
-                                style: const TextStyle(
-                                    fontSize: 8, fontWeight: FontWeight.w700),
+                            Expanded(
+                              child: Center(
+                                child: Text(
+                                  movie.movieTitle,
+                                  overflow: TextOverflow.fade,
+                                  style: const TextStyle(
+                                      fontSize: 8, fontWeight: FontWeight.w700),
+                                ),
                               ),
                             ),
                           ],
