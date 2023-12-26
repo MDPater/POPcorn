@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:popcorn/model/boxes.dart';
-import 'package:popcorn/model/watchlist/watchedmovie.dart';
+import 'package:popcorn/model/watched/watchedmovie.dart';
 
 var star;
 

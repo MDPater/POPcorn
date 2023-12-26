@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:popcorn/screens/watchlist/watched_bottomsheet.dart';
+import 'package:popcorn/screens/watched/watched_bottomsheet.dart';
 
 var star;
 
@@ -31,17 +31,17 @@ class MovieDescription extends StatelessWidget {
               children: [
                 Positioned(
                     child: Center(
-                      child: Container(
-                        height: 250,
-                        width: MediaQuery.of(context).size.width - 15,
-                        decoration: BoxDecoration(
+                  child: Container(
+                    height: 250,
+                    width: MediaQuery.of(context).size.width - 15,
+                    decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(24),
                         image: DecorationImage(
                           image: NetworkImage(bannerurl),
                           fit: BoxFit.cover,
                         )),
-                      ),
-                    )),
+                  ),
+                )),
                 Positioned(
                     bottom: 10,
                     child: Container(

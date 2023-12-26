@@ -15,7 +15,7 @@ code by Max
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:popcorn/model/boxes.dart';
-import 'package:popcorn/model/watchlist/watchedmovie.dart';
+import 'package:popcorn/model/watched/watchedmovie.dart';
 import 'screens/home_screen.dart';
 
 String title = "POPcorn";

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:popcorn/model/boxes.dart';
-import 'package:popcorn/model/watchlist/watchedmovie.dart';
+import 'package:popcorn/model/watched/watchedmovie.dart';
 
 //import App navigation modules
 import 'package:popcorn/widgets/AppBar.dart';
@@ -68,7 +68,7 @@ class _Watched_ScreenState extends State<WatchedScreen> {
             ),
           ),
         ),
-        Padding(padding: EdgeInsets.only(top: 10)),
+        const Padding(padding: EdgeInsets.only(top: 10)),
         SizedBox(
           height: MediaQuery.of(context).size.height - 140,
           child: ListView(
