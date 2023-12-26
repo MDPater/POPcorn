@@ -125,6 +125,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       controller.addListener(() {
                         setState(() {
                           _getMovies(controller.text);
+                          if (controller.text == '') {
+                            searchMovies.clear();
+                          }
                         });
                       });
                     },
