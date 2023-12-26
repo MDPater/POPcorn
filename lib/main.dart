@@ -15,6 +15,7 @@ code by Max
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:popcorn/model/boxes.dart';
+import 'package:popcorn/model/need_to_watch/needtowatch.dart';
 import 'package:popcorn/model/watched/watchedmovie.dart';
 import 'screens/home_screen.dart';
 
@@ -24,6 +25,8 @@ void main() async {
   //Open Hive Box on startup (App DB)
   await Hive.initFlutter();
   Hive.registerAdapter(watchedmovieAdapter());
+  Hive.registerAdapter(needtowatchAdapter());
+  boxNeedToWatch = await Hive.openBox<needtowatch>('boxNeedToWatch');
   boxMovies = await Hive.openBox<watchedmovie>('movieBox');
   runApp(const MyApp());
 }
