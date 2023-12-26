@@ -17,7 +17,7 @@ class needtowatch {
   String posterurl;
 
   @HiveField(2)
-  dynamic star;
+  var star;
 
   @HiveField(3)
   int movieID;

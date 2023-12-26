@@ -52,7 +52,7 @@ class _MovieDescriptionState extends State<MovieDescription> {
             needtowatch(
                 movieTitle: widget.title,
                 movieID: widget.movieID,
-                star: star,
+                star: widget.vote,
                 posterurl: widget.posterurl));
         print(boxNeedToWatch.values);
       });
@@ -207,8 +207,8 @@ class _MovieDescriptionState extends State<MovieDescription> {
             ],
           ),
           Container(
-              margin: EdgeInsets.only(top: 25, left: 25, right: 25),
-              child: SizedBox(
+              margin: const EdgeInsets.only(top: 25, left: 25, right: 25),
+              child: const SizedBox(
                 height: 50,
               ))
         ],

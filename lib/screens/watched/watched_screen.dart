@@ -116,25 +116,23 @@ class _Watched_ScreenState extends State<WatchedScreen> {
                                     left: -8,
                                     height: 65,
                                     width: 65,
-                                    child: Container(
-                                      child: IconButton(
-                                        splashColor: Colors.purple,
+                                    child: IconButton(
+                                      splashColor: Colors.purple,
 
-                                        //popup that asks if movie should be deleted from list
-                                        onPressed: isShown == true
-                                            ? () => _deleteMovie(
-                                                context, movie, index)
-                                            : null,
+                                      //popup that asks if movie should be deleted from list
+                                      onPressed: isShown == true
+                                          ? () => _deleteMovie(
+                                              context, movie, index)
+                                          : null,
 
-                                        icon: Icon(
-                                          Icons.remove_circle,
-                                          size: 30,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary,
-                                        ),
-                                        alignment: Alignment.topLeft,
+                                      icon: Icon(
+                                        Icons.remove_circle,
+                                        size: 30,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
                                       ),
+                                      alignment: Alignment.topLeft,
                                     )),
                               ],
                             ),
@@ -165,6 +163,7 @@ class _Watched_ScreenState extends State<WatchedScreen> {
                                 child: Text(
                                   movie.movieTitle,
                                   overflow: TextOverflow.fade,
+                                  textAlign: TextAlign.center,
                                   style: const TextStyle(
                                       fontSize: 8, fontWeight: FontWeight.w700),
                                 ),
