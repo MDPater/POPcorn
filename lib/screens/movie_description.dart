@@ -192,9 +192,7 @@ class _MovieDescriptionState extends State<MovieDescription> {
                           child: ElevatedButton(
                             onPressed: showButton ? _addmovie : null,
                             style: ElevatedButton.styleFrom(
-                                primary: Theme.of(context).colorScheme.primary,
-                                onPrimary:
-                                    Theme.of(context).colorScheme.onBackground),
+                                foregroundColor: Theme.of(context).colorScheme.onBackground, backgroundColor: Theme.of(context).colorScheme.primary),
                             child: const Text(
                               'Need to Watch',
                               style: TextStyle(fontSize: 18),

@@ -52,7 +52,7 @@ class _NeedToWatchState extends State<NeedToWatch> {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               height: 50,
               width: 50,
               child: IconButton(
@@ -82,7 +82,7 @@ class _NeedToWatchState extends State<NeedToWatch> {
                   style: TextStyle(fontSize: 18),
                 )),
             const Spacer(),
-            Container(
+            const SizedBox(
               height: 50,
               width: 50,
             )
