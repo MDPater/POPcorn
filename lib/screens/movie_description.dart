@@ -48,7 +48,6 @@ class _MovieDescriptionState extends State<MovieDescription> {
 
   @override
   void initState() {
-    // TODO: implement initState
     checkIfMovieOnList();
     super.initState();
   }
@@ -66,6 +65,7 @@ class _MovieDescriptionState extends State<MovieDescription> {
                 star: widget.vote,
                 posterurl: widget.posterurl));
         print(boxNeedToWatch.values);
+        //change button
         buttonText = "Added to WatchList";
         showButton = false;
       });
