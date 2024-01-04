@@ -23,6 +23,7 @@ class MovieDescription extends StatefulWidget {
 
 class _MovieDescriptionState extends State<MovieDescription> {
   bool showButton = true;
+  String buttonText = "Need to Watch";
 
   void toggleButtonOn() {
     setState(() {
@@ -32,13 +33,23 @@ class _MovieDescriptionState extends State<MovieDescription> {
 
   void toggleButtonOff() {
     setState(() {
+      buttonText = "Already on WatchList";
       showButton = false;
     });
+  }
+
+  void checkIfMovieOnList(){
+    if(boxNeedToWatch.get('key_${widget.movieID}') != null){
+      toggleButtonOff();
+    }else{
+      toggleButtonOn();
+    }
   }
 
   @override
   void initState() {
     // TODO: implement initState
+    checkIfMovieOnList();
     super.initState();
   }
 
@@ -55,6 +66,8 @@ class _MovieDescriptionState extends State<MovieDescription> {
                 star: widget.vote,
                 posterurl: widget.posterurl));
         print(boxNeedToWatch.values);
+        buttonText = "Added to WatchList";
+        toggleButtonOff();
       });
     });
   }
@@ -193,9 +206,9 @@ class _MovieDescriptionState extends State<MovieDescription> {
                             onPressed: showButton ? _addmovie : null,
                             style: ElevatedButton.styleFrom(
                                 foregroundColor: Theme.of(context).colorScheme.onBackground, backgroundColor: Theme.of(context).colorScheme.primary),
-                            child: const Text(
-                              'Need to Watch',
-                              style: TextStyle(fontSize: 18),
+                            child: Text(
+                              buttonText,
+                              style: TextStyle(fontSize: 15),
                             ),
                           ),
                         ),
