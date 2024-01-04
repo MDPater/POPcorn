@@ -4,6 +4,7 @@ import 'package:popcorn/model/need_to_watch/needtowatch.dart';
 import 'package:popcorn/screens/watched/watched_bottomsheet.dart';
 import 'package:popcorn/widgets/AppBar.dart';
 import 'package:popcorn/widgets/NavDrawer.dart';
+import 'package:popcorn/widgets/ProfileDrawer.dart';
 
 class NeedToWatch extends StatefulWidget {
   const NeedToWatch({super.key});
@@ -46,6 +47,7 @@ class _NeedToWatchState extends State<NeedToWatch> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const MyNavDrawer(),
+      endDrawer: const MyProfileDrawer(),
       appBar: const MyAppBar(),
       backgroundColor: Theme.of(context).colorScheme.secondary,
       body: Column(children: [
@@ -164,7 +166,7 @@ class _NeedToWatchState extends State<NeedToWatch> {
                                         child: Row(
                                           children: [
                                             Text(
-                                              movie.star.toString(),
+                                              num.parse(movie.star).toStringAsFixed(1),
                                               style: TextStyle(
                                               color: Theme.of(context).colorScheme.primary, fontSize: 15),
                                             ),
