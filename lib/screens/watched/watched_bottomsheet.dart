@@ -171,6 +171,10 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                               comment: commentController.text));
                       print(boxMovies.values);
                       Future.delayed(const Duration(milliseconds: 500), () {
+                        if(boxNeedToWatch.get('key_${widget.movieID}') != null){
+                        boxNeedToWatch.delete('key_${widget.movieID}');
+                        print('delete ${widget.movieID} from WatchList');
+                      }
                         // Do something
                         Navigator.pop(context);
                       });

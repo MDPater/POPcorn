@@ -173,7 +173,7 @@ class _NeedToWatchState extends State<NeedToWatch> {
                                         child: Row(
                                           children: [
                                             Text(
-                                              (num.parse(movie.star)/ 2).toStringAsFixed(1),
+                                              (num.parse(movie.star)/2).toStringAsFixed(1),
                                               style: TextStyle(
                                               color: Theme.of(context).colorScheme.primary, fontSize: 15),
                                             ),
