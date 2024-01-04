@@ -67,7 +67,7 @@ class _MovieDescriptionState extends State<MovieDescription> {
                 posterurl: widget.posterurl));
         print(boxNeedToWatch.values);
         buttonText = "Added to WatchList";
-        toggleButtonOff();
+        showButton = false;
       });
     });
   }
