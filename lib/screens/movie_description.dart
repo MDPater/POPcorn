@@ -25,30 +25,26 @@ class _MovieDescriptionState extends State<MovieDescription> {
   bool showButton = true;
   String buttonText = "Need to Watch";
 
-  void toggleButtonOn() {
-    setState(() {
-      showButton = true;
-    });
+  void checkWatchedList(){
+    if(boxMovies.get('key_${widget.movieID}') != null){
+      buttonText = "Watched the Movie";
+      showButton = false;
+    }
   }
 
-  void toggleButtonOff() {
-    setState(() {
+  void checkNeedToWatchList(){
+    if(boxNeedToWatch.get('key_${widget.movieID}') != null){
+      setState(() {
       buttonText = "Already on WatchList";
       showButton = false;
     });
-  }
-
-  void checkIfMovieOnList(){
-    if(boxNeedToWatch.get('key_${widget.movieID}') != null){
-      toggleButtonOff();
-    }else{
-      toggleButtonOn();
     }
   }
 
   @override
   void initState() {
-    checkIfMovieOnList();
+    checkWatchedList();
+    checkNeedToWatchList();
     super.initState();
   }
 

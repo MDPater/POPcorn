@@ -84,9 +84,16 @@ class _NeedToWatchState extends State<NeedToWatch> {
                   style: TextStyle(fontSize: 18),
                 )),
             const Spacer(),
-            const SizedBox(
+            SizedBox(
               height: 50,
               width: 50,
+              child: IconButton(onPressed: (){
+
+              }, 
+              icon: const Icon(
+                Icons.watch,
+                color: Colors.deepPurple,
+                size: 25,)),
             )
           ],
         ),
@@ -166,7 +173,7 @@ class _NeedToWatchState extends State<NeedToWatch> {
                                         child: Row(
                                           children: [
                                             Text(
-                                              num.parse(movie.star).toStringAsFixed(1),
+                                              (num.parse(movie.star)/ 2).toStringAsFixed(1),
                                               style: TextStyle(
                                               color: Theme.of(context).colorScheme.primary, fontSize: 15),
                                             ),
