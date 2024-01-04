@@ -4,8 +4,8 @@ import 'package:popcorn/screens/home_screen.dart';
 import 'package:popcorn/screens/need_to_watch/needToWatch_screen.dart';
 import 'package:popcorn/screens/watched/watched_screen.dart';
 
-class MyNavBar extends StatelessWidget {
-  const MyNavBar({super.key});
+class MyNavDrawer extends StatelessWidget {
+  const MyNavDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {

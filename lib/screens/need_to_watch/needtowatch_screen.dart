@@ -3,7 +3,7 @@ import 'package:popcorn/model/boxes.dart';
 import 'package:popcorn/model/need_to_watch/needtowatch.dart';
 import 'package:popcorn/screens/watched/watched_bottomsheet.dart';
 import 'package:popcorn/widgets/AppBar.dart';
-import 'package:popcorn/widgets/NavBar.dart';
+import 'package:popcorn/widgets/NavDrawer.dart';
 
 class NeedToWatch extends StatefulWidget {
   const NeedToWatch({super.key});
@@ -45,7 +45,7 @@ class _NeedToWatchState extends State<NeedToWatch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const MyNavBar(),
+      drawer: const MyNavDrawer(),
       appBar: const MyAppBar(),
       backgroundColor: Theme.of(context).colorScheme.secondary,
       body: Column(children: [
@@ -90,7 +90,7 @@ class _NeedToWatchState extends State<NeedToWatch> {
         ),
         const Padding(padding: EdgeInsets.only(top: 10)),
         SizedBox(
-          height: MediaQuery.of(context).size.height - 150,
+          height: MediaQuery.of(context).size.height - 175,
           child: ListView(
             scrollDirection: Axis.vertical,
             children: [
@@ -152,7 +152,28 @@ class _NeedToWatchState extends State<NeedToWatch> {
                                     icon: const Icon(Icons.remove_circle),
                                     color:
                                         Theme.of(context).colorScheme.primary,
-                                  ))
+                                  )),
+                                  Positioned(
+                                  bottom: 7,
+                                  right: 5,
+                                    child: Container(
+                                      padding: const EdgeInsets.only(left: 2, right: 2),
+                                      decoration: BoxDecoration(
+                                      color: Theme.of(context).colorScheme.onBackground,
+                                      borderRadius: BorderRadius.circular(8)),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              movie.star.toString(),
+                                              style: TextStyle(
+                                              color: Theme.of(context).colorScheme.primary, fontSize: 15),
+                                            ),
+                                            Icon(
+                                              Icons.star,
+                                              color: Theme.of(context).colorScheme.primary,
+                                            )
+                                          ],
+                                    ))),
                             ],
                           ),
                           Expanded(
