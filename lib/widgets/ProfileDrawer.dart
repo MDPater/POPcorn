@@ -11,8 +11,15 @@ class MyProfileDrawer extends StatelessWidget {
         children: [
           ListTile(
             splashColor: Theme.of(context).colorScheme.secondary,
+            leading: const Icon(Icons.person),
+            title: const Text('Profile'),
+            onTap: () {},
+          ),
+          Divider(color: Theme.of(context).colorScheme.primary),
+          ListTile(
+            splashColor: Theme.of(context).colorScheme.secondary,
             leading: const Icon(Icons.import_export),
-            title: const Text('Import Data'),
+            title: const Text('Import Movies'),
             onTap: () {},
           )
         ],
