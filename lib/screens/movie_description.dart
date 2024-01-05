@@ -23,22 +23,28 @@ class MovieDescription extends StatefulWidget {
 
 class _MovieDescriptionState extends State<MovieDescription> {
   bool showButton = true;
+  String buttonText = "Need to Watch";
 
-  void toggleButtonOn() {
-    setState(() {
-      showButton = true;
-    });
+  void checkWatchedList(){
+    if(boxMovies.get('key_${widget.movieID}') != null){
+      buttonText = "Watched the Movie";
+      showButton = false;
+    }
   }
 
-  void toggleButtonOff() {
-    setState(() {
+  void checkNeedToWatchList(){
+    if(boxNeedToWatch.get('key_${widget.movieID}') != null){
+      setState(() {
+      buttonText = "Already on WatchList";
       showButton = false;
     });
+    }
   }
 
   @override
   void initState() {
-    // TODO: implement initState
+    checkWatchedList();
+    checkNeedToWatchList();
     super.initState();
   }
 
@@ -55,6 +61,9 @@ class _MovieDescriptionState extends State<MovieDescription> {
                 star: widget.vote,
                 posterurl: widget.posterurl));
         print(boxNeedToWatch.values);
+        //change button
+        buttonText = "Added to WatchList";
+        showButton = false;
       });
     });
   }
@@ -192,12 +201,10 @@ class _MovieDescriptionState extends State<MovieDescription> {
                           child: ElevatedButton(
                             onPressed: showButton ? _addmovie : null,
                             style: ElevatedButton.styleFrom(
-                                primary: Theme.of(context).colorScheme.primary,
-                                onPrimary:
-                                    Theme.of(context).colorScheme.onBackground),
-                            child: const Text(
-                              'Need to Watch',
-                              style: TextStyle(fontSize: 18),
+                                foregroundColor: Theme.of(context).colorScheme.onBackground, backgroundColor: Theme.of(context).colorScheme.primary),
+                            child: Text(
+                              buttonText,
+                              style: TextStyle(fontSize: 15),
                             ),
                           ),
                         ),

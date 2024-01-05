@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 //import App navigation modules
 import 'package:popcorn/widgets/AppBar.dart';
-import 'package:popcorn/widgets/NavBar.dart';
+import 'package:popcorn/widgets/NavDrawer.dart';
+import 'package:popcorn/widgets/ProfileDrawer.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -11,7 +12,8 @@ class AboutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondary,
-      drawer: const MyNavBar(),
+      drawer: const MyNavDrawer(),
+      endDrawer: const MyProfileDrawer(),
       appBar: const MyAppBar(),
       body: ListView(
         children: [

@@ -12,10 +12,8 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Builder(builder: (context) {
+      title: Text(appbarTitle),
+      leading: Builder(builder: (context) {
             return IconButton(
               icon: const Icon(
                 Icons.menu,
@@ -27,15 +25,18 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
               },
             );
           }),
-          Text(appbarTitle),
-          IconButton(
-              onPressed: () {},
+      actions: <Widget>[Builder(builder: (context) {
+            return IconButton(
               icon: const Icon(
                 Icons.person,
-                size: 30,
-              )),
-        ],
-      ),
+                color: Colors.black,
+                size: 24,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer();
+              },
+            );
+          }),],
       centerTitle: true,
       backgroundColor: Theme.of(context).colorScheme.secondary,
     );

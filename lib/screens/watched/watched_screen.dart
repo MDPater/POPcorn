@@ -5,7 +5,8 @@ import 'package:popcorn/model/watched/watchedmovie.dart';
 
 //import App navigation modules
 import 'package:popcorn/widgets/AppBar.dart';
-import 'package:popcorn/widgets/NavBar.dart';
+import 'package:popcorn/widgets/NavDrawer.dart';
+import 'package:popcorn/widgets/ProfileDrawer.dart';
 
 class WatchedScreen extends StatefulWidget {
   const WatchedScreen({super.key});
@@ -53,7 +54,8 @@ class _Watched_ScreenState extends State<WatchedScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondary,
-      drawer: const MyNavBar(),
+      drawer: const MyNavDrawer(),
+      endDrawer: const MyProfileDrawer(),
       appBar: const MyAppBar(),
       body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Center(

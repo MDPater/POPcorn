@@ -4,7 +4,8 @@ import 'dart:math';
 
 //import App navigation modules
 import 'package:popcorn/widgets/AppBar.dart';
-import 'package:popcorn/widgets/NavBar.dart';
+import 'package:popcorn/widgets/NavDrawer.dart';
+import 'package:popcorn/widgets/ProfileDrawer.dart';
 
 //import Movie Widgets
 import 'package:popcorn/widgets/movie-widgets/inTheatre.dart';
@@ -78,7 +79,8 @@ class _HomeScreenState extends State<HomeScreen> {
     //Main Scaffold that holds Layout and links to widgets
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondary,
-      drawer: const MyNavBar(),
+      drawer: const MyNavDrawer(),
+      endDrawer: const MyProfileDrawer(),
       appBar: const MyAppBar(),
       body: GestureDetector(
         onTap: () {
