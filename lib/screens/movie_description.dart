@@ -204,7 +204,7 @@ class _MovieDescriptionState extends State<MovieDescription> {
                                 foregroundColor: Theme.of(context).colorScheme.onBackground, backgroundColor: Theme.of(context).colorScheme.primary),
                             child: Text(
                               buttonText,
-                              style: TextStyle(fontSize: 15),
+                              style: const TextStyle(fontSize: 15),
                             ),
                           ),
                         ),

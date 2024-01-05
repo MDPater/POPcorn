@@ -87,19 +87,19 @@ class _NeedToWatchState extends State<NeedToWatch> {
             SizedBox(
               height: 50,
               width: 50,
-              child: IconButton(onPressed: (){
-
-              }, 
-              icon: const Icon(
-                Icons.watch,
-                color: Colors.deepPurple,
-                size: 25,)),
+              child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.watch,
+                    color: Colors.deepPurple,
+                    size: 25,
+                  )),
             )
           ],
         ),
         const Padding(padding: EdgeInsets.only(top: 10)),
         SizedBox(
-          height: MediaQuery.of(context).size.height - 175,
+          height: MediaQuery.of(context).size.height - 155,
           child: ListView(
             scrollDirection: Axis.vertical,
             children: [
@@ -162,27 +162,37 @@ class _NeedToWatchState extends State<NeedToWatch> {
                                     color:
                                         Theme.of(context).colorScheme.primary,
                                   )),
-                                  Positioned(
+                              Positioned(
                                   bottom: 7,
                                   right: 5,
-                                    child: Container(
-                                      padding: const EdgeInsets.only(left: 2, right: 2),
+                                  child: Container(
+                                      padding: const EdgeInsets.only(
+                                          left: 2, right: 2),
                                       decoration: BoxDecoration(
-                                      color: Theme.of(context).colorScheme.onBackground,
-                                      borderRadius: BorderRadius.circular(8)),
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              (num.parse(movie.star)/2).toStringAsFixed(1),
-                                              style: TextStyle(
-                                              color: Theme.of(context).colorScheme.primary, fontSize: 15),
-                                            ),
-                                            Icon(
-                                              Icons.star,
-                                              color: Theme.of(context).colorScheme.primary,
-                                            )
-                                          ],
-                                    ))),
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            (num.parse(movie.star) / 2)
+                                                .toStringAsFixed(1),
+                                            style: TextStyle(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .primary,
+                                                fontSize: 15),
+                                          ),
+                                          Icon(
+                                            Icons.star,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                          )
+                                        ],
+                                      ))),
                             ],
                           ),
                           Expanded(

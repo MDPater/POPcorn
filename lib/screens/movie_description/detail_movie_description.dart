@@ -18,12 +18,11 @@ class DetailMovieDescription extends StatefulWidget {
 
 class _DetailMovieDescriptionState extends State<DetailMovieDescription> {
   List movie = [];
-  List movieCast = [];
+  List castMovie = [];
   List similarMovies = [];
 
   @override
   void initState() {
-    // TODO: implement initState
     getMovie();
     super.initState();
   }
@@ -37,6 +36,7 @@ class _DetailMovieDescriptionState extends State<DetailMovieDescription> {
     Map movieSimilar = await tmdbLogs.v3.movies.getSimilar(widget.movieID);
 
     setState(() {
+      castMovie = movieCast['cast'];
       similarMovies = movieSimilar['results'];
     });
     print(movieData);
@@ -52,7 +52,7 @@ class _DetailMovieDescriptionState extends State<DetailMovieDescription> {
       endDrawer: const MyProfileDrawer(),
       appBar: const MyAppBar(),
       body: ListView(
-        children: [],
+        children: const [],
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(16),
@@ -62,7 +62,7 @@ class _DetailMovieDescriptionState extends State<DetailMovieDescription> {
                 context: context,
                 builder: (context) => WatchedBottomSheet(
                     movieID: widget.movieID,
-                    title: movie[0]['original_title'],
+                    title: movieData['original_title'],
                     posterurl: widget.movieID.toString(),
                     rating: widget.movieID.toString()));
           },
