@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/screens/watched/watched_bottomsheet.dart';
 import 'package:popcorn/widgets/AppBar.dart';
-import 'package:popcorn/widgets/NavBar.dart';
+import 'package:popcorn/widgets/NavDrawer.dart';
+import 'package:popcorn/widgets/ProfileDrawer.dart';
 
 import 'package:tmdb_api/tmdb_api.dart';
 import 'package:popcorn/constants/api_constants.dart';
@@ -47,7 +48,8 @@ class _DetailMovieDescriptionState extends State<DetailMovieDescription> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondary,
-      drawer: const MyNavBar(),
+      drawer: const MyNavDrawer(),
+      endDrawer: const MyProfileDrawer(),
       appBar: const MyAppBar(),
       body: ListView(
         children: [],
