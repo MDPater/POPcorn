@@ -10,7 +10,7 @@
 .svn/
 migrate_working_dir/
 
-/lib/constants/api_constants.dart
+**/lib/constants/api_constants.dart
 
 # IntelliJ related
 *.iml
