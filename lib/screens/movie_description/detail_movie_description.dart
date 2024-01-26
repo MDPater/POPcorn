@@ -36,10 +36,11 @@ class _DetailMovieDescriptionState extends State<DetailMovieDescription> {
     Map movieSimilar = await tmdbLogs.v3.movies.getSimilar(widget.movieID);
 
     setState(() {
+      movie = movieData[0];
       castMovie = movieCast['cast'];
       similarMovies = movieSimilar['results'];
     });
-    print(movieData);
+    print(movie);
     print(movieCast);
     print(movieSimilar);
   }
