@@ -87,19 +87,19 @@ class _NeedToWatchState extends State<NeedToWatch> {
             SizedBox(
               height: 50,
               width: 50,
-              child: IconButton(onPressed: (){
-
-              }, 
-              icon: const Icon(
-                Icons.watch,
-                color: Colors.deepPurple,
-                size: 25,)),
+              child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.watch,
+                    color: Colors.deepPurple,
+                    size: 25,
+                  )),
             )
           ],
         ),
         const Padding(padding: EdgeInsets.only(top: 10)),
         SizedBox(
-          height: MediaQuery.of(context).size.height - 175,
+          height: MediaQuery.of(context).size.height - 155,
           child: ListView(
             scrollDirection: Axis.vertical,
             children: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:popcorn/screens/movie_description/detail_movie_description.dart';
 import 'dart:math';
 
 //import App navigation modules
@@ -123,6 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     leading: const Icon(Icons.search),
                     hintText: 'Search Movies',
                     onTap: () {
+                      controller.text = '';
                       controller.openView();
                       controller.addListener(() {
                         setState(() {
@@ -139,16 +141,22 @@ class _HomeScreenState extends State<HomeScreen> {
                   return List<ListTile>.generate(searchMovies.length, (index) {
                     final String item = searchMovies[index]['original_title'];
                     final String year = searchMovies[index]['release_date'];
+                    final int movieID = searchMovies[index]['id'];
                     return ListTile(
                       title: Text(item),
                       subtitle: Text(year),
                       splashColor: Theme.of(context).colorScheme.primary,
                       onTap: () {
-                        setState(() {
-                          Future.delayed(const Duration(milliseconds: 300), () {
-                            controller.closeView(item);
-                            FocusScope.of(context).unfocus();
-                          });
+                        Future.delayed(const Duration(milliseconds: 300), () {
+                          //show movie description page
+                          controller.closeView(item);
+                          FocusScope.of(context).unfocus();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DetailMovieDescription(
+                                        movieID: movieID,
+                                      )));
                         });
                       },
                     );
