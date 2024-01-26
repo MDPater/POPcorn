@@ -62,7 +62,7 @@ class _DetailMovieDescriptionState extends State<DetailMovieDescription> {
                 context: context,
                 builder: (context) => WatchedBottomSheet(
                     movieID: widget.movieID,
-                    title: movieData['original_title'],
+                    title: "test",
                     posterurl: widget.movieID.toString(),
                     rating: widget.movieID.toString()));
           },
