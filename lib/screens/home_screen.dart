@@ -104,13 +104,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 viewTrailing: [
                   IconButton(
                       onPressed: () {
-                        setState(() {
-                          _getMovies(controller.text);
-                        });
-                      },
-                      icon: const Icon(Icons.search)),
-                  IconButton(
-                      onPressed: () {
                         controller.clear();
                         searchMovies.clear();
                       },
