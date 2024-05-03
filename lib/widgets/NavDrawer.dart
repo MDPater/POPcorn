@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/screens/about_screen.dart';
 import 'package:popcorn/screens/home_screen.dart';
-import 'package:popcorn/screens/need_to_watch/needToWatch_screen.dart';
+import 'package:popcorn/screens/need_to_watch/needtowatch_screen.dart';
 import 'package:popcorn/screens/watched/watched_screen.dart';
 
 class MyNavDrawer extends StatelessWidget {
