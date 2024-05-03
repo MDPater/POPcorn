@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     final String year = searchMovies[index]['release_date'];
                     final int movieID = searchMovies[index]['id'];
                     final String poster_path =
-                        searchMovies[index]['poster_path'];
+                        searchMovies[index]['poster_path'].toString();
                     return ListTile(
                       leading: Image.network(
                         'https://image.tmdb.org/t/p/w500' + poster_path,

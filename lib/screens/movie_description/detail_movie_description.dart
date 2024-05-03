@@ -62,8 +62,8 @@ class _DetailMovieDescriptionState extends State<DetailMovieDescription> {
                 builder: (context) => WatchedBottomSheet(
                     movieID: widget.movieID,
                     title: movie[10],
-                    posterurl: widget.movieID.toString(),
-                    rating: widget.movieID.toString()));
+                    posterurl: 'https://image.tmdb.org/t/p/w500' + movie[13],
+                    rating: movie[24].toString()));
           },
           label: const Text('Watched'),
           icon: const Icon(Icons.visibility),
