@@ -36,13 +36,11 @@ class _DetailMovieDescriptionState extends State<DetailMovieDescription> {
     Map movieSimilar = await tmdbLogs.v3.movies.getSimilar(widget.movieID);
 
     setState(() {
-      movie = movieData[''];
+      movie = movieData.values.toList();
       castMovie = movieCast['cast'];
       similarMovies = movieSimilar['results'];
     });
-    print(movie);
-    print(movieCast);
-    print(movieSimilar);
+    print(movieData);
   }
 
   @override
@@ -63,7 +61,7 @@ class _DetailMovieDescriptionState extends State<DetailMovieDescription> {
                 context: context,
                 builder: (context) => WatchedBottomSheet(
                     movieID: widget.movieID,
-                    title: "test",
+                    title: movie[10],
                     posterurl: widget.movieID.toString(),
                     rating: widget.movieID.toString()));
           },
