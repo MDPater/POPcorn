@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:popcorn/model/boxes.dart';
 import 'package:popcorn/model/watched/watchedmovie.dart';
+import 'package:popcorn/screens/movie_description/detail_movie_description.dart';
 
 //import App navigation modules
 import 'package:popcorn/widgets/AppBar.dart';
@@ -90,7 +91,13 @@ class _Watched_ScreenState extends State<WatchedScreen> {
                       borderRadius: BorderRadius.circular(12),
                       splashColor: Theme.of(context).colorScheme.primary,
                       onTap: () {
-                        //go to details page of movie
+                        Future.delayed(const Duration(milliseconds: 300), () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DetailMovieDescription(
+                                      movieID: movie.movieID)));
+                        });
                       },
                       child: Container(
                         decoration: BoxDecoration(

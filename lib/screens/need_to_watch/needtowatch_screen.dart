@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/model/boxes.dart';
 import 'package:popcorn/model/need_to_watch/needtowatch.dart';
+import 'package:popcorn/screens/movie_description/detail_movie_description.dart';
 import 'package:popcorn/screens/watched/watched_bottomsheet.dart';
 import 'package:popcorn/widgets/AppBar.dart';
 import 'package:popcorn/widgets/NavDrawer.dart';
@@ -79,7 +80,7 @@ class _NeedToWatchState extends State<NeedToWatch> {
                     color: Colors.grey,
                     borderRadius: BorderRadius.circular(12)),
                 child: const Text(
-                  'Need to Watch',
+                  'Watchlist',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18),
                 )),
@@ -108,93 +109,121 @@ class _NeedToWatchState extends State<NeedToWatch> {
                     shrinkWrap: true,
                     physics: const ScrollPhysics(),
                     itemCount: boxNeedToWatch.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4, childAspectRatio: 12 / 20),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4, childAspectRatio: 12 / 20),
                     itemBuilder: (context, index) {
                       needtowatch movie = boxNeedToWatch.getAt(index);
-                      return Container(
-                        decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.circular(12)),
-                        margin: const EdgeInsets.all(5),
-                        padding: const EdgeInsets.all(5),
-                        width: 140,
-                        child: Column(
-                          children: [
-                            Stack(
-                              children: [
-                                Container(
-                                  height: 125,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image: NetworkImage(
-                                              'https://image.tmdb.org/t/p/w500${movie.posterurl}'),
-                                          fit: BoxFit.fill),
-                                      borderRadius: BorderRadius.circular(12)),
-                                ),
-                                Positioned(
-                                    top: -8,
-                                    left: -8,
-                                    child: IconButton(
+                      return InkWell(
+                        borderRadius: BorderRadius.circular(12),
+                        splashColor: Theme.of(context).colorScheme.primary,
+                        onTap: () {
+                          Future.delayed(const Duration(milliseconds: 300), () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        DetailMovieDescription(
+                                            movieID: movie.movieID)));
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius: BorderRadius.circular(12)),
+                          margin: const EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(5),
+                          width: 140,
+                          child: Column(
+                            children: [
+                              Stack(
+                                children: [
+                                  Container(
+                                    height: 125,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: NetworkImage(
+                                                'https://image.tmdb.org/t/p/w500${movie.posterurl}'),
+                                            fit: BoxFit.fill),
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                  ),
+                                  Positioned(
+                                      top: -8,
+                                      left: -8,
+                                      child: IconButton(
+                                          onPressed: () {
+                                            showModalBottomSheet(
+                                                context: context,
+                                                builder: (context) =>
+                                                    WatchedBottomSheet(
+                                                        movieID: movie.movieID,
+                                                        title: movie.movieTitle,
+                                                        posterurl:
+                                                            movie.posterurl,
+                                                        rating: movie.star));
+                                          },
+                                          icon: const Icon(Icons.add_box),
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary)),
+                                  Positioned(
+                                      left: -8,
+                                      bottom: -5,
+                                      child: IconButton(
                                         onPressed: () {
-                                          showModalBottomSheet(
-                                              context: context,
-                                              builder: (context) =>
-                                                  WatchedBottomSheet(
-                                                      movieID: movie.movieID,
-                                                      title: movie.movieTitle,
-                                                      posterurl: movie.posterurl,
-                                                      rating: movie.star));
+                                          setState(() {
+                                            boxNeedToWatch.deleteAt(index);
+                                          });
                                         },
-                                        icon: const Icon(Icons.add_box),
+                                        icon: const Icon(Icons.remove_circle),
                                         color: Theme.of(context)
                                             .colorScheme
-                                            .primary)),
-                                Positioned(
-                                    left: -8,
-                                    bottom: -5,
-                                    child: IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          boxNeedToWatch.deleteAt(index);
-                                        });
-                                      },
-                                      icon: const Icon(Icons.remove_circle),
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
-                                    )),
-                                    Positioned(
-                                    bottom: 7,
-                                    right: 5,
+                                            .primary,
+                                      )),
+                                  Positioned(
+                                      bottom: 7,
+                                      right: 5,
                                       child: Container(
-                                        padding: const EdgeInsets.only(left: 2, right: 2),
-                                        decoration: BoxDecoration(
-                                        color: Theme.of(context).colorScheme.onBackground,
-                                        borderRadius: BorderRadius.circular(8)),
+                                          padding: const EdgeInsets.only(
+                                              left: 2, right: 2),
+                                          decoration: BoxDecoration(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .onBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(8)),
                                           child: Row(
                                             children: [
                                               Text(
-                                                (num.parse(movie.star)/2).toStringAsFixed(1),
+                                                (num.parse(movie.star) / 2)
+                                                    .toStringAsFixed(1),
                                                 style: TextStyle(
-                                                color: Theme.of(context).colorScheme.primary, fontSize: 15),
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .primary,
+                                                    fontSize: 15),
                                               ),
                                               Icon(
                                                 Icons.star,
-                                                color: Theme.of(context).colorScheme.primary,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .primary,
                                               )
                                             ],
-                                      ))),
-                              ],
-                            ),
-                            Expanded(
-                                child: Text(
-                              movie.movieTitle,
-                              style: const TextStyle(
-                                  fontSize: 8, fontWeight: FontWeight.w700),
-                              overflow: TextOverflow.fade,
-                              textAlign: TextAlign.center,
-                            ))
-                          ],
+                                          ))),
+                                ],
+                              ),
+                              Expanded(
+                                  child: Text(
+                                movie.movieTitle,
+                                style: const TextStyle(
+                                    fontSize: 8, fontWeight: FontWeight.w700),
+                                overflow: TextOverflow.fade,
+                                textAlign: TextAlign.center,
+                              ))
+                            ],
+                          ),
                         ),
                       );
                     }),

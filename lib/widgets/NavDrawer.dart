@@ -38,7 +38,7 @@ class MyNavDrawer extends StatelessWidget {
           ListTile(
             splashColor: Theme.of(context).colorScheme.secondary,
             leading: const Icon(Icons.library_books_rounded),
-            title: const Text('Need to Watch'),
+            title: const Text('Watchlist'),
             onTap: () {
               //navigate to need to watch page
               Future.delayed(const Duration(milliseconds: 150), () {

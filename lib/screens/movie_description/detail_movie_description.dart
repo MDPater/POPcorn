@@ -40,7 +40,7 @@ class _DetailMovieDescriptionState extends State<DetailMovieDescription> {
       castMovie = movieCast['cast'];
       similarMovies = movieSimilar['results'];
     });
-    print(movieData);
+    print(movie);
   }
 
   @override

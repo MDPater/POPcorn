@@ -65,13 +65,12 @@ class _HomeScreenState extends State<HomeScreen> {
     TMDB tmdbLogs = TMDB(ApiKeys(API_Key, readaccesstoken),
         logConfig: const ConfigLogger(showLogs: true, showErrorLogs: true));
 
-    Map searchResult = await tmdbLogs.v3.search.queryMovies(searchValue);
+    Map searchResult =
+        await tmdbLogs.v3.search.queryMovies(searchValue, region: 'US');
 
     setState(() {
       searchMovies = searchResult['results'];
     });
-
-    print(searchResult);
   }
 
   @override
@@ -135,7 +134,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     final String item = searchMovies[index]['original_title'];
                     final String year = searchMovies[index]['release_date'];
                     final int movieID = searchMovies[index]['id'];
+                    final String poster_path =
+                        searchMovies[index]['poster_path'];
                     return ListTile(
+                      leading: Image.network(
+                        'https://image.tmdb.org/t/p/w500' + poster_path,
+                        fit: BoxFit.cover,
+                      ),
                       title: Text(item),
                       subtitle: Text(year),
                       splashColor: Theme.of(context).colorScheme.primary,
