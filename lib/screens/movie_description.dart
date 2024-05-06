@@ -25,19 +25,19 @@ class _MovieDescriptionState extends State<MovieDescription> {
   bool showButton = true;
   String buttonText = "Need to Watch";
 
-  void checkWatchedList(){
-    if(boxMovies.get('key_${widget.movieID}') != null){
+  void checkWatchedList() {
+    if (boxMovies.get('key_${widget.movieID}') != null) {
       buttonText = "Watched the Movie";
       showButton = false;
     }
   }
 
-  void checkNeedToWatchList(){
-    if(boxNeedToWatch.get('key_${widget.movieID}') != null){
+  void checkNeedToWatchList() {
+    if (boxNeedToWatch.get('key_${widget.movieID}') != null) {
       setState(() {
-      buttonText = "Already on WatchList";
-      showButton = false;
-    });
+        buttonText = "Already on WatchList";
+        showButton = false;
+      });
     }
   }
 
@@ -50,7 +50,6 @@ class _MovieDescriptionState extends State<MovieDescription> {
 
   void _addmovie() async {
     setState(() {
-      print("Movie Added to Need To Watch List");
       //save movie to Need to Watch List
       setState(() {
         boxNeedToWatch.put(
@@ -62,7 +61,7 @@ class _MovieDescriptionState extends State<MovieDescription> {
                 posterurl: widget.posterurl));
         print(boxNeedToWatch.values);
         //change button
-        buttonText = "Added to WatchList";
+        buttonText = "Added to Watclist";
         showButton = false;
       });
     });
@@ -201,7 +200,10 @@ class _MovieDescriptionState extends State<MovieDescription> {
                           child: ElevatedButton(
                             onPressed: showButton ? _addmovie : null,
                             style: ElevatedButton.styleFrom(
-                                foregroundColor: Theme.of(context).colorScheme.onBackground, backgroundColor: Theme.of(context).colorScheme.primary),
+                                foregroundColor:
+                                    Theme.of(context).colorScheme.onBackground,
+                                backgroundColor:
+                                    Theme.of(context).colorScheme.primary),
                             child: Text(
                               buttonText,
                               style: const TextStyle(fontSize: 15),
