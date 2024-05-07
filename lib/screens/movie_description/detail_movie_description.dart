@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:popcorn/model/need_to_watch/needtowatch.dart';
 import 'package:popcorn/screens/watched/watched_bottomsheet.dart';

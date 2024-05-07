@@ -71,6 +71,20 @@ class _Watched_ScreenState extends State<WatchedScreen> {
             ),
           ),
         ),
+        SizedBox(
+              height: 50,
+              width: 50,
+              child: IconButton(
+                icon: const Icon(
+                  Icons.view_list,
+                  color: Colors.deepPurple,
+                  size: 25,
+                ),
+                onPressed: () {
+                  //Filter list by different criteria
+                },
+              ),
+            ),
         const Padding(padding: EdgeInsets.only(top: 10)),
         SizedBox(
           height: MediaQuery.of(context).size.height - 140,

@@ -89,7 +89,10 @@ class _NeedToWatchState extends State<NeedToWatch> {
               height: 50,
               width: 50,
               child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    //implement random suggestion feature
+                    
+                  },
                   icon: const Icon(
                     Icons.watch,
                     color: Colors.deepPurple,
