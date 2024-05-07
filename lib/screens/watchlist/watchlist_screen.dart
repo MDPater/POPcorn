@@ -91,6 +91,7 @@ class _watchlist extends State<watchlist> {
               child: IconButton(
                   onPressed: () {
                     //implement random suggestion feature
+                    Overlay.of(context);
                     
                   },
                   icon: const Icon(

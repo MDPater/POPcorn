@@ -76,6 +76,20 @@ class _Watched_ScreenState extends State<WatchedScreen> {
               width: 50,
               child: IconButton(
                 icon: const Icon(
+                  Icons.search,
+                  color: Colors.deepPurple,
+                  size: 25,
+                ),
+                onPressed: () {
+                  //Search Movie from list
+                },
+              ),
+            ),
+        SizedBox(
+              height: 50,
+              width: 50,
+              child: IconButton(
+                icon: const Icon(
                   Icons.view_list,
                   color: Colors.deepPurple,
                   size: 25,
