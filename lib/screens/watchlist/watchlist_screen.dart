@@ -7,14 +7,14 @@ import 'package:popcorn/widgets/AppBar.dart';
 import 'package:popcorn/widgets/NavDrawer.dart';
 import 'package:popcorn/widgets/ProfileDrawer.dart';
 
-class NeedToWatch extends StatefulWidget {
-  const NeedToWatch({super.key});
+class watchlist extends StatefulWidget {
+  const watchlist({super.key});
 
   @override
-  State<NeedToWatch> createState() => _NeedToWatchState();
+  State<watchlist> createState() => _watchlist();
 }
 
-class _NeedToWatchState extends State<NeedToWatch> {
+class _watchlist extends State<watchlist> {
   bool isShown = true;
 
   void _deleteList(BuildContext context) {

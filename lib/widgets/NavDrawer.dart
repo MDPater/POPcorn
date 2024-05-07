@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/screens/about_screen.dart';
 import 'package:popcorn/screens/home_screen.dart';
-import 'package:popcorn/screens/need_to_watch/needtowatch_screen.dart';
+import 'package:popcorn/screens/watchlist/watchlist_screen.dart';
 import 'package:popcorn/screens/watched/watched_screen.dart';
 
 class MyNavDrawer extends StatelessWidget {
@@ -47,7 +47,7 @@ class MyNavDrawer extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: ((context) => const NeedToWatch())));
+                        builder: ((context) => const watchlist())));
               });
             },
           ),
