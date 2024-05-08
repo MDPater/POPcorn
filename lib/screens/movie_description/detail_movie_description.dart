@@ -61,7 +61,7 @@ class _DetailMovieDescriptionState extends State<DetailMovieDescription> {
     Map movieSimilar = await tmdbLogs.v3.movies.getSimilar(widget.movieID);
 
     setState(() {
-      movie = movieData.values.map((value) => value.toString()).toList();
+      movie = movieData.values.toList();
       castMovie = movieCast['cast'];
       similarMovies = movieSimilar['results'];
     });
@@ -108,8 +108,7 @@ class _DetailMovieDescriptionState extends State<DetailMovieDescription> {
                         borderRadius: BorderRadius.circular(24),
                         image: DecorationImage(
                           image: NetworkImage(
-                              'https://image.tmdb.org/t/p/w500' +
-                                  movie.contains('backdrop_path').toString()),
+                              'https://image.tmdb.org/t/p/w500' + movie[1]),
                           fit: BoxFit.cover,
                         )),
                   ),
@@ -165,7 +164,7 @@ class _DetailMovieDescriptionState extends State<DetailMovieDescription> {
           Container(
             padding: const EdgeInsets.only(left: 8, top: 8, right: 8),
             child: Text(
-              movie.contains('original_title').toString(),
+              movie[11],
               style: const TextStyle(fontSize: 24),
             ),
           ),

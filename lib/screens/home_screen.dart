@@ -139,7 +139,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     return ListTile(
                       leading: Image.network(
                         'https://image.tmdb.org/t/p/w500$posterPath',
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fitHeight,
+                        width: 50,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.asset('assets/images/poster404.jpg');
+                        },
                       ),
                       title: Text(item),
                       subtitle: Text(year),

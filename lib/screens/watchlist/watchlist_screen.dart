@@ -92,7 +92,6 @@ class _watchlist extends State<watchlist> {
                   onPressed: () {
                     //implement random suggestion feature
                     Overlay.of(context);
-                    
                   },
                   icon: const Icon(
                     Icons.watch,

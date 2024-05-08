@@ -58,22 +58,25 @@ class _Watched_ScreenState extends State<WatchedScreen> {
       drawer: const MyNavDrawer(),
       endDrawer: const MyProfileDrawer(),
       appBar: const MyAppBar(),
-      body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Center(
-          child: Container(
-            padding:
-                const EdgeInsets.only(top: 5, bottom: 5, left: 15, right: 15),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12), color: Colors.grey),
-            child: const Text(
-              "Your Watched Movies",
-              style: TextStyle(fontSize: 18),
+      body: Column(children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 50, width: 50),
+            const SizedBox(height: 50, width: 50),
+            Container(
+              padding:
+                  const EdgeInsets.only(top: 5, bottom: 5, left: 15, right: 15),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12), color: Colors.grey),
+              child: const Text(
+                "Your Watched Movies",
+                style: TextStyle(fontSize: 18),
+              ),
             ),
-          ),
-        ),
-        SizedBox(
+            SizedBox(
               height: 50,
-              width: 50,
+              width: 40,
               child: IconButton(
                 icon: const Icon(
                   Icons.search,
@@ -85,9 +88,9 @@ class _Watched_ScreenState extends State<WatchedScreen> {
                 },
               ),
             ),
-        SizedBox(
+            SizedBox(
               height: 50,
-              width: 50,
+              width: 40,
               child: IconButton(
                 icon: const Icon(
                   Icons.view_list,
@@ -99,9 +102,11 @@ class _Watched_ScreenState extends State<WatchedScreen> {
                 },
               ),
             ),
+          ],
+        ),
         const Padding(padding: EdgeInsets.only(top: 10)),
         SizedBox(
-          height: MediaQuery.of(context).size.height - 140,
+          height: MediaQuery.of(context).size.height - 150,
           child: ListView(
             scrollDirection: Axis.vertical,
             children: [
