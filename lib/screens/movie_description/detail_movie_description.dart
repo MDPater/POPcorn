@@ -164,7 +164,7 @@ class _DetailMovieDescriptionState extends State<DetailMovieDescription> {
           Container(
             padding: const EdgeInsets.only(left: 8, top: 8, right: 8),
             child: Text(
-              movie[11],
+              movie[10],
               style: const TextStyle(fontSize: 24),
             ),
           ),
@@ -208,7 +208,7 @@ class _DetailMovieDescriptionState extends State<DetailMovieDescription> {
                             child: SingleChildScrollView(
                               scrollDirection: Axis.vertical,
                               child: Text(
-                                movie.contains('overview').toString(),
+                                movie[11],
                                 overflow: TextOverflow.fade,
                               ),
                             ),
