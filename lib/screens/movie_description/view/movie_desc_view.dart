@@ -187,8 +187,7 @@ class _DetailMovieDescriptionState extends State<DetailMovieDescription> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     image: DecorationImage(
-                        image: NetworkImage('https://image.tmdb.org/t/p/w500' +
-                            movie.contains('poster_path').toString()),
+                        image: NetworkImage('https://image.tmdb.org/t/p/w500${movie.contains('poster_path')}'),
                         fit: BoxFit.cover)),
               ),
               SizedBox(
@@ -253,8 +252,7 @@ class _DetailMovieDescriptionState extends State<DetailMovieDescription> {
                 builder: (context) => WatchedBottomSheet(
                     movieID: widget.movieID,
                     title: movie.contains('original_title').toString(),
-                    posterurl: 'https://image.tmdb.org/t/p/w500' +
-                        movie.contains('poster_path').toString(),
+                    posterurl: 'https://image.tmdb.org/t/p/w500${movie.contains('poster_path')}',
                     rating: movie.contains('vote_average').toString()));
           },
           label: const Text('Watched'),

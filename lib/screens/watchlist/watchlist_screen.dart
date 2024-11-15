@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/model/boxes.dart';
 import 'package:popcorn/model/need_to_watch/needtowatch.dart';
-import 'package:popcorn/screens/movie_description/detail_movie_description.dart';
+import 'package:popcorn/screens/movie_description/view/movie_desc_view.dart';
 import 'package:popcorn/screens/watched/watched_bottomsheet.dart';
 import 'package:popcorn/widgets/AppBar.dart';
 import 'package:popcorn/widgets/NavDrawer.dart';

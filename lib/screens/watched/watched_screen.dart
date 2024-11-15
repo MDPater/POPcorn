@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:popcorn/model/boxes.dart';
 import 'package:popcorn/model/watched/watchedmovie.dart';
-import 'package:popcorn/screens/movie_description/detail_movie_description.dart';
+import 'package:popcorn/screens/movie_description/view/movie_desc_view.dart';
 
 //import App navigation modules
 import 'package:popcorn/widgets/AppBar.dart';

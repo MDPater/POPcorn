@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:popcorn/screens/movie_description/detail_movie_description.dart';
+import 'package:popcorn/screens/movie_description/view/movie_desc_view.dart';
 import 'dart:math';
 
 //import App navigation modules
