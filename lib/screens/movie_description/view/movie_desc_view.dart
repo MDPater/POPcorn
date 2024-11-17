@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:popcorn/model/boxes.dart';
+import 'package:popcorn/model/need_to_watch/needtowatch.dart';
 import 'package:popcorn/screens/movie_description/controller/movie_desc_controller.dart';
 import 'package:popcorn/screens/movie_description/model/movie_desc_model.dart';
 import 'package:popcorn/screens/watched/watched_bottomsheet.dart';
@@ -22,20 +23,35 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
   late Future<movieDescriptionModel> futureMovie;
   final movieDescriptionController _controller = movieDescriptionController();
 
+  late AsyncSnapshot snap;
+
   bool showButton = true;
   String buttonText = "Need to Watch";
 
   void checkLists() {
     if (boxMovies.get('key_${widget.movieID}') != null) {
-      showButton = false;
-      buttonText = "Watched the Movie";
+      setState(() {
+        showButton = false;
+        buttonText = "Watched the Movie";
+      });
     } else if (boxNeedToWatch.get('key_${widget.movieID}') != null) {
-      showButton = false;
-      buttonText = "Already on Watchlist";
+      setState(() {
+        showButton = false;
+        buttonText = "Already on Watchlist";
+      });
     }
   }
 
   void _addmovie() async {
+    boxNeedToWatch.put(
+        'key_${widget.movieID}',
+        needtowatch(
+          movieTitle: snap.data!.title,
+          posterurl: snap.data!.poster_path,
+          star: snap.data!.vote_average,
+          movieID: widget.movieID,
+        ));
+    print(boxNeedToWatch.get('key_${widget.movieID}'));
     setState(() {
       showButton = false;
       buttonText = "Added to Watchlist";
@@ -62,6 +78,7 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
               } else if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
               } else if (snapshot.hasData) {
+                snap = snapshot;
                 return Scaffold(
                   backgroundColor: Theme.of(context).colorScheme.secondary,
                   /*
@@ -252,10 +269,8 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                             builder: (context) => WatchedBottomSheet(
                                 movieID: widget.movieID,
                                 title: snapshot.data!.title,
-                                posterurl:
-                                    'https://image.tmdb.org/t/p/w500${snapshot.data!.poster_path}',
-                                rating:
-                                    (snapshot.data!.vote_average).toString()));
+                                posterurl: snapshot.data!.poster_path,
+                                rating: snapshot.data!.vote_average));
                       },
                       label: const Text('Watched'),
                       icon: const Icon(Icons.visibility),

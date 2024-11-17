@@ -196,7 +196,7 @@ class _watchlist extends State<watchlist> {
                                           child: Row(
                                             children: [
                                               Text(
-                                                (num.parse(movie.star) / 2)
+                                                (movie.star / 2)
                                                     .toStringAsFixed(1),
                                                 style: TextStyle(
                                                     color: Theme.of(context)

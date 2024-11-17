@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
     //show output of API call
-    print(topratedresult);
+    print('Top Rated page: ' + topratedresult['page'].toString());
   }
 
   _getMovies(String searchValue) async {
