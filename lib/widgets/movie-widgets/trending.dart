@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
 import 'package:flutter/material.dart';
-import 'package:popcorn/screens/movie_description.dart';
+import 'package:popcorn/screens/movie_description/view/movie_desc_view.dart';
 
 class TrendingMovies extends StatefulWidget {
   const TrendingMovies({super.key, required this.Trending});
@@ -35,19 +35,9 @@ class _TrendingMoviesState extends State<TrendingMovies> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => MovieDescription(
-                                  movieID: widget.Trending[index]['id'],
-                                  title: widget.Trending[index]['title'],
-                                  description: widget.Trending[index]
-                                      ['overview'],
-                                  bannerurl: 'https://image.tmdb.org/t/p/w500' +
-                                      widget.Trending[index]['backdrop_path'],
-                                  posterurl: 'https://image.tmdb.org/t/p/w500' +
-                                      widget.Trending[index]['poster_path'],
-                                  vote: widget.Trending[index]['vote_average']
-                                      .toString(),
-                                  release_date: widget.Trending[index]
-                                      ['release_date'])));
+                              builder: (context) => movieDescriptionView(
+                                    movieID: widget.Trending[index]['id'],
+                                  )));
                     },
                     child: Container(
                       padding: const EdgeInsets.all(5),

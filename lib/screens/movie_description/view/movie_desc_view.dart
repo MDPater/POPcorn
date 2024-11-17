@@ -32,9 +32,6 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
     } else if (boxNeedToWatch.get('key_${widget.movieID}') != null) {
       showButton = false;
       buttonText = "Already on Watchlist";
-    } else {
-      showButton = true;
-      buttonText = "Need to Watch";
     }
   }
 

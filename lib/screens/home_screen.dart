@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:popcorn/screens/movie_description/view/movie_desc_view.dart';
 import 'dart:math';
+import 'package:popcorn/screens/movie_description/view/movie_desc_view.dart';
 
 //import App navigation modules
 import 'package:popcorn/widgets/AppBar.dart';
