@@ -128,7 +128,7 @@ class _Watched_ScreenState extends State<WatchedScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => DetailMovieDescription(
+                                  builder: (context) => movieDescriptionView(
                                       movieID: movie.movieID)));
                         });
                       },

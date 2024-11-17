@@ -17,30 +17,34 @@ class movieDescriptionModel {
   String tagline;
   String status;
 
-  movieDescriptionModel(
-      {required this.movieID,
-      required this.original_title,
-      required this.overview,
-      required this.backdrop_path,
-      required this.poster_path,
-      required this.release_date,
-      required this.vote_average,
-      required this.title,
-      required this.tagline,
-      required this.status});
+  movieDescriptionModel({
+    required this.movieID,
+    required this.original_title,
+    required this.overview,
+    required this.backdrop_path,
+    required this.poster_path,
+    required this.release_date,
+    required this.vote_average,
+    required this.title,
+    required this.tagline,
+    required this.status,
+  });
 
-  factory movieDescriptionModel.fromJson(Map<String, dynamic> json) {
+  factory movieDescriptionModel.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return movieDescriptionModel(
-        movieID: json['id'],
-        original_title: json['original_title'],
-        overview: json['overview'],
-        backdrop_path: json['backdrop_path'],
-        poster_path: json['poster_path'],
-        release_date: json['release_date'],
-        vote_average: json['vote_average'],
-        title: json['title'],
-        tagline: json['tagline'],
-        status: json['status']);
+      movieID: json['id'],
+      original_title: json['original_title'],
+      overview: json['overview'],
+      backdrop_path: json['backdrop_path'],
+      poster_path: json['poster_path'],
+      release_date: json['release_date'],
+      vote_average: json['vote_average'],
+      title: json['title'],
+      tagline: json['tagline'],
+      status: json['status'],
+    );
   }
 
   static Future<movieDescriptionModel> fetchMovieData(int movieID) async {

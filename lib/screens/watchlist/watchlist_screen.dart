@@ -15,8 +15,6 @@ class watchlist extends StatefulWidget {
 }
 
 class _watchlist extends State<watchlist> {
-  bool isShown = true;
-
   void _deleteList(BuildContext context) {
     //delete Entire List
     showDialog(
@@ -125,9 +123,8 @@ class _watchlist extends State<watchlist> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        DetailMovieDescription(
-                                            movieID: movie.movieID)));
+                                    builder: (context) => movieDescriptionView(
+                                        movieID: movie.movieID)));
                           });
                         },
                         child: Container(
