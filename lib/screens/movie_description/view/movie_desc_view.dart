@@ -41,7 +41,7 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
   void _addmovie() async {
     setState(() {
       showButton = false;
-      buttonText = "Added to Watclist";
+      buttonText = "Added to Watchlist";
     });
   }
 
