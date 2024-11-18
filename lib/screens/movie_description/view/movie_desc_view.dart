@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:popcorn/model/boxes.dart';
 import 'package:popcorn/model/need_to_watch/needtowatch.dart';
 import 'package:popcorn/screens/movie_description/controller/movie_desc_controller.dart';
@@ -182,7 +183,7 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                       Container(
                         padding: const EdgeInsets.only(left: 12),
                         child: Text(
-                          'release date: ${snapshot.data!.release_date}',
+                          'release date: ${DateFormat('dd-MM-yyyy').format(snapshot.data!.release_date)}',
                           style: const TextStyle(fontSize: 12),
                         ),
                       ),

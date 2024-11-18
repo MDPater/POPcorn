@@ -11,7 +11,7 @@ class movieDescriptionModel {
   String overview;
   String backdrop_path;
   String poster_path;
-  String release_date;
+  DateTime release_date;
   double vote_average;
   String title;
   String tagline;
@@ -39,7 +39,7 @@ class movieDescriptionModel {
       overview: json['overview'],
       backdrop_path: json['backdrop_path'],
       poster_path: json['poster_path'],
-      release_date: json['release_date'],
+      release_date: DateTime.parse(json['release_date']),
       vote_average: json['vote_average'],
       title: json['title'],
       tagline: json['tagline'],
@@ -52,6 +52,7 @@ class movieDescriptionModel {
         Uri.parse("https://api.themoviedb.org/3/movie/$movieID?language=en-US"),
         headers: {HttpHeaders.authorizationHeader: 'Bearer $readaccesstoken'});
     if (response.statusCode == 200) {
+      print(response.body);
       return movieDescriptionModel.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to load Movie Data');

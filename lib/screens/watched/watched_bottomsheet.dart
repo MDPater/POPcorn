@@ -170,7 +170,8 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                               posterurl: widget.posterurl,
                               starRating: ratingvalue,
                               movieID: widget.movieID,
-                              comment: commentController.text));
+                              comment: commentController.text,
+                              movieWatchedAt: DateTime.now()));
                       Future.delayed(const Duration(milliseconds: 500), () {
                         if (boxNeedToWatch.get('key_${widget.movieID}') !=
                             null) {

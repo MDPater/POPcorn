@@ -9,7 +9,8 @@ class watchedmovie {
       required this.posterurl,
       required this.starRating,
       required this.movieID,
-      required this.comment});
+      required this.comment,
+      required this.movieWatchedAt});
 
   @HiveField(0)
   String movieTitle;
@@ -26,13 +27,17 @@ class watchedmovie {
   @HiveField(4)
   int movieID;
 
+  @HiveField(5)
+  DateTime movieWatchedAt;
+
   Map<String, dynamic> toMap() {
     return {
       'movieTitle': movieTitle,
       'posterurl': posterurl,
       'starRating': starRating,
       'movieID': movieID,
-      'comment': comment
+      'comment': comment,
+      'movieWatchedAt': movieWatchedAt
     };
   }
 
@@ -42,11 +47,12 @@ class watchedmovie {
         posterurl: map['posterurl'],
         starRating: map['starRating'],
         movieID: map['movieID'],
-        comment: map['comment']);
+        comment: map['comment'],
+        movieWatchedAt: map['movieWatchedAt']);
   }
 
   @override
   String toString() {
-    return 'movieTitle: $movieTitle posterurl: $posterurl starRating: $starRating movieID: $movieID comment: $comment';
+    return 'movieTitle: $movieTitle posterurl: $posterurl starRating: $starRating movieID: $movieID comment: $comment movieWatchedAt: $movieWatchedAt';
   }
 }
