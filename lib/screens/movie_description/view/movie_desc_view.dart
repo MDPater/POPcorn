@@ -6,7 +6,6 @@ import 'package:popcorn/model/boxes.dart';
 import 'package:popcorn/model/need_to_watch/needtowatch.dart';
 import 'package:popcorn/screens/movie_description/controller/movie_desc_controller.dart';
 import 'package:popcorn/screens/movie_description/model/movie_desc_model.dart';
-import 'package:popcorn/screens/movie_description/model/movie_user_model.dart';
 import 'package:popcorn/screens/movie_description/view/user_rating_view.dart';
 import 'package:popcorn/screens/watched/watched_bottomsheet.dart';
 //import 'package:popcorn/widgets/AppBar.dart';
@@ -24,9 +23,9 @@ class movieDescriptionView extends StatefulWidget {
 
 class _movieDescriptionViewState extends State<movieDescriptionView> {
   late Future<movieDescriptionModel> futureMovie;
-  late Future<movieUserDataModel> futureUserReview;
   final movieDescriptionController _controller = movieDescriptionController();
 
+  //movieData
   late AsyncSnapshot snap;
 
   //Button Logic WatchList
@@ -54,10 +53,9 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
   }
 
   void checkMovie() {
-    //Checks if the Movie Exists in the DB and generates Data if User reviewed the movie
+    //Check DB for Movie Entries and set variables as needed
     if (boxMovies.containsKey('key_${widget.movieID}')) {
       setState(() {
-        futureUserReview = _controller.getMovieEntry(widget.movieID);
         userReview = true;
         showButton = false;
         buttonText = "Watched the Movie";
@@ -272,8 +270,16 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                       ),
                       //Show User Review if it exists in DB
                       userReview
-                          ? userRatingView(futureUserReview: futureUserReview)
-                          : Text('No Review'),
+                          ? userRatingView(
+                              movieID: widget.movieID,
+                            )
+                          : Container(
+                              padding: const EdgeInsets.all(8),
+                              child: const Text(
+                                'No Review',
+                                style: TextStyle(fontSize: 18),
+                              ),
+                            )
                     ],
                   ),
                   floatingActionButton: Padding(
