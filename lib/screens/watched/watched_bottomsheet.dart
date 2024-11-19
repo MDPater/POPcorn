@@ -25,7 +25,7 @@ class WatchedBottomSheet extends StatefulWidget {
 class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
   final TextEditingController commentController = TextEditingController();
 
-  double ratingvalue = 1;
+  double ratingvalue = 0.5;
 
   @override
   void dispose() {
@@ -110,8 +110,9 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   RatingBar(
+                      minRating: 0.5,
                       itemSize: 50,
-                      initialRating: 0,
+                      initialRating: 0.5,
                       direction: Axis.horizontal,
                       allowHalfRating: true,
                       itemCount: 5,

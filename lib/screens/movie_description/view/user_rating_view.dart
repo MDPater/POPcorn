@@ -17,7 +17,6 @@ class _userRatingViewState extends State<userRatingView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     futureUserReview = _controller.getMovieEntry(widget.movieID);
   }
