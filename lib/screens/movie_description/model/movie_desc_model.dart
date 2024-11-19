@@ -52,7 +52,7 @@ class movieDescriptionModel {
         Uri.parse("https://api.themoviedb.org/3/movie/$movieID?language=en-US"),
         headers: {HttpHeaders.authorizationHeader: 'Bearer $readaccesstoken'});
     if (response.statusCode == 200) {
-      print(response.body);
+      print('JSON DATA: \n${response.body}');
       return movieDescriptionModel.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to load Movie Data');

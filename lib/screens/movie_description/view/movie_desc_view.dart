@@ -6,6 +6,8 @@ import 'package:popcorn/model/boxes.dart';
 import 'package:popcorn/model/need_to_watch/needtowatch.dart';
 import 'package:popcorn/screens/movie_description/controller/movie_desc_controller.dart';
 import 'package:popcorn/screens/movie_description/model/movie_desc_model.dart';
+import 'package:popcorn/screens/movie_description/model/movie_user_model.dart';
+import 'package:popcorn/screens/movie_description/view/user_rating_view.dart';
 import 'package:popcorn/screens/watched/watched_bottomsheet.dart';
 //import 'package:popcorn/widgets/AppBar.dart';
 //import 'package:popcorn/widgets/NavDrawer.dart';
@@ -22,28 +24,20 @@ class movieDescriptionView extends StatefulWidget {
 
 class _movieDescriptionViewState extends State<movieDescriptionView> {
   late Future<movieDescriptionModel> futureMovie;
+  late Future<movieUserDataModel> futureUserReview;
   final movieDescriptionController _controller = movieDescriptionController();
 
   late AsyncSnapshot snap;
 
+  //Button Logic WatchList
   bool showButton = true;
   String buttonText = "Need to Watch";
 
-  void checkLists() {
-    if (boxMovies.get('key_${widget.movieID}') != null) {
-      setState(() {
-        showButton = false;
-        buttonText = "Watched the Movie";
-      });
-    } else if (boxNeedToWatch.get('key_${widget.movieID}') != null) {
-      setState(() {
-        showButton = false;
-        buttonText = "Already on Watchlist";
-      });
-    }
-  }
+  //bool to show User Review if it exists
+  bool userReview = false;
 
-  void _addmovie() async {
+  void _addmovieToDB() async {
+    //addMovie to the DB
     boxNeedToWatch.put(
         'key_${widget.movieID}',
         needtowatch(
@@ -59,10 +53,27 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
     });
   }
 
+  void checkMovie() {
+    //Checks if the Movie Exists in the DB and generates Data if User reviewed the movie
+    if (boxMovies.containsKey('key_${widget.movieID}')) {
+      setState(() {
+        futureUserReview = _controller.getMovieEntry(widget.movieID);
+        userReview = true;
+        showButton = false;
+        buttonText = "Watched the Movie";
+      });
+    } else if (boxNeedToWatch.containsKey('key_${widget.movieID}')) {
+      setState(() {
+        showButton = false;
+        buttonText = "Already on Watchlist";
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-    checkLists();
+    checkMovie();
     futureMovie = _controller.getMovieData(widget.movieID);
   }
 
@@ -240,7 +251,7 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                                       width: MediaQuery.of(context).size.width,
                                       child: ElevatedButton(
                                         onPressed:
-                                            showButton ? _addmovie : null,
+                                            showButton ? _addmovieToDB : null,
                                         style: ElevatedButton.styleFrom(
                                             foregroundColor: Theme.of(context)
                                                 .colorScheme
@@ -258,7 +269,11 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                                 ],
                               ))
                         ],
-                      )
+                      ),
+                      //Show User Review if it exists in DB
+                      userReview
+                          ? userRatingView(futureUserReview: futureUserReview)
+                          : Text('No Review'),
                     ],
                   ),
                   floatingActionButton: Padding(
