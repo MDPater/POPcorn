@@ -293,7 +293,7 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                                 padding: const EdgeInsets.all(8),
                                 child: const Text(
                                   'No Review',
-                                  style: TextStyle(fontSize: 18),
+                                  style: TextStyle(fontSize: 20),
                                 ),
                               )
                       ],
