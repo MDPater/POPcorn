@@ -40,6 +40,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: title,
       theme: ThemeData(
+        scrollbarTheme: const ScrollbarThemeData(
+            thumbColor: MaterialStatePropertyAll(Colors.deepPurple),
+            thumbVisibility: MaterialStatePropertyAll(true),
+            thickness: MaterialStatePropertyAll(5),
+            radius: Radius.circular(25)),
         fontFamily: 'REM',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         primarySwatch: Colors.deepPurple,

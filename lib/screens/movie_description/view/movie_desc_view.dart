@@ -22,6 +22,7 @@ class movieDescriptionView extends StatefulWidget {
 }
 
 class _movieDescriptionViewState extends State<movieDescriptionView> {
+  final myScrollController = ScrollController();
   late Future<movieDescriptionModel> futureMovie;
   final movieDescriptionController _controller = movieDescriptionController();
 
@@ -98,6 +99,7 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                   appBar: const MyAppBar(),
                   */
                   body: ListView(
+                    controller: myScrollController,
                     children: [
                       //top picture with back button and movie rating
                       SizedBox(
@@ -231,12 +233,15 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                                               BorderRadius.circular(12)),
                                       child: Padding(
                                         padding: const EdgeInsets.only(
-                                            left: 8, right: 8, bottom: 1),
-                                        child: SingleChildScrollView(
-                                          scrollDirection: Axis.vertical,
-                                          child: Text(
-                                            snapshot.data!.overview,
-                                            overflow: TextOverflow.fade,
+                                            left: 6, right: 6, bottom: 1),
+                                        child: Scrollbar(
+                                          controller: myScrollController,
+                                          child: SingleChildScrollView(
+                                            scrollDirection: Axis.vertical,
+                                            child: Text(
+                                              snapshot.data!.overview,
+                                              overflow: TextOverflow.fade,
+                                            ),
                                           ),
                                         ),
                                       ),

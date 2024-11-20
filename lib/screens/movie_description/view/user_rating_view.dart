@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:popcorn/screens/movie_description/controller/movie_desc_controller.dart';
 import 'package:popcorn/screens/movie_description/model/movie_user_model.dart';
 
@@ -24,7 +25,7 @@ class _userRatingViewState extends State<userRatingView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.only(left: 8, top: 8, right: 8),
+        padding: const EdgeInsets.all(8),
         child: FutureBuilder(
           future: futureUserReview,
           builder: (context, snapshot) {
@@ -40,8 +41,51 @@ class _userRatingViewState extends State<userRatingView> {
                     'Your Review ',
                     style: TextStyle(fontSize: 18),
                   ),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                  ),
                   Row(
-                    children: [Text(snapshot.data!.comment)],
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 2 - 8,
+                        child: (Container(
+                            height: 60,
+                            decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 142, 132, 151),
+                                borderRadius: BorderRadius.circular(12)),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 8, right: 8, top: 8, bottom: 1),
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.vertical,
+                                child: Text(
+                                  snapshot.data!.comment,
+                                  overflow: TextOverflow.fade,
+                                  style: const TextStyle(fontSize: 15),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ))),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 2 - 8,
+                        child: Column(
+                          children: [
+                            const Text(
+                              'Watched on: ',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                            Text(
+                              DateFormat('dd-MM-yyyy').format(
+                                snapshot.data!.watchedAt,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(fontSize: 18),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
                   )
                 ],
               );
