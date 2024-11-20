@@ -7,6 +7,7 @@ import 'package:popcorn/constants/api_constants.dart';
 class movieDescriptionModel {
   //Movie Data
   int movieID;
+  int runtime;
   String original_title;
   String overview;
   String backdrop_path;
@@ -19,6 +20,7 @@ class movieDescriptionModel {
 
   movieDescriptionModel({
     required this.movieID,
+    required this.runtime,
     required this.original_title,
     required this.overview,
     required this.backdrop_path,
@@ -35,6 +37,7 @@ class movieDescriptionModel {
   ) {
     return movieDescriptionModel(
       movieID: json['id'],
+      runtime: json['runtime'],
       original_title: json['original_title'],
       overview: json['overview'],
       backdrop_path: json['backdrop_path'],
