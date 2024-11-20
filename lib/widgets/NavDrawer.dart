@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/screens/settings/about_screen.dart';
 import 'package:popcorn/screens/home_screen.dart';
+import 'package:popcorn/screens/settings/settings_screen.dart';
 import 'package:popcorn/screens/watchlist/watchlist_screen.dart';
 import 'package:popcorn/screens/watched/watched_screen.dart';
 
@@ -71,7 +72,15 @@ class MyNavDrawer extends StatelessWidget {
             splashColor: Theme.of(context).colorScheme.secondary,
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
-            onTap: () {},
+            onTap: () {
+              Future.delayed(const Duration(milliseconds: 150), () {
+                Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => const settingsView())));
+              });
+            },
           ),
           const Divider(),
           ListTile(
