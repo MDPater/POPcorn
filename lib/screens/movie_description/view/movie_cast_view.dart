@@ -67,13 +67,15 @@ class _movieCastState extends State<movieCast> {
                                             image: NetworkImage(
                                                 'https://image.tmdb.org/t/p/w500${snapshot.data!.results[index].poster_path}'))),
                                   ),
-                                  Text(
-                                    snapshot.data!.results[index].title,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                        overflow: TextOverflow.fade,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w700),
+                                  Expanded(
+                                    child: Text(
+                                      snapshot.data!.results[index].title,
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                          overflow: TextOverflow.fade,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w700),
+                                    ),
                                   )
                                 ],
                               ),
