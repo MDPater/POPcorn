@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:intl/intl.dart';
 import 'package:popcorn/screens/movie_description/controller/movie_desc_controller.dart';
-import 'package:popcorn/screens/movie_description/model/movie_user_model.dart';
+import 'package:popcorn/screens/movie_description/model/user_rating_model.dart';
 
 class userRatingView extends StatefulWidget {
   const userRatingView(

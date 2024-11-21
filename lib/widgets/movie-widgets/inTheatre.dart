@@ -30,14 +30,16 @@ class _InTheatreState extends State<InTheatre> {
                 itemCount: widget.Theatre.length,
                 itemBuilder: (context, index) {
                   return InkWell(
-                    borderRadius: BorderRadius.circular(2),
+                    splashColor: Theme.of(context).colorScheme.primary,
+                    borderRadius: BorderRadius.circular(20),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => movieDescriptionView(
-                                    movieID: widget.Theatre[index]['id'],
-                                  )));
+                      Future.delayed(const Duration(milliseconds: 300), () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => movieDescriptionView(
+                                    movieID: widget.Theatre[index]['id'])));
+                      });
                     },
                     child: Container(
                       padding: const EdgeInsets.all(5),

@@ -31,13 +31,16 @@ class _TrendingMoviesState extends State<TrendingMovies> {
                 itemCount: widget.Trending.length,
                 itemBuilder: (context, index) {
                   return InkWell(
+                    splashColor: Theme.of(context).colorScheme.primary,
+                    borderRadius: BorderRadius.circular(20),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => movieDescriptionView(
-                                    movieID: widget.Trending[index]['id'],
-                                  )));
+                      Future.delayed(const Duration(milliseconds: 300), () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => movieDescriptionView(
+                                    movieID: widget.Trending[index]['id'])));
+                      });
                     },
                     child: Container(
                       padding: const EdgeInsets.all(5),

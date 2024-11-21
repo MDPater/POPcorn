@@ -6,6 +6,7 @@ import 'package:popcorn/model/boxes.dart';
 import 'package:popcorn/model/need_to_watch/needtowatch.dart';
 import 'package:popcorn/screens/movie_description/controller/movie_desc_controller.dart';
 import 'package:popcorn/screens/movie_description/model/movie_desc_model.dart';
+import 'package:popcorn/screens/movie_description/view/movie_cast_view.dart';
 import 'package:popcorn/screens/movie_description/view/user_rating_view.dart';
 import 'package:popcorn/screens/watched/watched_bottomsheet.dart';
 //import 'package:popcorn/widgets/AppBar.dart';
@@ -290,12 +291,9 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                                 myScrollController: myScrollController,
                               )
                             : Container(
-                                padding: const EdgeInsets.all(8),
-                                child: const Text(
-                                  'No Review',
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              )
+                                padding: const EdgeInsets.only(top: 20),
+                              ),
+                        movieCast(movieID: widget.movieID),
                       ],
                     ),
                   ),
