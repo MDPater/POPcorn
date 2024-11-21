@@ -25,8 +25,8 @@ class _settingsViewState extends State<settingsView> {
           padding: const EdgeInsets.all(8.0),
           child: ListView(
             controller: myScrollController,
-            children: [
-              const Text(
+            children: const [
+              Text(
                 'Settings',
                 style: TextStyle(fontSize: 24),
               ),

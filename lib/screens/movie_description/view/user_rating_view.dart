@@ -41,16 +41,16 @@ class _userRatingViewState extends State<userRatingView> {
                 children: [
                   //Widget Title
                   Container(
-                    padding: EdgeInsets.only(top: 12),
+                    padding: const EdgeInsets.only(top: 12),
                     width: double.infinity,
-                    child: Text(
+                    child: const Text(
                       'Your Review ',
                       style: TextStyle(fontSize: 20),
                     ),
                   ),
                   //Star Rating
                   Container(
-                    padding: EdgeInsets.only(bottom: 4),
+                    padding: const EdgeInsets.only(bottom: 4),
                     child: Column(
                       children: [
                         RatingBar(
