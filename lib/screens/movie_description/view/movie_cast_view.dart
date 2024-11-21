@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/screens/movie_description/controller/movie_desc_controller.dart';
 import 'package:popcorn/screens/movie_description/model/similar_movie_model.dart';
+import 'package:popcorn/screens/movie_description/view/movie_desc_view.dart';
 
 class movieCast extends StatefulWidget {
   const movieCast({super.key, required this.movieID});
@@ -51,8 +52,16 @@ class _movieCastState extends State<movieCast> {
                             splashColor: Theme.of(context).colorScheme.primary,
                             borderRadius: BorderRadius.circular(20),
                             onTap: () {
-                              Future.delayed(
-                                  const Duration(milliseconds: 300), () {});
+                              Future.delayed(const Duration(milliseconds: 300),
+                                  () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            movieDescriptionView(
+                                                movieID: snapshot.data!
+                                                    .results[index].movieID)));
+                              });
                             },
                             child: Container(
                               padding: const EdgeInsets.all(5),
