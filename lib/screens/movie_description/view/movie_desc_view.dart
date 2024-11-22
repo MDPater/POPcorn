@@ -33,7 +33,11 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
 
   //Button Logic WatchList
   bool showButton = true;
-  String buttonText = "Need to Watch";
+  String buttonText = "Add to List";
+
+  //Button Logic FAB
+  String fabText = "Watched";
+  IconData fabIcon = Icons.visibility;
 
   //bool to show User Review if it exists
   bool userReview = false;
@@ -62,6 +66,8 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
         userReview = true;
         showButton = false;
         buttonText = "Watched the Movie";
+        fabText = "Edit";
+        fabIcon = Icons.edit;
       });
     } else if (boxNeedToWatch.containsKey('key_${widget.movieID}')) {
       setState(() {
@@ -314,8 +320,8 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                                 posterurl: snapshot.data!.poster_path,
                                 rating: snapshot.data!.vote_average));
                       },
-                      label: const Text('Watched'),
-                      icon: const Icon(Icons.visibility),
+                      label: Text(fabText),
+                      icon: Icon(fabIcon),
                     ),
                   ),
                 );

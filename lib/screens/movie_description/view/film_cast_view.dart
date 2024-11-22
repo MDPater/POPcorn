@@ -17,7 +17,6 @@ class _FilmCastViewState extends State<FilmCastView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     futureFilmCast = _controller.getFilmCast(widget.movieID);
   }
@@ -40,7 +39,7 @@ class _FilmCastViewState extends State<FilmCastView> {
               return Column(
                 children: [
                   Container(
-                      padding: EdgeInsets.only(left: 8),
+                      padding: const EdgeInsets.only(left: 8),
                       width: double.infinity,
                       child: const Text(
                         'Movie Cast',
@@ -82,7 +81,7 @@ class _FilmCastViewState extends State<FilmCastView> {
                                                   image: showImage
                                                       ? NetworkImage(
                                                           'https://image.tmdb.org/t/p/w500${snapshot.data!.cast[index].profilePath}')
-                                                      : AssetImage(
+                                                      : const AssetImage(
                                                               'assets/images/poster404.jpg')
                                                           as ImageProvider,
                                                   fit: BoxFit.fill)),
