@@ -3,16 +3,16 @@ import 'package:popcorn/screens/movie_description/controller/movie_desc_controll
 import 'package:popcorn/screens/movie_description/model/similar_movie_model.dart';
 import 'package:popcorn/screens/movie_description/view/movie_desc_view.dart';
 
-class movieCast extends StatefulWidget {
-  const movieCast({super.key, required this.movieID});
+class SimilarMoviesView extends StatefulWidget {
+  const SimilarMoviesView({super.key, required this.movieID});
 
   final int movieID;
 
   @override
-  State<movieCast> createState() => _movieCastState();
+  State<SimilarMoviesView> createState() => _SimilarMoviesView();
 }
 
-class _movieCastState extends State<movieCast> {
+class _SimilarMoviesView extends State<SimilarMoviesView> {
   late Future<similarMoviesModel> futureSimilarMovies;
   final movieDescriptionController _controller = movieDescriptionController();
 
@@ -30,7 +30,10 @@ class _movieCastState extends State<movieCast> {
           future: futureSimilarMovies,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
+              return const SizedBox(
+                  width: double.infinity,
+                  height: 150,
+                  child: Center(child: CircularProgressIndicator()));
             } else if (snapshot.hasError) {
               return Text('Error: ${widget.movieID}');
             } else if (snapshot.hasData) {
@@ -92,7 +95,6 @@ class _movieCastState extends State<movieCast> {
                           );
                         }),
                   ),
-                  Text(snapshot.data!.results[0].title)
                 ],
               );
             } else {

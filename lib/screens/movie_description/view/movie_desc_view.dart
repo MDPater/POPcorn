@@ -6,7 +6,8 @@ import 'package:popcorn/model/boxes.dart';
 import 'package:popcorn/model/need_to_watch/needtowatch.dart';
 import 'package:popcorn/screens/movie_description/controller/movie_desc_controller.dart';
 import 'package:popcorn/screens/movie_description/model/movie_desc_model.dart';
-import 'package:popcorn/screens/movie_description/view/movie_cast_view.dart';
+import 'package:popcorn/screens/movie_description/view/film_cast_view.dart';
+import 'package:popcorn/screens/movie_description/view/similar_movie_view.dart';
 import 'package:popcorn/screens/movie_description/view/user_rating_view.dart';
 import 'package:popcorn/screens/watched/watched_bottomsheet.dart';
 //import 'package:popcorn/widgets/AppBar.dart';
@@ -284,16 +285,19 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                                 ))
                           ],
                         ),
+                        //Show Cast
+                        FilmCastView(movieID: widget.movieID),
                         //Show User Review if it exists in DB
                         userReview
-                            ? userRatingView(
+                            ? UserRatingView(
                                 movieID: widget.movieID,
                                 myScrollController: myScrollController,
                               )
                             : Container(
-                                padding: const EdgeInsets.only(top: 20),
+                                padding: const EdgeInsets.only(top: 8),
                               ),
-                        movieCast(movieID: widget.movieID),
+                        //
+                        SimilarMoviesView(movieID: widget.movieID),
                       ],
                     ),
                   ),

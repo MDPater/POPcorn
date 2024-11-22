@@ -4,18 +4,18 @@ import 'package:intl/intl.dart';
 import 'package:popcorn/screens/movie_description/controller/movie_desc_controller.dart';
 import 'package:popcorn/screens/movie_description/model/user_rating_model.dart';
 
-class userRatingView extends StatefulWidget {
-  const userRatingView(
+class UserRatingView extends StatefulWidget {
+  const UserRatingView(
       {super.key, required this.movieID, required this.myScrollController});
 
   final int movieID;
   final ScrollController myScrollController;
 
   @override
-  State<userRatingView> createState() => _userRatingViewState();
+  State<UserRatingView> createState() => _UserRatingViewState();
 }
 
-class _userRatingViewState extends State<userRatingView> {
+class _UserRatingViewState extends State<UserRatingView> {
   late Future<movieUserDataModel> futureUserReview;
   final movieDescriptionController _controller = movieDescriptionController();
 
@@ -33,7 +33,10 @@ class _userRatingViewState extends State<userRatingView> {
           future: futureUserReview,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
+              return const SizedBox(
+                  width: double.infinity,
+                  height: 150,
+                  child: Center(child: CircularProgressIndicator()));
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else if (snapshot.hasData) {
@@ -41,7 +44,7 @@ class _userRatingViewState extends State<userRatingView> {
                 children: [
                   //Widget Title
                   Container(
-                    padding: const EdgeInsets.only(top: 12),
+                    padding: const EdgeInsets.only(top: 0),
                     width: double.infinity,
                     child: const Text(
                       'Your Review ',
@@ -91,13 +94,15 @@ class _userRatingViewState extends State<userRatingView> {
                                   left: 8, right: 8, bottom: 1),
                               child: Scrollbar(
                                 controller: widget.myScrollController,
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.vertical,
-                                  child: Text(
-                                    snapshot.data!.comment,
-                                    overflow: TextOverflow.fade,
-                                    style: const TextStyle(fontSize: 15),
-                                    textAlign: TextAlign.center,
+                                child: Center(
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.vertical,
+                                    child: Text(
+                                      snapshot.data!.comment,
+                                      overflow: TextOverflow.fade,
+                                      style: const TextStyle(fontSize: 15),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
                                 ),
                               ),
