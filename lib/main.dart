@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:popcorn/model/boxes.dart';
 import 'package:popcorn/model/need_to_watch/needtowatch.dart';
 import 'package:popcorn/model/watched/watchedmovie.dart';
-import 'screens/home_screen.dart';
+import 'screens/foryou/view/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 String title = "POPcorn";

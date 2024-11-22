@@ -8,13 +8,13 @@ import 'package:popcorn/widgets/NavDrawer.dart';
 import 'package:popcorn/widgets/ProfileDrawer.dart';
 
 //import Movie Widgets
-import 'package:popcorn/widgets/movie-widgets/inTheatre.dart';
-import 'package:popcorn/widgets/movie-widgets/toprated.dart';
-import 'package:popcorn/widgets/movie-widgets/trending.dart';
+import 'package:popcorn/screens/foryou/view/inTheatre.dart';
+import 'package:popcorn/screens/foryou/view/toprated.dart';
+import 'package:popcorn/screens/foryou/view/trending.dart';
 
 //import TMDB
 import 'package:tmdb_api/tmdb_api.dart';
-import '../constants/api_constants.dart';
+import '../../../constants/api_constants.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
