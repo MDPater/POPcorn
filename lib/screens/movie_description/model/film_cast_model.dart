@@ -15,7 +15,7 @@ class FilmCastModel {
 
   factory FilmCastModel.fromJson(Map<String, dynamic> json) => FilmCastModel(
       cast: List<Cast>.from(json["cast"].map((x) => Cast.fromJson(x))),
-      crew: List<Cast>.from(json["cast"].map((x) => Cast.fromJson(x))));
+      crew: List<Cast>.from(json["crew"].map((x) => Cast.fromJson(x))));
 
   static Future<FilmCastModel> fetchFilmCast(int movieID) async {
     final response = await http.get(

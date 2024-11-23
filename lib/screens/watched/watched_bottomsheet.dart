@@ -183,7 +183,7 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                               'delete ${widget.title} ${widget.movieID} from WatchList');
                         }
                         // Do something
-                        Navigator.pop(context);
+                        Navigator.pop(context, 'refresh');
                       });
                     });
                   },
