@@ -10,7 +10,7 @@ class movieDescriptionModel {
   int runtime;
   String original_title;
   String overview;
-  String backdrop_path;
+  String? backdrop_path;
   String poster_path;
   DateTime release_date;
   double vote_average;

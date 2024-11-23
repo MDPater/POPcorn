@@ -7,6 +7,7 @@ import 'package:popcorn/model/need_to_watch/needtowatch.dart';
 import 'package:popcorn/screens/movie_description/controller/movie_desc_controller.dart';
 import 'package:popcorn/screens/movie_description/model/movie_desc_model.dart';
 import 'package:popcorn/screens/movie_description/view/film_cast_view.dart';
+import 'package:popcorn/screens/movie_description/view/film_crew_view.dart';
 import 'package:popcorn/screens/movie_description/view/similar_movie_view.dart';
 import 'package:popcorn/screens/movie_description/view/user_rating_view.dart';
 import 'package:popcorn/screens/watched/watched_bottomsheet.dart';
@@ -98,6 +99,10 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                 return Text('Error: ${snapshot.error}');
               } else if (snapshot.hasData) {
                 snap = snapshot;
+                bool showBackdrop = true;
+                if (snapshot.data!.backdrop_path == null) {
+                  showBackdrop = false;
+                }
                 return Scaffold(
                   backgroundColor: Theme.of(context).colorScheme.secondary,
                   /*
@@ -125,9 +130,14 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(24),
                                       image: DecorationImage(
-                                        image: NetworkImage(
-                                            'https://image.tmdb.org/t/p/w500' +
-                                                snapshot.data!.backdrop_path),
+                                        image: showBackdrop
+                                            ? NetworkImage(
+                                                'https://image.tmdb.org/t/p/w500' +
+                                                    snapshot.data!.backdrop_path
+                                                        .toString())
+                                            : const AssetImage(
+                                                    'assets/images/poster404.jpg')
+                                                as ImageProvider,
                                         fit: BoxFit.cover,
                                       )),
                                 ),
@@ -304,6 +314,7 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                               ),
                         //
                         SimilarMoviesView(movieID: widget.movieID),
+                        FilmCrewView(movieID: widget.movieID),
                       ],
                     ),
                   ),
