@@ -4,7 +4,7 @@
 ![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen)
 
 ## 📖 Overview  
-[POPcorn is an app that lets users browse, search, and discover movies using data from the TMDB API. Users can explore popular movies, view detailed information, and even create their watchlists.]
+POPcorn is an app that lets users browse, search, and discover movies using data from the TMDB API. Users can explore popular movies, view detailed information, and even create their watchlists.
 
 ## 📦 Installation  
 1. Clone the repository:  
@@ -25,9 +25,9 @@
    ```
 
 ## 💡 Usage  
-[Search for a movie by typing its title in the search bar.
+Search for a movie by typing its title in the search bar.
 Browse trending or popular movies on the home page.
-Click on a movie card to view detailed information.]
+Click on a movie card to view detailed information.
 
 ## 🔑 API Key Setup
 This app uses the TMDB API. To get started:
