@@ -17,11 +17,7 @@ POPcorn is an app that lets users browse, search, and discover movies using data
    ```
 3. Install dependencies:  
    ```bash
-   [Insert dependency installation command]
-   ```
-4. Run the app:  
-   ```bash
-   [Insert run command]
+   flutter pub get
    ```
 
 ## 💡 Usage  
