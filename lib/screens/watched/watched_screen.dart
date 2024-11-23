@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:popcorn/model/boxes.dart';
 import 'package:popcorn/model/watched/watchedmovie.dart';
+import 'package:popcorn/screens/movie_description/view/movie_desc_view.dart';
 
 //import App navigation modules
 import 'package:popcorn/widgets/AppBar.dart';
@@ -57,22 +58,55 @@ class _Watched_ScreenState extends State<WatchedScreen> {
       drawer: const MyNavDrawer(),
       endDrawer: const MyProfileDrawer(),
       appBar: const MyAppBar(),
-      body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Center(
-          child: Container(
-            padding:
-                const EdgeInsets.only(top: 5, bottom: 5, left: 15, right: 15),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12), color: Colors.grey),
-            child: const Text(
-              "Your Watched Movies",
-              style: TextStyle(fontSize: 18),
+      body: Column(children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 50, width: 50),
+            const SizedBox(height: 50, width: 50),
+            Container(
+              padding:
+                  const EdgeInsets.only(top: 5, bottom: 5, left: 15, right: 15),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12), color: Colors.grey),
+              child: const Text(
+                "Your Watched Movies",
+                style: TextStyle(fontSize: 18),
+              ),
             ),
-          ),
+            SizedBox(
+              height: 50,
+              width: 40,
+              child: IconButton(
+                icon: const Icon(
+                  Icons.search,
+                  color: Colors.deepPurple,
+                  size: 25,
+                ),
+                onPressed: () {
+                  //Search Movie from list
+                },
+              ),
+            ),
+            SizedBox(
+              height: 50,
+              width: 40,
+              child: IconButton(
+                icon: const Icon(
+                  Icons.view_list,
+                  color: Colors.deepPurple,
+                  size: 25,
+                ),
+                onPressed: () {
+                  //Filter list by different criteria
+                },
+              ),
+            ),
+          ],
         ),
         const Padding(padding: EdgeInsets.only(top: 10)),
         SizedBox(
-          height: MediaQuery.of(context).size.height - 140,
+          height: MediaQuery.of(context).size.height - 150,
           child: ListView(
             scrollDirection: Axis.vertical,
             children: [
@@ -90,7 +124,13 @@ class _Watched_ScreenState extends State<WatchedScreen> {
                       borderRadius: BorderRadius.circular(12),
                       splashColor: Theme.of(context).colorScheme.primary,
                       onTap: () {
-                        //go to details page of movie
+                        Future.delayed(const Duration(milliseconds: 300), () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => movieDescriptionView(
+                                      movieID: movie.movieID)));
+                        });
                       },
                       child: Container(
                         decoration: BoxDecoration(

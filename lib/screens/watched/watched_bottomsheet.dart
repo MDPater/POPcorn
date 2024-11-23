@@ -14,8 +14,9 @@ class WatchedBottomSheet extends StatefulWidget {
     required this.rating,
   });
 
-  final String title, posterurl, rating;
+  final String title, posterurl;
   final int movieID;
+  final double rating;
 
   @override
   State<WatchedBottomSheet> createState() => _WatchedBottomSheetState();
@@ -24,7 +25,7 @@ class WatchedBottomSheet extends StatefulWidget {
 class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
   final TextEditingController commentController = TextEditingController();
 
-  double ratingvalue = 1;
+  double ratingvalue = 0.5;
 
   @override
   void dispose() {
@@ -34,7 +35,7 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    star = (num.parse(widget.rating) / 2).toStringAsFixed(1);
+    star = (widget.rating / 2).toStringAsFixed(1);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: GestureDetector(
@@ -61,7 +62,8 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             image: DecorationImage(
-                                image: NetworkImage(widget.posterurl),
+                                image: NetworkImage(
+                                    'https://image.tmdb.org/t/p/w500${widget.posterurl}'),
                                 fit: BoxFit.fill)),
                       ),
                       Column(
@@ -108,8 +110,9 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   RatingBar(
+                      minRating: 0.5,
                       itemSize: 50,
-                      initialRating: 0,
+                      initialRating: 0.5,
                       direction: Axis.horizontal,
                       allowHalfRating: true,
                       itemCount: 5,
@@ -158,7 +161,7 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                 padding: const EdgeInsets.only(left: 16, right: 16),
                 child: FloatingActionButton.extended(
                   onPressed: () {
-                    print("Movie Saved");
+                    print("Movie ${widget.title} ${widget.movieID} Saved");
                     //save Movie to Watchlist
                     setState(() {
                       boxMovies.put(
@@ -168,13 +171,17 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                               posterurl: widget.posterurl,
                               starRating: ratingvalue,
                               movieID: widget.movieID,
-                              comment: commentController.text));
-                      print(boxMovies.values);
+                              comment: commentController.text,
+                              movieWatchedAt: DateTime.now()));
                       Future.delayed(const Duration(milliseconds: 500), () {
-                        if(boxNeedToWatch.get('key_${widget.movieID}') != null){
-                        boxNeedToWatch.delete('key_${widget.movieID}');
-                        print('delete ${widget.movieID} from WatchList');
-                      }
+                        if (boxNeedToWatch.get('key_${widget.movieID}') !=
+                            null) {
+                          setState(() {
+                            boxNeedToWatch.delete('key_${widget.movieID}');
+                          });
+                          print(
+                              'delete ${widget.title} ${widget.movieID} from WatchList');
+                        }
                         // Do something
                         Navigator.pop(context);
                       });
@@ -186,6 +193,9 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                   focusColor: Colors.green,
                   autofocus: true,
                 ),
+              ),
+              const SizedBox(
+                height: 10,
               )
             ],
           ),

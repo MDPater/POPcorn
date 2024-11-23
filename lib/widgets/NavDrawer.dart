@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:popcorn/screens/about_screen.dart';
-import 'package:popcorn/screens/home_screen.dart';
-import 'package:popcorn/screens/need_to_watch/needToWatch_screen.dart';
+import 'package:popcorn/screens/settings/about_screen.dart';
+import 'package:popcorn/screens/foryou/view/home_screen.dart';
+import 'package:popcorn/screens/settings/settings_screen.dart';
+import 'package:popcorn/screens/watchlist/watchlist_screen.dart';
 import 'package:popcorn/screens/watched/watched_screen.dart';
 
 class MyNavDrawer extends StatelessWidget {
@@ -38,7 +39,7 @@ class MyNavDrawer extends StatelessWidget {
           ListTile(
             splashColor: Theme.of(context).colorScheme.secondary,
             leading: const Icon(Icons.library_books_rounded),
-            title: const Text('Need to Watch'),
+            title: const Text('Watchlist'),
             onTap: () {
               //navigate to need to watch page
               Future.delayed(const Duration(milliseconds: 150), () {
@@ -47,7 +48,7 @@ class MyNavDrawer extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: ((context) => const NeedToWatch())));
+                        builder: ((context) => const watchlist())));
               });
             },
           ),
@@ -71,7 +72,15 @@ class MyNavDrawer extends StatelessWidget {
             splashColor: Theme.of(context).colorScheme.secondary,
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
-            onTap: () {},
+            onTap: () {
+              Future.delayed(const Duration(milliseconds: 150), () {
+                Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => const settingsView())));
+              });
+            },
           ),
           const Divider(),
           ListTile(

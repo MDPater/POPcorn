@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:popcorn/screens/movie_description/detail_movie_description.dart';
 import 'dart:math';
+import 'package:popcorn/screens/movie_description/view/movie_desc_view.dart';
 
 //import App navigation modules
 import 'package:popcorn/widgets/AppBar.dart';
@@ -8,13 +8,13 @@ import 'package:popcorn/widgets/NavDrawer.dart';
 import 'package:popcorn/widgets/ProfileDrawer.dart';
 
 //import Movie Widgets
-import 'package:popcorn/widgets/movie-widgets/inTheatre.dart';
-import 'package:popcorn/widgets/movie-widgets/toprated.dart';
-import 'package:popcorn/widgets/movie-widgets/trending.dart';
+import 'package:popcorn/screens/foryou/view/inTheatre.dart';
+import 'package:popcorn/screens/foryou/view/toprated.dart';
+import 'package:popcorn/screens/foryou/view/trending.dart';
 
 //import TMDB
 import 'package:tmdb_api/tmdb_api.dart';
-import '../constants/api_constants.dart';
+import '../../../constants/api_constants.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -58,20 +58,19 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
     //show output of API call
-    print(topratedresult);
+    print('Top Rated page: ${topratedresult['page']}');
   }
 
   _getMovies(String searchValue) async {
     TMDB tmdbLogs = TMDB(ApiKeys(API_Key, readaccesstoken),
         logConfig: const ConfigLogger(showLogs: true, showErrorLogs: true));
 
-    Map searchResult = await tmdbLogs.v3.search.queryMovies(searchValue);
+    Map searchResult =
+        await tmdbLogs.v3.search.queryMovies(searchValue, region: 'US');
 
     setState(() {
       searchMovies = searchResult['results'];
     });
-
-    print(searchResult);
   }
 
   @override
@@ -102,13 +101,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
                 viewTrailing: [
-                  IconButton(
-                      onPressed: () {
-                        setState(() {
-                          _getMovies(controller.text);
-                        });
-                      },
-                      icon: const Icon(Icons.search)),
                   IconButton(
                       onPressed: () {
                         controller.clear();
@@ -142,7 +134,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     final String item = searchMovies[index]['original_title'];
                     final String year = searchMovies[index]['release_date'];
                     final int movieID = searchMovies[index]['id'];
+                    final String posterPath =
+                        searchMovies[index]['poster_path'].toString();
                     return ListTile(
+                      leading: Image.network(
+                        'https://image.tmdb.org/t/p/w500$posterPath',
+                        fit: BoxFit.fitHeight,
+                        width: 50,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.asset('assets/images/poster404.jpg');
+                        },
+                      ),
                       title: Text(item),
                       subtitle: Text(year),
                       splashColor: Theme.of(context).colorScheme.primary,
@@ -154,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => DetailMovieDescription(
+                                  builder: (context) => movieDescriptionView(
                                         movieID: movieID,
                                       )));
                         });

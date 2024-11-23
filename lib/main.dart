@@ -17,7 +17,8 @@ import 'package:flutter/material.dart';
 import 'package:popcorn/model/boxes.dart';
 import 'package:popcorn/model/need_to_watch/needtowatch.dart';
 import 'package:popcorn/model/watched/watchedmovie.dart';
-import 'screens/home_screen.dart';
+import 'screens/foryou/view/home_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 String title = "POPcorn";
 
@@ -40,7 +41,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: title,
       theme: ThemeData(
-        fontFamily: 'REM',
+        //use REM or Oswald Font
+        textTheme: GoogleFonts.remTextTheme(Theme.of(context).textTheme),
+        scrollbarTheme: const ScrollbarThemeData(
+            thumbColor: MaterialStatePropertyAll(Colors.deepPurple),
+            thumbVisibility: MaterialStatePropertyAll(true),
+            thickness: MaterialStatePropertyAll(5),
+            radius: Radius.circular(25)),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         primarySwatch: Colors.deepPurple,
         useMaterial3: true,

@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
 import 'package:flutter/material.dart';
-import 'package:popcorn/screens/movie_description.dart';
+import 'package:popcorn/screens/movie_description/view/movie_desc_view.dart';
 
 class TrendingMovies extends StatefulWidget {
   const TrendingMovies({super.key, required this.Trending});
@@ -16,7 +16,7 @@ class _TrendingMoviesState extends State<TrendingMovies> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
+      padding: const EdgeInsets.only(left: 0, right: 0, top: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -31,23 +31,16 @@ class _TrendingMoviesState extends State<TrendingMovies> {
                 itemCount: widget.Trending.length,
                 itemBuilder: (context, index) {
                   return InkWell(
+                    splashColor: Theme.of(context).colorScheme.primary,
+                    borderRadius: BorderRadius.circular(20),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MovieDescription(
-                                  movieID: widget.Trending[index]['id'],
-                                  title: widget.Trending[index]['title'],
-                                  description: widget.Trending[index]
-                                      ['overview'],
-                                  bannerurl: 'https://image.tmdb.org/t/p/w500' +
-                                      widget.Trending[index]['backdrop_path'],
-                                  posterurl: 'https://image.tmdb.org/t/p/w500' +
-                                      widget.Trending[index]['poster_path'],
-                                  vote: widget.Trending[index]['vote_average']
-                                      .toString(),
-                                  release_date: widget.Trending[index]
-                                      ['release_date'])));
+                      Future.delayed(const Duration(milliseconds: 300), () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => movieDescriptionView(
+                                    movieID: widget.Trending[index]['id'])));
+                      });
                     },
                     child: Container(
                       padding: const EdgeInsets.all(5),

@@ -19,7 +19,7 @@ class needtowatchAdapter extends TypeAdapter<needtowatch> {
     return needtowatch(
       movieTitle: fields[0] as String,
       movieID: fields[3] as int,
-      star: fields[2] as dynamic,
+      star: fields[2] as double,
       posterurl: fields[1] as String,
     );
   }
