@@ -24,6 +24,7 @@ class similarMoviesModel {
             "https://api.themoviedb.org/3/movie/$movieID/recommendations"),
         headers: {HttpHeaders.authorizationHeader: 'Bearer $readaccesstoken'});
     if (response.statusCode == 200) {
+      print('JSON DATA: \n ${response.body}');
       return similarMoviesModel.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Error getting data');
@@ -34,7 +35,7 @@ class similarMoviesModel {
 class result {
   int movieID;
   String title;
-  String poster_path;
+  String? poster_path;
 
   result(
       {required this.movieID, required this.title, required this.poster_path});

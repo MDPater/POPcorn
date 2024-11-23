@@ -61,30 +61,33 @@ class _FilmCastViewState extends State<FilmCastView> {
                             borderRadius: BorderRadius.circular(20),
                             onTap: () {},
                             child: Container(
-                              padding: const EdgeInsets.all(5),
+                              padding: const EdgeInsets.all(2),
                               width: 80,
                               child: Column(
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
+                                      borderRadius: BorderRadius.circular(10),
                                       color: Colors.grey,
                                     ),
                                     child: Column(
                                       children: [
-                                        Container(
-                                          height: 100,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              image: DecorationImage(
-                                                  image: showImage
-                                                      ? NetworkImage(
-                                                          'https://image.tmdb.org/t/p/w500${snapshot.data!.cast[index].profilePath}')
-                                                      : const AssetImage(
-                                                              'assets/images/poster404.jpg')
-                                                          as ImageProvider,
-                                                  fit: BoxFit.fill)),
+                                        Padding(
+                                          padding: const EdgeInsets.all(2),
+                                          child: Container(
+                                            height: 100,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                image: DecorationImage(
+                                                    image: showImage
+                                                        ? NetworkImage(
+                                                            'https://image.tmdb.org/t/p/w500${snapshot.data!.cast[index].profilePath}')
+                                                        : const AssetImage(
+                                                                'assets/images/poster404.jpg')
+                                                            as ImageProvider,
+                                                    fit: BoxFit.fill)),
+                                          ),
                                         ),
                                         Container(
                                           padding:

@@ -35,7 +35,7 @@ class _SimilarMoviesView extends State<SimilarMoviesView> {
                   height: 150,
                   child: Center(child: CircularProgressIndicator()));
             } else if (snapshot.hasError) {
-              return Text('Error: ${widget.movieID}');
+              return Text('Error: ${snapshot.error}');
             } else if (snapshot.hasData) {
               return Column(
                 children: [
@@ -51,6 +51,11 @@ class _SimilarMoviesView extends State<SimilarMoviesView> {
                         scrollDirection: Axis.horizontal,
                         itemCount: snapshot.data!.results.length,
                         itemBuilder: (context, index) {
+                          bool showImage = true;
+                          if (snapshot.data!.results[index].poster_path ==
+                              null) {
+                            showImage = false;
+                          }
                           return InkWell(
                             splashColor: Theme.of(context).colorScheme.primary,
                             borderRadius: BorderRadius.circular(20),
@@ -76,8 +81,12 @@ class _SimilarMoviesView extends State<SimilarMoviesView> {
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(20),
                                         image: DecorationImage(
-                                            image: NetworkImage(
-                                                'https://image.tmdb.org/t/p/w500${snapshot.data!.results[index].poster_path}'))),
+                                            image: showImage
+                                                ? NetworkImage(
+                                                    'https://image.tmdb.org/t/p/w500${snapshot.data!.results[index].poster_path}')
+                                                : const AssetImage(
+                                                        'assets/images/poster404.jpg')
+                                                    as ImageProvider)),
                                   ),
                                   Expanded(
                                     child: Text(
