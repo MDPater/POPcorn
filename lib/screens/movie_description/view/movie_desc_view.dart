@@ -329,9 +329,14 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                               : Container(
                                   padding: const EdgeInsets.only(top: 8),
                                 ),
-                          //
+                          //Similar Moveis
                           SimilarMoviesView(movieID: widget.movieID),
+                          //Show Crew
                           FilmCrewView(movieID: widget.movieID),
+                          //bottom Text
+                          const SizedBox(
+                            height: 100,
+                          )
                         ],
                       ),
                     ),
