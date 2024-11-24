@@ -88,7 +88,7 @@ class _FilmCrewViewState extends State<FilmCrewView> {
                                       MaterialPageRoute(
                                           builder: (context) => PeopleView(
                                               id: snapshot
-                                                  .data!.cast[index].id)));
+                                                  .data!.crew[index].id)));
                                 });
                               },
                               child: Container(

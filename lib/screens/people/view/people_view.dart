@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:popcorn/screens/people/controller/people_controller.dart';
 import 'package:popcorn/screens/people/model/people_model.dart';
 
@@ -17,17 +16,17 @@ class _PeopleViewState extends State<PeopleView> {
   late Future<PeopleModel> futurePeople;
   final PeopleController _controller = PeopleController();
 
-  @override
-  void initState() {
-    super.initState();
-    futurePeople = _controller.getPeopleData(widget.id);
-  }
-
   Future<void> _refreshPage() async {
     await Future.delayed(Duration(milliseconds: 300));
     setState(() {
       futurePeople = _controller.getPeopleData(widget.id);
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    futurePeople = _controller.getPeopleData(widget.id);
   }
 
   @override
@@ -39,11 +38,14 @@ class _PeopleViewState extends State<PeopleView> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator();
         } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
+          return Text('Error: ${snapshot.hasError}');
         } else if (snapshot.hasData) {
           bool showImage = true;
+          bool birthDay = true;
           if (snapshot.data!.profilePath == null) {
             showImage = false;
+          } else if (snapshot.data!.birthday == null) {
+            birthDay = false;
           }
           return Scaffold(
             backgroundColor: Theme.of(context).colorScheme.secondary,
@@ -55,8 +57,9 @@ class _PeopleViewState extends State<PeopleView> {
                     controller: myScrollController,
                     children: [
                       SizedBox(
-                        height: 100,
+                        height: 75,
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
                               height: 40,
@@ -79,24 +82,30 @@ class _PeopleViewState extends State<PeopleView> {
                                 alignment: Alignment.centerLeft,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 75, top: 32),
-                              child: Center(
-                                  child: Column(
-                                children: [
-                                  Text(
-                                    snapshot.data!.name,
-                                    style: const TextStyle(fontSize: 24),
-                                  ),
-                                  Text(
-                                    DateFormat('dd-MM-yyyy')
-                                        .format(snapshot.data!.birthday),
-                                    style: const TextStyle(
-                                        fontSize: 12, color: Colors.grey),
-                                  )
-                                ],
-                              )),
-                            )
+                            const Spacer(),
+                            Positioned(
+                              left: 10,
+                              child: Container(
+                                padding: const EdgeInsets.only(top: 15),
+                                child: Center(
+                                    child: Column(
+                                  children: [
+                                    Text(
+                                      snapshot.data!.name,
+                                      style: const TextStyle(fontSize: 24),
+                                    ),
+                                    Text(
+                                      birthDay
+                                          ? snapshot.data!.birthday.toString()
+                                          : '',
+                                      style: const TextStyle(
+                                          fontSize: 12, color: Colors.grey),
+                                    )
+                                  ],
+                                )),
+                              ),
+                            ),
+                            const Spacer()
                           ],
                         ),
                       ),
@@ -120,8 +129,31 @@ class _PeopleViewState extends State<PeopleView> {
                                       fit: BoxFit.cover)),
                             ),
                             SizedBox(
-                              width: MediaQuery.of(context).size.width / 2,
-                            )
+                                height: 220,
+                                width: MediaQuery.of(context).size.width / 2,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: const Color.fromARGB(
+                                          255, 142, 132, 151),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 6, right: 6, bottom: 5, top: 1),
+                                    child: Scrollbar(
+                                      controller: myScrollController,
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.vertical,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 4),
+                                          child: Text(
+                                            snapshot.data!.biography,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ))
                           ],
                         ),
                       )
