@@ -23,7 +23,7 @@ class FilmCastModel {
         headers: {HttpHeaders.authorizationHeader: 'Bearer $readaccesstoken'});
 
     if (response.statusCode == 200) {
-      print('JSON DATA: \n ${response.body}');
+      //print('JSON DATA: \n ${response.body}');
       return FilmCastModel.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Error getting data');

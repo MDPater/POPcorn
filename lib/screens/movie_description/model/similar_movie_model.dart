@@ -24,7 +24,7 @@ class similarMoviesModel {
             "https://api.themoviedb.org/3/movie/$movieID/recommendations"),
         headers: {HttpHeaders.authorizationHeader: 'Bearer $readaccesstoken'});
     if (response.statusCode == 200) {
-      print('JSON DATA: \n ${response.body}');
+      //print('JSON DATA: \n ${response.body}');
       return similarMoviesModel.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Error getting data');

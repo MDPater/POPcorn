@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/screens/movie_description/controller/movie_desc_controller.dart';
 import 'package:popcorn/screens/movie_description/model/film_cast_model.dart';
+import 'package:popcorn/screens/people/view/people_view.dart';
 
 class FilmCrewView extends StatefulWidget {
   const FilmCrewView({super.key, required this.movieID});
@@ -79,7 +80,17 @@ class _FilmCrewViewState extends State<FilmCrewView> {
                               splashColor:
                                   Theme.of(context).colorScheme.primary,
                               borderRadius: BorderRadius.circular(10),
-                              onTap: () {},
+                              onTap: () {
+                                Future.delayed(
+                                    const Duration(milliseconds: 300), () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => PeopleView(
+                                              id: snapshot
+                                                  .data!.cast[index].id)));
+                                });
+                              },
                               child: Container(
                                 padding: const EdgeInsets.all(2),
                                 width: 70,
