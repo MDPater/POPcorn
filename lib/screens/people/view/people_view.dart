@@ -41,11 +41,8 @@ class _PeopleViewState extends State<PeopleView> {
           return Text('Error: ${snapshot.hasError}');
         } else if (snapshot.hasData) {
           bool showImage = true;
-          bool birthDay = true;
           if (snapshot.data!.profilePath == null) {
             showImage = false;
-          } else if (snapshot.data!.birthday == null) {
-            birthDay = false;
           }
           return Scaffold(
             backgroundColor: Theme.of(context).colorScheme.secondary,
@@ -56,6 +53,7 @@ class _PeopleViewState extends State<PeopleView> {
                   child: ListView(
                     controller: myScrollController,
                     children: [
+                      //Top Bar
                       SizedBox(
                         height: 75,
                         child: Row(
@@ -95,9 +93,7 @@ class _PeopleViewState extends State<PeopleView> {
                                       style: const TextStyle(fontSize: 24),
                                     ),
                                     Text(
-                                      birthDay
-                                          ? snapshot.data!.birthday.toString()
-                                          : '',
+                                      snapshot.data!.birthday ?? 'N/A',
                                       style: const TextStyle(
                                           fontSize: 12, color: Colors.grey),
                                     )
@@ -109,6 +105,7 @@ class _PeopleViewState extends State<PeopleView> {
                           ],
                         ),
                       ),
+                      //Picture and Biography
                       Padding(
                         padding: const EdgeInsets.only(top: 15.0),
                         child: Row(
@@ -156,7 +153,14 @@ class _PeopleViewState extends State<PeopleView> {
                                 ))
                           ],
                         ),
-                      )
+                      ),
+                      //id
+                      Container(
+                        padding: const EdgeInsets.all(16),
+                        child: Center(
+                          child: Text(snapshot.data!.id.toString()),
+                        ),
+                      ),
                     ],
                   )),
             ),
