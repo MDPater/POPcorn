@@ -2,32 +2,33 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/screens/movie_description/view/movie_desc_view.dart';
 
-class TopRatedMovies extends StatefulWidget {
-  const TopRatedMovies({super.key, required this.TopRated});
+class PopularView extends StatefulWidget {
+  const PopularView({super.key, required this.Trending});
 
-  final List TopRated;
+  final List Trending;
 
   @override
-  State<TopRatedMovies> createState() => _TopRatedMoviesState();
+  State<PopularView> createState() => _TrendingMoviesState();
 }
 
-class _TopRatedMoviesState extends State<TopRatedMovies> {
-  //Widget that builds Top Rated cards on Home Screen
+class _TrendingMoviesState extends State<PopularView> {
+  //Widget that builds trending Cards on Home Screen
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.only(left: 0, right: 0, top: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Top Rated', style: TextStyle(fontSize: 24)),
+          const Text('Trending', style: TextStyle(fontSize: 24)),
           const SizedBox(
             height: 10,
           ),
           SizedBox(
-            height: 260,
+            height: 200,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: widget.TopRated.length,
+                itemCount: widget.Trending.length,
                 itemBuilder: (context, index) {
                   return InkWell(
                     splashColor: Theme.of(context).colorScheme.primary,
@@ -38,27 +39,32 @@ class _TopRatedMoviesState extends State<TopRatedMovies> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => movieDescriptionView(
-                                    movieID: widget.TopRated[index]['id'])));
+                                    movieID: widget.Trending[index]['id'])));
                       });
                     },
                     child: Container(
                       padding: const EdgeInsets.all(5),
-                      width: 140,
+                      width: 250,
                       child: Column(
                         children: [
                           Container(
-                            height: 195,
+                            width: 250,
+                            height: 140,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(20),
                                 image: DecorationImage(
                                     image: NetworkImage(
                                         'https://image.tmdb.org/t/p/w500' +
-                                            widget.TopRated[index]
-                                                ['poster_path']))),
+                                            widget.Trending[index]
+                                                ['backdrop_path']),
+                                    fit: BoxFit.cover)),
+                          ),
+                          const SizedBox(
+                            height: 10,
                           ),
                           Container(
                             child: Text(
-                              widget.TopRated[index]['title'] ?? 'Loading',
+                              widget.Trending[index]['title'] ?? 'Loading',
                               style: const TextStyle(
                                   fontSize: 12, fontWeight: FontWeight.w700),
                             ),

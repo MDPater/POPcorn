@@ -2,33 +2,32 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/screens/movie_description/view/movie_desc_view.dart';
 
-class TrendingMovies extends StatefulWidget {
-  const TrendingMovies({super.key, required this.Trending});
+class NowPlayingView extends StatefulWidget {
+  const NowPlayingView({super.key, required this.Theatre});
 
-  final List Trending;
+  final List Theatre;
 
   @override
-  State<TrendingMovies> createState() => _TrendingMoviesState();
+  State<NowPlayingView> createState() => _InTheatreState();
 }
 
-class _TrendingMoviesState extends State<TrendingMovies> {
-  //Widget that builds trending Cards on Home Screen
+class _InTheatreState extends State<NowPlayingView> {
+  //Widget that builds Top Rated cards on Home Screen
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 0, right: 0, top: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Trending', style: TextStyle(fontSize: 24)),
+          const Text('In Theatre Now', style: TextStyle(fontSize: 24)),
           const SizedBox(
             height: 10,
           ),
           SizedBox(
-            height: 200,
+            height: 260,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: widget.Trending.length,
+                itemCount: widget.Theatre.length,
                 itemBuilder: (context, index) {
                   return InkWell(
                     splashColor: Theme.of(context).colorScheme.primary,
@@ -39,32 +38,27 @@ class _TrendingMoviesState extends State<TrendingMovies> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => movieDescriptionView(
-                                    movieID: widget.Trending[index]['id'])));
+                                    movieID: widget.Theatre[index]['id'])));
                       });
                     },
                     child: Container(
                       padding: const EdgeInsets.all(5),
-                      width: 250,
+                      width: 140,
                       child: Column(
                         children: [
                           Container(
-                            width: 250,
-                            height: 140,
+                            height: 195,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(10),
                                 image: DecorationImage(
                                     image: NetworkImage(
                                         'https://image.tmdb.org/t/p/w500' +
-                                            widget.Trending[index]
-                                                ['backdrop_path']),
-                                    fit: BoxFit.cover)),
-                          ),
-                          const SizedBox(
-                            height: 10,
+                                            widget.Theatre[index]
+                                                ['poster_path']))),
                           ),
                           Container(
                             child: Text(
-                              widget.Trending[index]['title'] ?? 'Loading',
+                              widget.Theatre[index]['title'] ?? 'Loading',
                               style: const TextStyle(
                                   fontSize: 12, fontWeight: FontWeight.w700),
                             ),

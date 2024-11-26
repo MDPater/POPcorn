@@ -8,9 +8,9 @@ import 'package:popcorn/widgets/NavDrawer.dart';
 import 'package:popcorn/widgets/ProfileDrawer.dart';
 
 //import Movie Widgets
-import 'package:popcorn/screens/foryou/view/inTheatre.dart';
-import 'package:popcorn/screens/foryou/view/toprated.dart';
-import 'package:popcorn/screens/foryou/view/trending.dart';
+import 'package:popcorn/screens/foryou/view/now_playing_view.dart';
+import 'package:popcorn/screens/foryou/view/top_rated_view.dart';
+import 'package:popcorn/screens/foryou/view/popular_view.dart';
 
 //import TMDB
 import 'package:tmdb_api/tmdb_api.dart';
@@ -167,9 +167,9 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 30,
             ),
-            TrendingMovies(Trending: trendingMovies),
-            InTheatre(Theatre: theatreMovies),
-            TopRatedMovies(TopRated: topratedMovies),
+            PopularView(Trending: trendingMovies),
+            NowPlayingView(Theatre: theatreMovies),
+            TopRatedView(TopRated: topratedMovies),
           ]),
         ),
       ),

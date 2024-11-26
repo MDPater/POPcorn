@@ -2,16 +2,16 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/screens/movie_description/view/movie_desc_view.dart';
 
-class InTheatre extends StatefulWidget {
-  const InTheatre({super.key, required this.Theatre});
+class TopRatedView extends StatefulWidget {
+  const TopRatedView({super.key, required this.TopRated});
 
-  final List Theatre;
+  final List TopRated;
 
   @override
-  State<InTheatre> createState() => _InTheatreState();
+  State<TopRatedView> createState() => _TopRatedViewState();
 }
 
-class _InTheatreState extends State<InTheatre> {
+class _TopRatedViewState extends State<TopRatedView> {
   //Widget that builds Top Rated cards on Home Screen
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class _InTheatreState extends State<InTheatre> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('In Theatre Now', style: TextStyle(fontSize: 24)),
+          const Text('Top Rated', style: TextStyle(fontSize: 24)),
           const SizedBox(
             height: 10,
           ),
@@ -27,7 +27,7 @@ class _InTheatreState extends State<InTheatre> {
             height: 260,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: widget.Theatre.length,
+                itemCount: widget.TopRated.length,
                 itemBuilder: (context, index) {
                   return InkWell(
                     splashColor: Theme.of(context).colorScheme.primary,
@@ -38,7 +38,7 @@ class _InTheatreState extends State<InTheatre> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => movieDescriptionView(
-                                    movieID: widget.Theatre[index]['id'])));
+                                    movieID: widget.TopRated[index]['id'])));
                       });
                     },
                     child: Container(
@@ -53,12 +53,12 @@ class _InTheatreState extends State<InTheatre> {
                                 image: DecorationImage(
                                     image: NetworkImage(
                                         'https://image.tmdb.org/t/p/w500' +
-                                            widget.Theatre[index]
+                                            widget.TopRated[index]
                                                 ['poster_path']))),
                           ),
                           Container(
                             child: Text(
-                              widget.Theatre[index]['title'] ?? 'Loading',
+                              widget.TopRated[index]['title'] ?? 'Loading',
                               style: const TextStyle(
                                   fontSize: 12, fontWeight: FontWeight.w700),
                             ),

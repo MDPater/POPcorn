@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/screens/people/controller/people_controller.dart';
 import 'package:popcorn/screens/people/model/people_model.dart';
+import 'package:popcorn/screens/people/view/people_credit_view.dart';
 
 class PeopleView extends StatefulWidget {
   const PeopleView({super.key, required this.id});
@@ -155,12 +156,10 @@ class _PeopleViewState extends State<PeopleView> {
                         ),
                       ),
                       //id
-                      Container(
-                        padding: const EdgeInsets.all(16),
-                        child: Center(
-                          child: Text(snapshot.data!.id.toString()),
-                        ),
-                      ),
+                      /*Center(
+                        child: Text(snapshot.data!.id.toString()),
+                      ),*/
+                      PeopleCreditView(id: widget.id),
                     ],
                   )),
             ),
