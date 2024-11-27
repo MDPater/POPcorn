@@ -18,7 +18,7 @@ class _PeopleViewState extends State<PeopleView> {
   final PeopleController _controller = PeopleController();
 
   Future<void> _refreshPage() async {
-    await Future.delayed(Duration(milliseconds: 300));
+    await Future.delayed(const Duration(milliseconds: 300));
     setState(() {
       futurePeople = _controller.getPeopleData(widget.id);
     });

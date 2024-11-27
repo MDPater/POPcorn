@@ -11,8 +11,8 @@ class movieDescriptionModel {
   String original_title;
   String overview;
   String? backdrop_path;
-  String poster_path;
-  DateTime release_date;
+  String? poster_path;
+  DateTime? release_date;
   double vote_average;
   String title;
   String tagline;
@@ -42,7 +42,7 @@ class movieDescriptionModel {
       overview: json['overview'],
       backdrop_path: json['backdrop_path'],
       poster_path: json['poster_path'],
-      release_date: DateTime.parse(json['release_date']),
+      release_date: DateTime.tryParse(json['release_date']),
       vote_average: json['vote_average'],
       title: json['title'],
       tagline: json['tagline'],

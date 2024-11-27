@@ -44,7 +44,7 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
   bool userReview = false;
 
   Future<void> _refreshPage() async {
-    await Future.delayed(Duration(milliseconds: 300));
+    await Future.delayed(const Duration(milliseconds: 300));
     setState(() {
       checkMovie();
       futureMovie = _controller.getMovieData(widget.movieID);
@@ -106,8 +106,12 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
             } else if (snapshot.hasData) {
               snap = snapshot;
               bool showBackdrop = true;
+              bool hasReleaseDate = true;
               if (snapshot.data!.backdrop_path == null) {
                 showBackdrop = false;
+              }
+              if (snapshot.data!.release_date == null) {
+                hasReleaseDate = false;
               }
               return Scaffold(
                 backgroundColor: Theme.of(context).colorScheme.secondary,
@@ -223,7 +227,9 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                         Container(
                           padding: const EdgeInsets.only(left: 12),
                           child: Text(
-                            'release date: ${DateFormat('dd-MM-yyyy').format(snapshot.data!.release_date)}',
+                            hasReleaseDate
+                                ? 'release date: ${DateFormat('dd-MM-yyyy').format(snapshot.data!.release_date!)}'
+                                : "N/A",
                             style: const TextStyle(fontSize: 12),
                           ),
                         ),
@@ -342,7 +348,7 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                           builder: (context) => WatchedBottomSheet(
                               movieID: widget.movieID,
                               title: snapshot.data!.title,
-                              posterurl: snapshot.data!.poster_path,
+                              posterurl: snapshot.data!.poster_path.toString(),
                               rating: snapshot.data!.vote_average));
                       if (result != null) {
                         setState(() {

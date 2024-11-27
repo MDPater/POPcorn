@@ -45,7 +45,7 @@ class MoviePreviewModel {
 
   static Future<MoviePreviewModel> fetchTopRated() async {
     Random random = Random();
-    int page = random.nextInt(10) + 1;
+    int page = random.nextInt(15) + 1;
     final response = await http.get(
         Uri.parse("https://api.themoviedb.org/3/movie/top_rated?page=$page"),
         headers: {HttpHeaders.authorizationHeader: 'Bearer $readaccesstoken'});
