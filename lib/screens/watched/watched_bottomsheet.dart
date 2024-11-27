@@ -211,7 +211,7 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                     }
                   },
                   icon: const Icon(Icons.check),
-                  label: const Text('Add to List'),
+                  label: edit ? const Text('Edit') : const Text('Add to List'),
                   splashColor: Colors.green,
                   focusColor: Colors.green,
                   autofocus: true,
