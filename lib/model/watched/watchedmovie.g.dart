@@ -23,13 +23,14 @@ class watchedmovieAdapter extends TypeAdapter<watchedmovie> {
       movieID: fields[4] as int,
       comment: fields[2] as String,
       movieWatchedAt: fields[5] as DateTime,
+      releaseDate: fields[6] as DateTime,
     );
   }
 
   @override
   void write(BinaryWriter writer, watchedmovie obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.movieTitle)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class watchedmovieAdapter extends TypeAdapter<watchedmovie> {
       ..writeByte(4)
       ..write(obj.movieID)
       ..writeByte(5)
-      ..write(obj.movieWatchedAt);
+      ..write(obj.movieWatchedAt)
+      ..writeByte(6)
+      ..write(obj.releaseDate);
   }
 
   @override

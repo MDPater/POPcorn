@@ -157,11 +157,15 @@ class _watchlist extends State<watchlist> {
                                                 context: context,
                                                 builder: (context) =>
                                                     WatchedBottomSheet(
-                                                        movieID: movie.movieID,
-                                                        title: movie.movieTitle,
-                                                        posterurl:
-                                                            movie.posterurl,
-                                                        rating: movie.star));
+                                                      movieID: movie.movieID,
+                                                      title: movie.movieTitle,
+                                                      posterurl:
+                                                          movie.posterurl,
+                                                      rating: movie.star,
+                                                      releaseDate:
+                                                          DateTime.parse(
+                                                              "00000000"),
+                                                    ));
                                           },
                                           icon: const Icon(Icons.add_box),
                                           color: Theme.of(context)

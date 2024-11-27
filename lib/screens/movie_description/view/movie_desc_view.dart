@@ -57,7 +57,7 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
         'key_${widget.movieID}',
         needtowatch(
           movieTitle: snap.data!.title,
-          posterurl: snap.data!.poster_path,
+          posterurl: snap.data!.poster_path.toString(),
           star: snap.data!.vote_average,
           movieID: widget.movieID,
         ));
@@ -346,10 +346,15 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                       final result = await showModalBottomSheet(
                           context: context,
                           builder: (context) => WatchedBottomSheet(
-                              movieID: widget.movieID,
-                              title: snapshot.data!.title,
-                              posterurl: snapshot.data!.poster_path.toString(),
-                              rating: snapshot.data!.vote_average));
+                                movieID: widget.movieID,
+                                title: snapshot.data!.title,
+                                posterurl:
+                                    snapshot.data!.poster_path.toString(),
+                                rating: snapshot.data!.vote_average,
+                                releaseDate: hasReleaseDate
+                                    ? snapshot.data!.release_date!
+                                    : DateTime.parse("00000000"),
+                              ));
                       if (result != null) {
                         setState(() {
                           _refreshPage();

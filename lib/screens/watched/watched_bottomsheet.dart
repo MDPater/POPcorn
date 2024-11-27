@@ -6,17 +6,18 @@ import 'package:popcorn/model/watched/watchedmovie.dart';
 var star;
 
 class WatchedBottomSheet extends StatefulWidget {
-  const WatchedBottomSheet({
-    super.key,
-    required this.movieID,
-    required this.title,
-    required this.posterurl,
-    required this.rating,
-  });
+  const WatchedBottomSheet(
+      {super.key,
+      required this.movieID,
+      required this.title,
+      required this.posterurl,
+      required this.rating,
+      required this.releaseDate});
 
   final String title, posterurl;
   final int movieID;
   final double rating;
+  final DateTime releaseDate;
 
   @override
   State<WatchedBottomSheet> createState() => _WatchedBottomSheetState();
@@ -29,12 +30,12 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
 
   @override
   void dispose() {
-    commentController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    bool edit = boxMovies.containsKey('key_${widget.movieID}');
     star = (widget.rating / 2).toStringAsFixed(1);
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -161,31 +162,53 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                 padding: const EdgeInsets.only(left: 16, right: 16),
                 child: FloatingActionButton.extended(
                   onPressed: () {
-                    print("Movie ${widget.title} ${widget.movieID} Saved");
-                    //save Movie to Watchlist
-                    setState(() {
-                      boxMovies.put(
-                          'key_${widget.movieID}',
-                          watchedmovie(
-                              movieTitle: widget.title,
-                              posterurl: widget.posterurl,
-                              starRating: ratingvalue,
-                              movieID: widget.movieID,
-                              comment: commentController.text,
-                              movieWatchedAt: DateTime.now()));
-                      Future.delayed(const Duration(milliseconds: 300), () {
-                        if (boxNeedToWatch.get('key_${widget.movieID}') !=
-                            null) {
-                          setState(() {
-                            boxNeedToWatch.delete('key_${widget.movieID}');
-                          });
-                          print(
-                              'delete ${widget.title} ${widget.movieID} from WatchList');
-                        }
-                        // Do something
-                        Navigator.pop(context, 'refresh');
+                    if (edit) {
+                      setState(() {
+                        watchedmovie movie;
+                        movie = boxMovies.get('key_${widget.movieID}');
+                        boxMovies.put(
+                            'key_${widget.movieID}',
+                            watchedmovie(
+                                movieTitle: widget.title,
+                                posterurl: widget.posterurl,
+                                starRating: ratingvalue,
+                                movieID: widget.movieID,
+                                comment: commentController.text.isNotEmpty
+                                    ? commentController.text
+                                    : movie.comment,
+                                movieWatchedAt: movie.movieWatchedAt,
+                                releaseDate: widget.releaseDate));
+                        Future.delayed(const Duration(milliseconds: 300), () {
+                          Navigator.pop(context, 'refresh');
+                        });
                       });
-                    });
+                    } else {
+                      setState(() {
+                        boxMovies.put(
+                            'key_${widget.movieID}',
+                            watchedmovie(
+                                movieTitle: widget.title,
+                                posterurl: widget.posterurl,
+                                starRating: ratingvalue,
+                                movieID: widget.movieID,
+                                comment: commentController.text,
+                                movieWatchedAt: DateTime.now(),
+                                releaseDate: widget.releaseDate));
+                        print("Movie ${widget.title} ${widget.movieID} Saved");
+                        Future.delayed(const Duration(milliseconds: 300), () {
+                          if (boxNeedToWatch.get('key_${widget.movieID}') !=
+                              null) {
+                            setState(() {
+                              boxNeedToWatch.delete('key_${widget.movieID}');
+                            });
+                            print(
+                                'delete ${widget.title} ${widget.movieID} from WatchList');
+                          }
+                          // Do something
+                          Navigator.pop(context, 'refresh');
+                        });
+                      });
+                    }
                   },
                   icon: const Icon(Icons.check),
                   label: const Text('Add to List'),
