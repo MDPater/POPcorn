@@ -3,7 +3,7 @@ import 'package:popcorn/screens/settings/about_screen.dart';
 import 'package:popcorn/screens/foryou/view/home_screen_view.dart';
 import 'package:popcorn/screens/settings/settings_screen.dart';
 import 'package:popcorn/screens/watchlist/watchlist_screen.dart';
-import 'package:popcorn/screens/watched/watched_screen.dart';
+import 'package:popcorn/screens/watched/view/watched_list_view.dart';
 
 class MyNavDrawer extends StatelessWidget {
   const MyNavDrawer({super.key});

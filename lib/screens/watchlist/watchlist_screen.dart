@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:popcorn/model/boxes.dart';
 import 'package:popcorn/model/need_to_watch/needtowatch.dart';
 import 'package:popcorn/screens/movie_description/view/movie_desc_view.dart';
-import 'package:popcorn/screens/watched/watched_bottomsheet.dart';
+import 'package:popcorn/screens/watched/view/watched_bottomsheet.dart';
 import 'package:popcorn/widgets/AppBar.dart';
 import 'package:popcorn/widgets/NavDrawer.dart';
 import 'package:popcorn/widgets/ProfileDrawer.dart';
@@ -158,13 +158,6 @@ class _watchlist extends State<watchlist> {
                                                 builder: (context) =>
                                                     WatchedBottomSheet(
                                                       movieID: movie.movieID,
-                                                      title: movie.movieTitle,
-                                                      posterurl:
-                                                          movie.posterurl,
-                                                      rating: movie.star,
-                                                      releaseDate:
-                                                          DateTime.parse(
-                                                              "00000000"),
                                                     ));
                                           },
                                           icon: const Icon(Icons.add_box),
