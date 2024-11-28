@@ -47,6 +47,10 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else if (snapshot.hasData) {
+              bool hasReleasDate = true;
+              if (snapshot.data!.releaseDate == null) {
+                hasReleasDate = false;
+              }
               star = (snapshot.data!.rating / 2).toStringAsFixed(1);
               return Scaffold(
                 resizeToAvoidBottomInset: true,
@@ -188,7 +192,8 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                                       'key_${widget.movieID}',
                                       watchedmovie(
                                           movieTitle: snapshot.data!.title,
-                                          posterurl: snapshot.data!.posterUrl,
+                                          posterurl: snapshot.data!.posterUrl
+                                              .toString(),
                                           starRating: ratingvalue,
                                           movieID: widget.movieID,
                                           comment:
@@ -196,8 +201,9 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                                                   ? commentController.text
                                                   : movie.comment,
                                           movieWatchedAt: movie.movieWatchedAt,
-                                          releaseDate:
-                                              snapshot.data!.releaseDate));
+                                          releaseDate: hasReleasDate
+                                              ? snapshot.data!.releaseDate!
+                                              : DateTime.parse("00000000")));
                                   Future.delayed(
                                       const Duration(milliseconds: 300), () {
                                     Navigator.pop(context, 'refresh');
@@ -209,13 +215,15 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                                       'key_${widget.movieID}',
                                       watchedmovie(
                                           movieTitle: snapshot.data!.title,
-                                          posterurl: snapshot.data!.posterUrl,
+                                          posterurl: snapshot.data!.posterUrl
+                                              .toString(),
                                           starRating: ratingvalue,
                                           movieID: widget.movieID,
                                           comment: commentController.text,
                                           movieWatchedAt: DateTime.now(),
-                                          releaseDate:
-                                              snapshot.data!.releaseDate));
+                                          releaseDate: hasReleasDate
+                                              ? snapshot.data!.releaseDate!
+                                              : DateTime.parse("00000000")));
                                   print(
                                       "Movie ${snapshot.data!.title} ${snapshot.data!.id} Saved");
                                   Future.delayed(

@@ -5,10 +5,11 @@ import 'package:http/http.dart' as http;
 import 'package:popcorn/constants/api_constants.dart';
 
 class WatchedBottomsheetModel {
-  String title, posterUrl;
+  String title;
+  String? posterUrl;
   int id;
   double rating;
-  DateTime releaseDate;
+  DateTime? releaseDate;
 
   WatchedBottomsheetModel(
       {required this.id,
@@ -24,7 +25,7 @@ class WatchedBottomsheetModel {
         id: json['id'],
         posterUrl: json['poster_path'],
         rating: json['vote_average'],
-        releaseDate: json['release_date'],
+        releaseDate: DateTime.tryParse(json['release_date']),
         title: json['title']);
   }
 

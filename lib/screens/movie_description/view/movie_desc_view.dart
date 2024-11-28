@@ -10,7 +10,7 @@ import 'package:popcorn/screens/movie_description/view/film_cast_view.dart';
 import 'package:popcorn/screens/movie_description/view/film_crew_view.dart';
 import 'package:popcorn/screens/movie_description/view/similar_movie_view.dart';
 import 'package:popcorn/screens/movie_description/view/user_rating_view.dart';
-import 'package:popcorn/screens/watched/view/watched_bottomsheet.dart';
+import 'package:popcorn/screens/watched/view/watched_bottomsheet_view.dart';
 //import 'package:popcorn/widgets/AppBar.dart';
 //import 'package:popcorn/widgets/NavDrawer.dart';
 //import 'package:popcorn/widgets/ProfileDrawer.dart';
