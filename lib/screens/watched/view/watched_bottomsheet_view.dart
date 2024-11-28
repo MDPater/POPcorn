@@ -203,7 +203,7 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                                           movieWatchedAt: movie.movieWatchedAt,
                                           releaseDate: hasReleasDate
                                               ? snapshot.data!.releaseDate!
-                                              : DateTime.parse("00000000")));
+                                              : DateTime.parse("1888-01-01")));
                                   Future.delayed(
                                       const Duration(milliseconds: 300), () {
                                     Navigator.pop(context, 'refresh');
@@ -223,7 +223,7 @@ class _WatchedBottomSheetState extends State<WatchedBottomSheet> {
                                           movieWatchedAt: DateTime.now(),
                                           releaseDate: hasReleasDate
                                               ? snapshot.data!.releaseDate!
-                                              : DateTime.parse("00000000")));
+                                              : DateTime.parse("1888-01-01")));
                                   print(
                                       "Movie ${snapshot.data!.title} ${snapshot.data!.id} Saved");
                                   Future.delayed(

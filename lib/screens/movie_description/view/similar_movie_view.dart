@@ -37,75 +37,99 @@ class _SimilarMoviesView extends State<SimilarMoviesView> {
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else if (snapshot.hasData) {
-              return Column(
-                children: [
-                  const SizedBox(
-                      width: double.infinity,
+              if (snapshot.data!.results.isEmpty) {
+                return Column(
+                  children: [
+                    Container(
+                        padding: const EdgeInsets.only(left: 0),
+                        width: double.infinity,
+                        child: const Text(
+                          'Similar Movies',
+                          style: TextStyle(fontSize: 20),
+                        )),
+                    const Center(
                       child: Text(
-                        'Similar Movies',
+                        "No Results",
                         style: TextStyle(fontSize: 20),
-                      )),
-                  SizedBox(
-                    height: 240,
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: snapshot.data!.results.length,
-                        itemBuilder: (context, index) {
-                          bool showImage = true;
-                          if (snapshot.data!.results[index].poster_path ==
-                              null) {
-                            showImage = false;
-                          }
-                          return InkWell(
-                            splashColor: Theme.of(context).colorScheme.primary,
-                            borderRadius: BorderRadius.circular(20),
-                            onTap: () {
-                              Future.delayed(const Duration(milliseconds: 300),
-                                  () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            movieDescriptionView(
-                                                movieID: snapshot.data!
-                                                    .results[index].movieID)));
-                              });
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.all(5),
-                              width: 140,
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 195,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        image: DecorationImage(
-                                            image: showImage
-                                                ? NetworkImage(
-                                                    'https://image.tmdb.org/t/p/w500${snapshot.data!.results[index].poster_path}')
-                                                : const AssetImage(
-                                                        'assets/images/poster404.jpg')
-                                                    as ImageProvider)),
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      snapshot.data!.results[index].title,
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(
-                                          overflow: TextOverflow.fade,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w700),
+                      ),
+                    )
+                  ],
+                );
+              } else {
+                return Column(
+                  children: [
+                    const SizedBox(
+                        width: double.infinity,
+                        child: Text(
+                          'Similar Movies',
+                          style: TextStyle(fontSize: 20),
+                        )),
+                    SizedBox(
+                      height: 240,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: snapshot.data!.results.length,
+                          itemBuilder: (context, index) {
+                            bool showImage = true;
+                            if (snapshot.data!.results[index].poster_path ==
+                                null) {
+                              showImage = false;
+                            }
+                            return InkWell(
+                              splashColor:
+                                  Theme.of(context).colorScheme.primary,
+                              borderRadius: BorderRadius.circular(20),
+                              onTap: () {
+                                Future.delayed(
+                                    const Duration(milliseconds: 300), () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              movieDescriptionView(
+                                                  movieID: snapshot
+                                                      .data!
+                                                      .results[index]
+                                                      .movieID)));
+                                });
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(5),
+                                width: 140,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 195,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          image: DecorationImage(
+                                              image: showImage
+                                                  ? NetworkImage(
+                                                      'https://image.tmdb.org/t/p/w500${snapshot.data!.results[index].poster_path}')
+                                                  : const AssetImage(
+                                                          'assets/images/poster404.jpg')
+                                                      as ImageProvider)),
                                     ),
-                                  )
-                                ],
+                                    Expanded(
+                                      child: Text(
+                                        snapshot.data!.results[index].title,
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                            overflow: TextOverflow.fade,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
-                            ),
-                          );
-                        }),
-                  ),
-                ],
-              );
+                            );
+                          }),
+                    ),
+                  ],
+                );
+              }
             } else {
               return const Text('No Data Found');
             }
