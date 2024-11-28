@@ -62,21 +62,8 @@ class _Watched_ScreenState extends State<WatchedScreen> {
         appBar: const MyAppBar(),
         body: Column(children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 50, width: 50),
-              const SizedBox(height: 50, width: 50),
-              Container(
-                padding: const EdgeInsets.only(
-                    top: 5, bottom: 5, left: 15, right: 15),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.grey),
-                child: const Text(
-                  "Your Watched Movies",
-                  style: TextStyle(fontSize: 18),
-                ),
-              ),
               SizedBox(
                 height: 50,
                 width: 40,
@@ -91,6 +78,19 @@ class _Watched_ScreenState extends State<WatchedScreen> {
                   },
                 ),
               ),
+              const Spacer(),
+              Container(
+                padding: const EdgeInsets.only(
+                    top: 5, bottom: 5, left: 15, right: 15),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.grey),
+                child: const Text(
+                  "Your Watched Movies",
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+              const Spacer(),
               SizedBox(
                 height: 50,
                 width: 40,

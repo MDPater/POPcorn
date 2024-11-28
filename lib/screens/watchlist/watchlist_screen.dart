@@ -58,7 +58,7 @@ class _watchlist extends State<watchlist> {
         onRefresh: _refreshPage,
         child: Column(children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
                 height: 50,

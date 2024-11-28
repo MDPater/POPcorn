@@ -229,7 +229,7 @@ class _movieDescriptionViewState extends State<movieDescriptionView> {
                           child: Text(
                             hasReleaseDate
                                 ? 'release date: ${DateFormat('dd-MM-yyyy').format(snapshot.data!.release_date!)}'
-                                : "N/A",
+                                : 'release date: N/A',
                             style: const TextStyle(fontSize: 12),
                           ),
                         ),
