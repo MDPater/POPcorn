@@ -50,6 +50,10 @@ class _TrendingMoviesState extends State<PopularView> {
                         scrollDirection: Axis.horizontal,
                         itemCount: snapshot.data!.results.length,
                         itemBuilder: (context, index) {
+                          bool hasBackdrop = true;
+                          if(snapshot.data!.results[index].backdropPath == null){
+                            hasBackdrop = false;
+                          }
                           return InkWell(
                             splashColor: Theme.of(context).colorScheme.primary,
                             borderRadius: BorderRadius.circular(20),
@@ -76,12 +80,12 @@ class _TrendingMoviesState extends State<PopularView> {
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(20),
                                         image: DecorationImage(
-                                            image: NetworkImage(
+                                            image:hasBackdrop ? NetworkImage(
                                                 'https://image.tmdb.org/t/p/w500' +
                                                     snapshot
                                                         .data!
                                                         .results[index]
-                                                        .backdropPath),
+                                                        .backdropPath.toString()): const AssetImage('assets/images/poster404.jpg') as ImageProvider,
                                             fit: BoxFit.cover)),
                                   ),
                                   const SizedBox(

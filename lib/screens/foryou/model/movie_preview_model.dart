@@ -59,7 +59,7 @@ class MoviePreviewModel {
 
 class Result {
   int id;
-  String backdropPath;
+  String? backdropPath;
   String originalTitle;
   String posterPath;
   String title;
